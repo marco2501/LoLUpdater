@@ -23,7 +23,28 @@ Put files in right location
 Installation
 ============
 
-	Powershell Studio is required to run this program
+>>Powershell Studio is required to run this program
+
+Open the psf file in powershell studio and build it, you will get a lolupdater.export.ps1 file which is the finished file.
+
+Sign the script by download Windows SDK
+
+	[Windows 8.1SDK](http://msdn.microsoft.com/en-us/windows/desktop/bg162891.aspx)
+
+	[Windows 8SDK](http://msdn.microsoft.com/en-us/windows/desktop/hh852363.aspx)
+
+	[Windows 7SDK](http://www.microsoft.com/en-us/download/details.aspx?id=8279)
+
+Find the tool "makecert.exe" and run it like this:
+
+	makecert -n "CN=PowerShell Local Certificate Root" -a sha1 -eku 1.3.6.1.5.5.7.3.3 -r -sv root.pvk root.cer -ss Root -sr localMachine
+
+	makecert -pe -n "CN=PowerShell User" -ss MY -a sha1 -eku 1.3.6.1.5.5.7.3.3 -iv root.pvk -ic root.cer
+
+	
+Then in a powershell admin window run this
+
+	Set-AuthenticodeSignature c:\file.ps1 @(Get-ChildItem cert:\CurrentUser\My -codesigning)[0] -Timestampserver http://timestamp.comodoca.com/authenticode
 
 	Open a Powershell prompt as administrator and type "Set-ExecutionPolicy RemoteSigned" then use the "Set-Location" command to move into the script directory, then type .\lolupdater.ps1 to execute the script.
 
@@ -43,33 +64,8 @@ Checking to See if Installation Was Successful
 About Signing
 =============
 
-If you want to sign the script (after modifying it) and executable you can do it by downloading Windows SDK
 
-Windows 8.1SDK : http://msdn.microsoft.com/en-us/windows/desktop/bg162891.aspx
 
-Windows 8SDK : http://msdn.microsoft.com/en-us/windows/desktop/hh852363.aspx
-
-Windows 7SDK : http://www.microsoft.com/en-us/download/details.aspx?id=8279
-
-Find the tool "makecert.exe" and run it like this:
-
-	makecert -n "CN=PowerShell Local Certificate Root" -a sha1 -eku 1.3.6.1.5.5.7.3.3 -r -sv root.pvk root.cer -ss Root -sr localMachine
-
-	makecert -pe -n "CN=PowerShell User" -ss MY -a sha1 -eku 1.3.6.1.5.5.7.3.3 -iv root.pvk -ic root.cer
-
-	
-Then in a powershell admin window run this
-
-	Set-AuthenticodeSignature c:\file.ps1 @(Get-ChildItem cert:\CurrentUser\My -codesigning)[0] -Timestampserver http://timestamp.comodoca.com/authenticode
-
-With this signing you will be able to run this script on computers with the executionpolicy set to remotesigned
-
-If you want to be able to run the script on all machines without changing execution policy you need to buy a certificate from for example Comodo (cheapest): https://cheapsslsecurity.com/comodo/codesigningcertificate.html
-
-Donation
-========
-
-Paypal: Ilja.korsun@gmail.com
 
 
 
