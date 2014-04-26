@@ -6,6 +6,8 @@ Pre-Installation
 ================
 Put files in right location
 
+	First download Powershell Studio by SAPIEN to compile this script
+
 	League must be installed on “X:\Riot Games\League of Legends” (X = any drive letter)
 
 	Extract the zip file to “X:\Riot Games\League of Legends”
@@ -24,9 +26,6 @@ Installation
 	Powershell Studio is required to run this program
 
 	Open a Powershell prompt as administrator and type "Set-ExecutionPolicy RemoteSigned" then use the "Set-Location" command to move into the script directory, then type .\lolupdater.ps1 to execute the script.
-
-	You can open the script in Powershell Studio to edit the GUI and check the source for the actual script.
-
 
 Checking to See if Installation Was Successful
 ===============================================
