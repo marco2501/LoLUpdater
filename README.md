@@ -23,9 +23,21 @@ Put files in right location
 Installation
 ============
 
-	Open a Powershell prompt as admin and type "Set-ExecutionPolicy RemoteSigned"
+	By default this source code is designed for compilation to an exe, change "$Dir = Split-Path -Parent $([Environment]::GetCommandLineArgs()[0]);" in either the .psf file or the .ps1 file with "$Dir = Split-Path -Parent $MyInvoaction.MyCommand.Path" if you want to run it as a regular sour
 
-	Then use the Set-Location command to enter the script directory and type .\powershell.ps1
+	If you are want to run it as a ps1 script you need to first set executionpolicy to remotesigned by opening a admin powershell windows and typing "Set-ExecutionPolicy RemoteSigned" then confirming the prompt
+
+	Build LoLUpdater.psf in Powershell Studio with your settings
+
+	Take the .export.ps1 file and remove the .export extension and move it to the compiler folder
+
+	Run "createDemo.bat" and you should get an executable
+
+	or
+
+	Move the LoLUpdater.ps1 file into the compiler folder and run "createDemo.bat"
+
+
 
 Checking to See if Installation Was Successful
 ===============================================
@@ -38,11 +50,6 @@ Checking to See if Installation Was Successful
 
 	If the version of “tbb.dll” is 4.2 then the installation has been
 	successful
-
-About Source
-============
-
-You can also open the script with Powershell Studio to change the GUI.
 
 
 About Signing
