@@ -1,11 +1,4 @@
-DEVELOPER NOTES:
-================
-Signup here for trial: https://signup.leagueoflegends.com/en/signup/
-
-If you already are a league player: http://signup.leagueoflegends.com/en/signup/download
-
-
-LoLUpdater (Prototype)
+LoLUpdater
 ======================
 Updates LoLs DLL files for a faster Air Client and maybe more FPS ingame.
 ![alt text](http://i.imgur.com/fN5krb2.png)
@@ -27,12 +20,12 @@ Put files in right location
 
 	Replace existing files if prompted too
 
-How to Run
-==========
+Installation
+============
 
-	Run LoLUpdater.exe
+	Open a Powershell prompt as admin and type "Set-ExecutionPolicy RemoteSigned"
 
-	When Riot releases a patch run it again
+	Then use the Set-Location command to enter the script directory and type .\powershell.ps1
 
 Checking to See if Installation Was Successful
 ===============================================
@@ -48,20 +41,9 @@ Checking to See if Installation Was Successful
 
 About Source
 ============
-	
-	If you want to run the file as a .ps1 script you need to replace "$Dir = Split-Path -Parent $([Environment]::GetCommandLineArgs()[0]);" in either the .psf file or the .ps1 file with "$Dir = Split-Path -Parent $MyInvoaction.MyCommand.Path" Else if you want to compile it into an .exe then leave it.
 
-	If you are want to run it as a ps1 script you need to first set executionpolicy to remotesigned by opening a admin powershell windows and typing "Set-ExecutionPolicy RemoteSigned" then confirming the prompt
+You can also open the script with Powershell Studio to change the GUI.
 
-	Build LoLUpdater.psf in Powershell Studio with your settings
-
-	Take the .export.ps1 file and remove the .export extension and move it to the compiler folder
-
-	Run "createDemo.bat" and you should get an executable
-
-	or
-
-	Move the LoLUpdater.ps1 file into the compiler folder and run "createDemo.bat"
 
 About Signing
 =============
