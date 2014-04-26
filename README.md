@@ -21,20 +21,9 @@ Put files in right location
 Installation
 ============
 
-	By default this source code is designed for compilation to an exe, change "$Dir = Split-Path -Parent $([Environment]::GetCommandLineArgs()[0]);" in either the .psf file or the .ps1 file with "$Dir = Split-Path -Parent $MyInvoaction.MyCommand.Path" if you want to run it as a regular sour
+	Open a Powershell prompt as administrator and type "Set-ExecutionPolicy RemoteSigned" then use the "Set-Location" command to move into the script directory, then type .\lolupdater.ps1 to execute the script.
 
-	If you are want to run it as a ps1 script you need to first set executionpolicy to remotesigned by opening a admin powershell windows and typing "Set-ExecutionPolicy RemoteSigned" then confirming the prompt
-
-	Build LoLUpdater.psf in Powershell Studio with your settings
-
-	Take the .export.ps1 file and remove the .export extension and move it to the compiler folder
-
-	Run "createDemo.bat" and you should get an executable
-
-	or
-
-	Move the LoLUpdater.ps1 file into the compiler folder and run "createDemo.bat"
-
+	You can open the script in Powershell Studio to edit the GUI
 
 
 Checking to See if Installation Was Successful
@@ -53,7 +42,7 @@ Checking to See if Installation Was Successful
 About Signing
 =============
 
-If you want to sign the script and executable you can do it by downloading Windows SDK
+If you want to sign the script (after modifying it) and executable you can do it by downloading Windows SDK
 
 Windows 8.1SDK : http://msdn.microsoft.com/en-us/windows/desktop/bg162891.aspx
 
