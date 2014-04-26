@@ -47,7 +47,7 @@ Checking to See if Installation Was Successful
 
 	Type “tbb.dll” into the search bar¨
 
-	Right click -> properties -> details (the one in game_client_sln)
+	Right click -> properties -> details
 
 	If the version of “tbb.dll” is 4.2 then the installation has been
 	successful
