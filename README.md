@@ -1,8 +1,6 @@
 LoLUpdater
 ======================
 Updates LoLs DLL files for a faster Air Client and maybe more FPS ingame.
-![alt text](http://i.imgur.com/fN5krb2.png)
-
 
 Pre-Installation
 ================
