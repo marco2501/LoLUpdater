@@ -23,7 +23,7 @@ Put files in right location
 Installation
 ============
 
->>Powershell Studio is required to run this program
+>>[Powershell Studio](http://www.sapien.com/software/powershell_studio) is required to run this program
 
 Open the psf file in powershell studio and build it, you will get a lolupdater.export.ps1 file which is the finished file.
 
