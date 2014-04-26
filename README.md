@@ -61,12 +61,6 @@ Checking to See if Installation Was Successful
 	successful
 
 
-About Signing
-=============
-
-
-
-
 
 
 
