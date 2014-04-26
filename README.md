@@ -27,13 +27,13 @@ Installation
 
 Open the psf file in powershell studio and build it, you will get a lolupdater.export.ps1 file which is the finished file.
 
-Sign the script by download Windows SDK
+Sign the script by downloading Windows SDK
 
-	[Windows 8.1SDK](http://msdn.microsoft.com/en-us/windows/desktop/bg162891.aspx)
+[Windows 8.1SDK](http://msdn.microsoft.com/en-us/windows/desktop/bg162891.aspx)
 
-	[Windows 8SDK](http://msdn.microsoft.com/en-us/windows/desktop/hh852363.aspx)
+[Windows 8SDK](http://msdn.microsoft.com/en-us/windows/desktop/hh852363.aspx)
 
-	[Windows 7SDK](http://www.microsoft.com/en-us/download/details.aspx?id=8279)
+[Windows 7SDK](http://www.microsoft.com/en-us/download/details.aspx?id=8279)
 
 Find the tool "makecert.exe" and run it like this:
 
