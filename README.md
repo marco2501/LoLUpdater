@@ -1,12 +1,6 @@
-LoLUpdater
-======================
-Updates LoLs DLL files for a faster Air Client and maybe more FPS ingame.
-
 Pre-Installation
 ================
 Put files in right location
-
-	First download Powershell Studio by SAPIEN to compile this script
 
 	League must be installed on “X:\Riot Games\League of Legends” (X = any drive letter)
 
@@ -17,8 +11,6 @@ Put files in right location
 	You should now have a folder within your league folder named  “LoLUpdater-master”
 
 	Copy all files from the “LoLUpdater-master” into the “League of Legends” folder”
-
-	Replace existing files if prompted too
 
 Installation
 ============
