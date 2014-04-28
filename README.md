@@ -1,6 +1,7 @@
-Pre-Installation
+Releases
 ================
-Put all binaries in C:\loltweaks
+[Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
+Put all binaries in C:\loltweaks except for the loltweaks.exe which you can read about below.
 
 Pre-Installation
 ================
@@ -20,6 +21,8 @@ Installation
 ============
 
 >>[Powershell Studio](http://www.sapien.com/software/powershell_studio) is required to run this program
+
+Change "Split-Path -Parent $([Environment]::GetCommandLineArgs()[0]);" in the script to "$MyInvocation.MyCommand.Path" if you want to run it as a ps1 script.
 
 Open the psf file in powershell studio and build it, you will get a lolupdater.export.ps1 file which is the finished file.
 
