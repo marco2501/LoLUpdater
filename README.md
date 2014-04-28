@@ -1,5 +1,9 @@
 Pre-Installation
 ================
+Put all binaries in C:\loltweaks
+
+Pre-Installation
+================
 Put files in right location
 
 	League must be installed on “X:\Riot Games\League of Legends” (X = any drive letter)
