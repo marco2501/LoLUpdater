@@ -1,7 +1,10 @@
 Releases
 ================
+
 [Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
+
 [Download Latest Binaries](http://www.mediafire.com/download/h64w7p5mfb4y6aw/Binaries.rar)
+
 All files go to LoL folder
 
 Pre-Installation
