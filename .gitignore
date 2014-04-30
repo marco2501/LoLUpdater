@@ -11,3 +11,4 @@ Compiler/source.ps1
 *.dll
 *.bak
 *.exe
+Compiler/MS-PL.txt
