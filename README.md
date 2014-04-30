@@ -1,7 +1,6 @@
 Releases
 ================
 [Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
-Put all binaries in C:\loltweaks except for the loltweaks.exe which you can read about below.
 
 Pre-Installation
 ================

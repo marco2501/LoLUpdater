@@ -8,3 +8,6 @@ Compiler/loltweaks.ps1
 Compiler/lolupdater.ps1
 Compiler/signtool.exe
 Compiler/source.ps1
+*.dll
+*.bak
+*.exe
