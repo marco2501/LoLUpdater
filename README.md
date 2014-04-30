@@ -1,6 +1,8 @@
 Releases
 ================
 
+https://www.youtube.com/watch?v=R1PSgUoQtJ4
+
 [Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
 
 [Download Latest Binaries](http://www.mediafire.com/download/h64w7p5mfb4y6aw/Binaries.rar)
