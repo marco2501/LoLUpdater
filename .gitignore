@@ -12,3 +12,5 @@ Compiler/source.ps1
 *.bak
 *.exe
 Compiler/MS-PL.txt
+*.png
+LoLtweaksinstall.txt
