@@ -7,6 +7,8 @@ https://www.youtube.com/watch?v=R1PSgUoQtJ4
 
 [Download Latest Binaries](http://www.mediafire.com/download/h64w7p5mfb4y6aw/Binaries.rar)
 
+[Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
+
 All files go to LoL folder
 
 Pre-Installation
