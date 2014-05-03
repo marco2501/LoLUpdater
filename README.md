@@ -5,7 +5,7 @@ https://www.youtube.com/watch?v=R1PSgUoQtJ4
 
 [Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
 
-[Download Latest Binaries](http://www.mediafire.com/download/h64w7p5mfb4y6aw/Binaries.rar)
+[Download Latest Binaries](https://www.mediafire.com/?bd1drccxxb73u44)
 
 [Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
 
