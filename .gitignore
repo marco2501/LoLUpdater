@@ -1,1 +1,9 @@
 LoLTweaks.TempPoint.psf
+Compiler/loltweaks.ps1
+Compiler/LoLTweaks.exe
+Compiler/lolupdater.exe.config
+Compiler/signtool.exe
+LoLTweaks.Export.ps1
+LoLTweaks.Preview.ps1
+LoLTweaks.psf.psbuild
+LoLTweaks.exe
