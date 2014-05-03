@@ -1,0 +1,21 @@
+Locations of League of Legends.
+
+Be sure to know where your League of Legends is installed before continuing.
+
+If you're like me your LoL is installed in..
+- C:\Riot Games\League of legends\
+
+Typical Garena players have their LoL installed here. That is for 64 bit Windows
+- C:\Program Files (x86)\GarenaLoL\GameData\Apps\LoL
+
+If your have a 32 bit Windows then your LoL Directory will be here
+- C:\Program Files\GarenaLoL\GameData\Apps\LoL
+
+If you have Garena in the Philippines your LoL Direcotry will be here
+-C:\Program Files (x86)\GarenaLoLPH\GameData\Apps\LoLPH
+
+**Pay attention to where your LoL is installed in and you will be fine**
+
+**Also if you moved your LoL its ok. If you renamed "League of Legends" to "League of Toxic Players"
+Thats ok too just make sure you point to the folder that contains "lol.launcher.exe" 
+(i'm not sure if garena players have to worry about renaming it)**
