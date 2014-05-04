@@ -38,7 +38,7 @@ Updates tbb.dll (Game DLL) to the latest stable version
 
 Sets DefaultParticleMultithreading=1 if you have more than or equal to 2 CPU cores (game config tweak)
 
-Installs a service that auto sets League of legends.exe when it is ran
+Installs a service that auto sets League of legends.exe to "high" priority when it is ran
 
 Clears Windows Update Cache so that some failed updates might be reinstalled
 
