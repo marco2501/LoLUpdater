@@ -52,7 +52,7 @@ Backs up all files before "patching"
 
 Option to delete logs older than 7 days
 
-Option to defrag with SSD detection to stop defrag from happening on SSDs
+Option to defrag (with SSD detection to stop defrag from happening on SSDs)
 
 Auto-Trimming the Windows drive
 
