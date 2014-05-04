@@ -29,8 +29,11 @@ What does it do?
 What does LoLUpdater do? (LoLTweaker and WindowsTweaker)
 
 Updates Adobe Air.dll (Takes care of the Air Client) to th latest stable version
+
 Updates NPSWF32.dll (Takes care of the flash animations in the launcher) to the latest stable version
+
 Updates msvcp120 and msvcr120 (League dependencies) to the latest stable version.
+
 Updates tbb.dll (Game DLL) to the latest stable version
 
 Sets DefaultParticleMultithreading=1 if you have more than or equal to 2 CPU cores (game config tweak)
