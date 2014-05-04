@@ -28,6 +28,8 @@ What does it do?
 ================
 What does LoLUpdater do? (LoLTweaker and WindowsTweaker)
 
+Uninstalls Pando Media Booster
+
 Updates Adobe Air.dll (Takes care of the PVP Client) to th latest stable version
 
 Updates NPSWF32.dll (Takes care of the flash animations in the launcher) to the latest stable version
