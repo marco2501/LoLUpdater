@@ -1917,18 +1917,8 @@ $LoLUpdater_Load={
 		{
 		}
 	}
-	function Get-ScriptDirectory
-	{
-		if ($hostinvocation -ne $null)
-		{
-			Split-Path $hostinvocation.MyCommand.path
-		}
-		else
-		{
-			Split-Path $script:MyInvocation.MyCommand.Path
-		}
-	}
-	$dir = Get-ScriptDirectory
+
+	$dir = Split-Path -Parent $([Environment]::GetCommandLineArgs()[0]);
 	Function Get-WUInstall
 	{
 		[OutputType('PSWindowsUpdate.WUInstall')]
