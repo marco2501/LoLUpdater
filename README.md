@@ -3,9 +3,7 @@ Releases
 
 https://www.youtube.com/watch?v=R1PSgUoQtJ4
 
-[Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
-
-[Download Latest Binaries](http://www.mediafire.com/download/rduoovhq3lhvao4/Binaries.rar)
+Download the .zip and extract all files like it says below.
 
 [Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
 
