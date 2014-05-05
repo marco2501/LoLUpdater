@@ -1856,39 +1856,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</Binary>
   </Object>
   <Code><![CDATA[
 
-function OnApplicationLoad {
-	#Note: This function is not called in Projects
-	#Note: This function runs before the form is created
-	#Note: To get the script directory in the Packager use: Split-Path $hostinvocation.MyCommand.path
-	#Note: To get the console output in the Packager (Windows Mode) use: $ConsoleOutput (Type: System.Collections.ArrayList)
-	#Important: Form controls cannot be accessed in this function
-	#TODO: Add modules and custom code to validate the application load
-	$dir = Split-Path -Parent $([Environment]::GetCommandLineArgs()[0]);
-	Set-Location $dir
-	$cores = Get-WmiObject -class win32_processor -Property "numberOfCores" | Select-Object -ExpandProperty "numberOfCores"
-	if ($cores -ge 2)
-	{
-		Set-Location $dir
-		if (Test-Path Game)
-		{
-			$original_file = 'Game\DATA\CFG\defaults\game.cfg'
-			$destination_file = 'Game\DATA\CFG\defaults\game.cfg'
-			Add-Content $original_file "DefaultParticleMultithreading=1"
-			$original_file = 'Game\DATA\CFG\defaults\gamepermanent.cfg'
-			$destination_file = 'Game\DATA\CFG\defaults\gamepermanent.cfg'
-			Add-Content $original_file "DefaultParticleMultithreading=1"
-		}
-		Set-Location $dir
-		if (Test-Path RADS)
-		{
-			$original_file = '.\config\game.cfg'
-			$destination_file = '.\config\game.cfg'
-			Add-Content $original_file "DefaultParticleMultithreading=1"
-		}
-		
-	}
+function OnApplicationLoad
+{
 	
+	return $true
+}
+
+
+
+function OnApplicationExit {
+
 	
+	$script:ExitCode = 0
+}
+
+$LoLUpdater_Load={
 	Function New-Popup
 	{
 		Param (
@@ -1935,575 +1917,463 @@ function OnApplicationLoad {
 		{
 		}
 	}
-	if (Test-Path "HKLM:\SOFTWARE\Wow6432Node\Pando Networks\PMB")
+	function Get-ScriptDirectory
 	{
-		$PMB = Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Pando Networks\PMB" | Select-Object -ExpandProperty "Program Directory"
-		Start-Process $PMB\uninst.exe
-	}
-	
-	$arguments = "/u HighLeague.exe"
-	$arguments1 = "HighLeague.exe"
-	if (Get-Service HighLeague)
-	{
-		Start-Process C:\Windows\Microsoft.NET\Framework\v4.0.30319\Installutil.exe $arguments -Wait
-	}
-	Start-Process C:\Windows\Microsoft.NET\Framework\v4.0.30319\Installutil.exe $arguments1
-	Start-Service -Name "HighLeague"
-	Stop-Service wuauserv -Force
-	Remove-Item C:\Windows\SoftwareDistribution\* -Recurse -Force
-	Start-Service wuauserv
-	if (Test-Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Cg Toolkit_is1")
-	{
-		$CG = Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Cg Toolkit_is1" | Select-Object -ExpandProperty "InstallLocation"
-	}
-	if (-not (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"))
-	{
-		if ((get-itemproperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Select-Object -ExpandProperty "CurrentVersion") -ge "6.2")
+		if ($hostinvocation -ne $null)
 		{
-			New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" -Name NewKey -Value "Default Value" -Force
-			New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" -Name "C:\Windows\Explorer.exe" -PropertyType "String" -Value 'NoDTToDITMouseBatch' -Force
-			Invoke-Expression "Rundll32 apphelp.dll,ShimFlushCache"
+			Split-Path $hostinvocation.MyCommand.path
+		}
+		else
+		{
+			Split-Path $script:MyInvocation.MyCommand.Path
 		}
 	}
-	
-	Set-Location $Dir
-	if (Test-Path "$env:windir\Prefetch")
+	$dir = Get-ScriptDirectory
+	Function Get-WUInstall
 	{
-		Remove-Item "$env:windir\Prefetch" -Recurse -Force
-	}
-	if (Test-Path "$env:windir\Temp")
-	{
-		Remove-Item "$env:windir\Temp" -Recurse -Force
-		
-		
-		$ProcessActive = Get-Process "LoLClient"
-		if (-not ($ProcessActive -eq $null))
+		[OutputType('PSWindowsUpdate.WUInstall')]
+		[CmdletBinding(
+					   SupportsShouldProcess = $True,
+					   ConfirmImpact = "High"
+		)]
+		Param
+		(
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[ValidateSet("Driver", "Software")]
+			[String]$UpdateType = "",
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[String[]]$UpdateID,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[Int]$RevisionNumber,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[String[]]$CategoryIDs,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[Switch]$IsInstalled,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[Switch]$IsHidden,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[Switch]$WithHidden,
+			[String]$Criteria,
+			[Switch]$ShowSearchCriteria,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[String[]]$Category = "",
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[String[]]$KBArticleID,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[String]$Title,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[String[]]$NotCategory = "",
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[String[]]$NotKBArticleID,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[String]$NotTitle,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[Alias("Silent")]
+			[Switch]$IgnoreUserInput,
+			[parameter(ValueFromPipelineByPropertyName = $true)]
+			[Switch]$IgnoreRebootRequired,
+			[String]$ServiceID,
+			[Switch]$WindowsUpdate,
+			[Switch]$MicrosoftUpdate,
+			[Switch]$ListOnly,
+			[Switch]$DownloadOnly,
+			[Alias("All")]
+			[Switch]$AcceptAll,
+			[Switch]$AutoReboot,
+			[Switch]$IgnoreReboot,
+			[Switch]$AutoSelectOnly,
+			[Switch]$Debuger
+		)
+		Begin
 		{
-			Stop-Process -ProcessName "LoLClient"
-		}
-		
-		$ProcessActive = Get-Process "LoLLauncher"
-		if (-not ($ProcessActive -eq $null))
-		{
-			Stop-Process -ProcessName "LoLLauncher"
-		}
-		Set-Location RADS\solutions\lol_game_client_sln\releases
-		$sln = gci | ? { $_.PSIsContainer } | sort CreationTime -desc | select -f 1 | Select-Object -ExpandProperty "Name"
-		Set-Location $Dir
-		Set-Location RADS\projects\lol_launcher\releases
-		$launch = gci | ? { $_.PSIsContainer } | sort CreationTime -desc | select -f 1 | Select-Object -ExpandProperty "Name"
-		Set-Location $Dir
-		Set-Location RADS\projects\lol_air_client\releases
-		$air = gci | ? { $_.PSIsContainer } | Sort-Object -Property Size -desc | select -f 1 | Select-Object -ExpandProperty "Name"
-		Set-Location $Dir
-		Set-Location RADS\projects\lol_game_client\releases
-		$game = gci | ? { $_.PSIsContainer } | sort CreationTime -desc | select -f 1 | Select-Object -ExpandProperty "Name"
-		Set-Location $Dir
-		if (Test-Path RADS)
-		{
-			if (-not (Test-Path .\Backup\cg.dll))
+			If ($PSBoundParameters['Debuger'])
 			{
-				New-Item .\Backup -ItemType Directory
-				Set-Location RADS\solutions\lol_game_client_sln\releases\$sln\deploy
-				Copy-Item -Path msvcp120.dll, msvcr120.dll, cg.dll, cgD3D9.dll, cgGL.dll, tbb.dll -destination $Dir\backup
-				Set-Location $Dir
-				Set-Location "RADS\projects\lol_air_client\releases\$air\deploy\Adobe Air\versions\1.0"
-				Copy-Item "Adobe Air.dll" "$Dir\Backup\Adobe Air.dll"
-				Set-Location Resources
-				Copy-Item .\NPSWF32.dll $Dir\backup\NPSWF32.dll
-				Set-Location $Dir
-				if (Test-Path .\Config\game.cfg)
-				{
-					Copy-Item .\Config\Game.cfg $Dir\backup\game.cfg
-				}
+				$DebugPreference = "Continue"
 			}
-		}
-		if (Test-Path Game)
-		{
-			if (-not (Test-Path .\Backup\cg.dll))
+			$User = [Security.Principal.WindowsIdentity]::GetCurrent()
+			$Role = (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+			if (!$Role)
 			{
-				New-Item .\Backup -ItemType Directory
-				Set-Location game
-				Copy-Item -Path msvcp120.dll, msvcr120.dll, cg.dll, cgD3D9.dll, cgGL.dll, tbb.dll -destination $Dir\backup
-				Set-Location $Dir
-				Set-Location "Air\versions\1.0"
-				Copy-Item "Adobe Air.dll" "$Dir\Backup\Adobe Air.dll"
-				Set-Location Resources
-				Copy-Item .\NPSWF32.dll $Dir\backup\NPSWF32.dll
-				Set-Location $Dir
-				if (Test-Path .\Config\game.cfg)
-				{
-					Copy-Item .\Config\Game.cfg $Dir\backup\game.cfg
-				}
 			}
 		}
-		
-		
-		function checkbox
+		Process
 		{
-			
-			if ($checkboxDeleteLogs.Checked)
+			If ($IsInstalled)
 			{
-				$limit = (Get-Date).AddDays(-7)
-				$path = "$dir\Logs"
-				
-				
-				Get-ChildItem -Path $path -Recurse -Force | Where-Object { !$_.PSIsContainer -and $_.CreationTime -lt $limit } | Remove-Item -Force
+				$ListOnly = $true
 			}
-			if ($checkboxDefrag.Checked)
+			Try
 			{
-				$SSD = Get-WmiObject win32_diskdrive | where { $_.model -match 'SSD' } | Select-Object -ExpandProperty "Size"
-				if ($SSD -eq $null)
+				$objSystemInfo = New-Object -ComObject "Microsoft.Update.SystemInfo"
+				If ($objSystemInfo.RebootRequired)
 				{
-					defrag /h $Env:SystemDrive
-				}
-			}
-			
-			if ($checkboxCleanTemp.Checked)
-			{
-				Start-Process .\CCleaner.exe /auto
-			}
-			if ($checkboxWindowsUpdate.Checked)
-			{
-				New-Popup -Message "Windows Update might take a while, press OK and please wait..." -Title "LoLTweaks"
-				update
-			}
-		}
-		
-		Function Get-WUInstall
-		{
-			[OutputType('PSWindowsUpdate.WUInstall')]
-			[CmdletBinding(
-						   SupportsShouldProcess = $True,
-						   ConfirmImpact = "High"
-			)]
-			Param
-			(
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[ValidateSet("Driver", "Software")]
-				[String]$UpdateType = "",
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[String[]]$UpdateID,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[Int]$RevisionNumber,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[String[]]$CategoryIDs,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[Switch]$IsInstalled,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[Switch]$IsHidden,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[Switch]$WithHidden,
-				[String]$Criteria,
-				[Switch]$ShowSearchCriteria,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[String[]]$Category = "",
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[String[]]$KBArticleID,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[String]$Title,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[String[]]$NotCategory = "",
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[String[]]$NotKBArticleID,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[String]$NotTitle,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[Alias("Silent")]
-				[Switch]$IgnoreUserInput,
-				[parameter(ValueFromPipelineByPropertyName = $true)]
-				[Switch]$IgnoreRebootRequired,
-				[String]$ServiceID,
-				[Switch]$WindowsUpdate,
-				[Switch]$MicrosoftUpdate,
-				[Switch]$ListOnly,
-				[Switch]$DownloadOnly,
-				[Alias("All")]
-				[Switch]$AcceptAll,
-				[Switch]$AutoReboot,
-				[Switch]$IgnoreReboot,
-				[Switch]$AutoSelectOnly,
-				[Switch]$Debuger
-			)
-			Begin
-			{
-				If ($PSBoundParameters['Debuger'])
-				{
-					$DebugPreference = "Continue"
-				}
-				$User = [Security.Principal.WindowsIdentity]::GetCurrent()
-				$Role = (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
-				if (!$Role)
-				{
-				}
-			}
-			Process
-			{
-				If ($IsInstalled)
-				{
-					$ListOnly = $true
-				}
-				Try
-				{
-					$objSystemInfo = New-Object -ComObject "Microsoft.Update.SystemInfo"
-					If ($objSystemInfo.RebootRequired)
+					If ($AutoReboot)
 					{
-						If ($AutoReboot)
-						{
-							Restart-Computer -Force
-						}
-						If (!$ListOnly)
-						{
-							Return
-						}
+						Restart-Computer -Force
 					}
-				}
-				Catch
-				{
-				}
-				If ($ListOnly)
-				{
-					$NumberOfStage = 2
-				}
-				ElseIf ($DownloadOnly)
-				{
-					$NumberOfStage = 3
-				}
-				Else
-				{
-					$NumberOfStage = 4
-				}
-				$objServiceManager = New-Object -ComObject "Microsoft.Update.ServiceManager"
-				$objSession = New-Object -ComObject "Microsoft.Update.Session"
-				$objSearcher = $objSession.CreateUpdateSearcher()
-				If ($WindowsUpdate)
-				{
-					$objSearcher.ServerSelection = 2
-					$serviceName = "Windows Update"
-				}
-				ElseIf ($MicrosoftUpdate)
-				{
-					$serviceName = $null
-					Foreach ($objService in $objServiceManager.Services)
-					{
-						If ($objService.Name -eq "Microsoft Update")
-						{
-							$objSearcher.ServerSelection = 3
-							$objSearcher.ServiceID = $objService.ServiceID
-							$serviceName = $objService.Name
-						}
-					}
-					If (-not $serviceName)
+					If (!$ListOnly)
 					{
 						Return
 					}
 				}
-				Else
+			}
+			Catch
+			{
+			}
+			If ($ListOnly)
+			{
+				$NumberOfStage = 2
+			}
+			ElseIf ($DownloadOnly)
+			{
+				$NumberOfStage = 3
+			}
+			Else
+			{
+				$NumberOfStage = 4
+			}
+			$objServiceManager = New-Object -ComObject "Microsoft.Update.ServiceManager"
+			$objSession = New-Object -ComObject "Microsoft.Update.Session"
+			$objSearcher = $objSession.CreateUpdateSearcher()
+			If ($WindowsUpdate)
+			{
+				$objSearcher.ServerSelection = 2
+				$serviceName = "Windows Update"
+			}
+			ElseIf ($MicrosoftUpdate)
+			{
+				$serviceName = $null
+				Foreach ($objService in $objServiceManager.Services)
 				{
-					Foreach ($objService in $objServiceManager.Services)
+					If ($objService.Name -eq "Microsoft Update")
 					{
-						If ($ServiceID)
-						{
-							If ($objService.ServiceID -eq $ServiceID)
-							{
-								$objSearcher.ServiceID = $ServiceID
-								$objSearcher.ServerSelection = 3
-								$serviceName = $objService.Name
-							}
-						}
-						Else
-						{
-							If ($objService.IsDefaultAUService -eq $True)
-							{
-								$serviceName = $objService.Name
-							}
-						}
+						$objSearcher.ServerSelection = 3
+						$objSearcher.ServiceID = $objService.ServiceID
+						$serviceName = $objService.Name
 					}
 				}
-				Try
+				If (-not $serviceName)
 				{
-					$search = ""
-					If ($Criteria)
+					Return
+				}
+			}
+			Else
+			{
+				Foreach ($objService in $objServiceManager.Services)
+				{
+					If ($ServiceID)
 					{
-						$search = $Criteria
+						If ($objService.ServiceID -eq $ServiceID)
+						{
+							$objSearcher.ServiceID = $ServiceID
+							$objSearcher.ServerSelection = 3
+							$serviceName = $objService.Name
+						}
 					}
 					Else
 					{
-						If ($IsInstalled)
+						If ($objService.IsDefaultAUService -eq $True)
 						{
-							$search = "IsInstalled = 1"
-						}
-						Else
-						{
-							$search = "IsInstalled = 0"
-						}
-						If ($UpdateType -ne "")
-						{
-							$search += " and Type = '$UpdateType'"
-						}
-						If ($UpdateID)
-						{
-							$tmp = $search
-							$search = ""
-							$LoopCount = 0
-							Foreach ($ID in $UpdateID)
-							{
-								If ($LoopCount -gt 0)
-								{
-									$search += " or "
-								}
-								If ($RevisionNumber)
-								{
-									$search += "($tmp and UpdateID = '$ID' and RevisionNumber = $RevisionNumber)"
-								}
-								Else
-								{
-									$search += "($tmp and UpdateID = '$ID')"
-								}
-								$LoopCount++
-							}
-						}
-						If ($CategoryIDs)
-						{
-							$tmp = $search
-							$search = ""
-							$LoopCount = 0
-							Foreach ($ID in $CategoryIDs)
-							{
-								If ($LoopCount -gt 0)
-								{
-									$search += " or "
-								}
-								$search += "($tmp and CategoryIDs contains '$ID')"
-								$LoopCount++
-							}
-						}
-						If ($IsHidden)
-						{
-							$search += " and IsHidden = 1"
-						}
-						ElseIf ($WithHidden)
-						{
-						}
-						Else
-						{
-							$search += " and IsHidden = 0"
-						}
-						If ($IgnoreRebootRequired)
-						{
-							$search += " and RebootRequired = 0"
+							$serviceName = $objService.Name
 						}
 					}
-					If ($ShowSearchCriteria)
-					{
-						Write-Output $search
-					}
-					$objResults = $objSearcher.Search($search)
 				}
-				Catch
+			}
+			Try
+			{
+				$search = ""
+				If ($Criteria)
 				{
-					If ($_ -match "HRESULT: 0x80072EE2")
-					{
-					}
-					Return
-				}
-				$objCollectionUpdate = New-Object -ComObject "Microsoft.Update.UpdateColl"
-				$NumberOfUpdate = 1
-				$UpdateCollection = @()
-				$UpdatesExtraDataCollection = @{ }
-				$PreFoundUpdatesToDownload = $objResults.Updates.count
-				Foreach ($Update in $objResults.Updates)
-				{
-					$UpdateAccess = $true
-					If ($Category -ne "")
-					{
-						$UpdateCategories = $Update.Categories | Select-Object Name
-						Foreach ($Cat in $Category)
-						{
-							If (!($UpdateCategories -match $Cat))
-							{
-								$UpdateAccess = $false
-							}
-							Else
-							{
-								$UpdateAccess = $true
-							}
-						}
-					}
-					If ($NotCategory -ne "" -and $UpdateAccess -eq $true)
-					{
-						$UpdateCategories = $Update.Categories | Select-Object Name
-						Foreach ($Cat in $NotCategory)
-						{
-							If ($UpdateCategories -match $Cat)
-							{
-								$UpdateAccess = $false
-							}
-						}
-					}
-					If ($KBArticleID -ne $null -and $UpdateAccess -eq $true)
-					{
-						If (!($KBArticleID -match $Update.KBArticleIDs -and "" -ne $Update.KBArticleIDs))
-						{
-							$UpdateAccess = $false
-						}
-					}
-					If ($NotKBArticleID -ne $null -and $UpdateAccess -eq $true)
-					{
-						If ($NotKBArticleID -match $Update.KBArticleIDs -and "" -ne $Update.KBArticleIDs)
-						{
-							$UpdateAccess = $false
-						}
-					}
-					If ($Title -and $UpdateAccess -eq $true)
-					{
-						If ($Update.Title -notmatch $Title)
-						{
-							$UpdateAccess = $false
-						}
-					}
-					If ($NotTitle -and $UpdateAccess -eq $true)
-					{
-						If ($Update.Title -match $NotTitle)
-						{
-							$UpdateAccess = $false
-						}
-					}
-					If ($IgnoreUserInput -and $UpdateAccess -eq $true)
-					{
-						If ($Update.InstallationBehavior.CanRequestUserInput -eq $true)
-						{
-							$UpdateAccess = $false
-						}
-					}
-					If ($IgnoreRebootRequired -and $UpdateAccess -eq $true)
-					{
-						If ($Update.InstallationBehavior.RebootBehavior -ne 0)
-						{
-							$UpdateAccess = $false
-						}
-					}
-					If ($UpdateAccess -eq $true)
-					{
-						Switch ($Update.MaxDownloadSize)
-						{
-							{
-								[System.Math]::Round($_/1KB, 0) -lt 1024
-							} {
-								$size = [String]([System.Math]::Round($_/1KB, 0)) + " KB"
-							}
-							{
-								[System.Math]::Round($_/1MB, 0) -lt 1024
-							} {
-								$size = [String]([System.Math]::Round($_/1MB, 0)) + " MB"
-							}
-							{
-								[System.Math]::Round($_/1GB, 0) -lt 1024
-							} {
-								$size = [String]([System.Math]::Round($_/1GB, 0)) + " GB"
-							}
-							{
-								[System.Math]::Round($_/1TB, 0) -lt 1024
-							} {
-								$size = [String]([System.Math]::Round($_/1TB, 0)) + " TB"
-							}
-							default { $size = $_ + "B" }
-						}
-						If ($Update.KBArticleIDs -ne "")
-						{
-							$KB = "KB" + $Update.KBArticleIDs
-						}
-						Else
-						{
-							$KB = ""
-						}
-						If ($ListOnly)
-						{
-							$Status = ""
-							If ($Update.IsDownloaded)
-							{
-								$Status += "D"
-							}
-							else { $status += "-" }
-							If ($Update.IsInstalled)
-							{
-								$Status += "I"
-							}
-							else { $status += "-" }
-							If ($Update.IsMandatory)
-							{
-								$Status += "M"
-							}
-							else
-							{
-								$status += "-"
-							}
-							If ($Update.IsHidden)
-							{
-								$Status += "H"
-							}
-							else
-							{
-								$status += "-"
-							}
-							If ($Update.IsUninstallable)
-							{
-								$Status += "U"
-							}
-							else
-							{
-								$status += "-"
-							}
-							If ($Update.IsBeta)
-							{
-								$Status += "B"
-							}
-							else
-							{
-								$status += "-"
-							}
-							Add-Member -InputObject $Update -MemberType NoteProperty -Name ComputerName -Value $env:COMPUTERNAME
-							Add-Member -InputObject $Update -MemberType NoteProperty -Name KB -Value $KB
-							Add-Member -InputObject $Update -MemberType NoteProperty -Name Size -Value $size
-							Add-Member -InputObject $Update -MemberType NoteProperty -Name Status -Value $Status
-							Add-Member -InputObject $Update -MemberType NoteProperty -Name X -Value 1
-							$Update.PSTypeNames.Clear()
-							$Update.PSTypeNames.Add('PSWindowsUpdate.WUInstall')
-							$UpdateCollection += $Update
-						}
-						Else
-						{
-							$objCollectionUpdate.Add($Update)
-							$UpdatesExtraDataCollection.Add($Update.Identity.UpdateID, @{ KB = $KB; Size = $size })
-						}
-					}
-					$NumberOfUpdate++
-				}
-				If ($ListOnly)
-				{
-					$FoundUpdatesToDownload = $UpdateCollection.count
+					$search = $Criteria
 				}
 				Else
 				{
-					$FoundUpdatesToDownload = $objCollectionUpdate.count
-				}
-				If ($FoundUpdatesToDownload -eq 0)
-				{
-					Return
-				}
-				If ($ListOnly)
-				{
-					Return $UpdateCollection
-				}
-				If (!$ListOnly)
-				{
-					$NumberOfUpdate = 1
-					$logCollection = @()
-					$objCollectionChoose = New-Object -ComObject "Microsoft.Update.UpdateColl"
-					Foreach ($Update in $objCollectionUpdate)
+					If ($IsInstalled)
 					{
-						$size = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].Size
-						If ($AcceptAll)
+						$search = "IsInstalled = 1"
+					}
+					Else
+					{
+						$search = "IsInstalled = 0"
+					}
+					If ($UpdateType -ne "")
+					{
+						$search += " and Type = '$UpdateType'"
+					}
+					If ($UpdateID)
+					{
+						$tmp = $search
+						$search = ""
+						$LoopCount = 0
+						Foreach ($ID in $UpdateID)
+						{
+							If ($LoopCount -gt 0)
+							{
+								$search += " or "
+							}
+							If ($RevisionNumber)
+							{
+								$search += "($tmp and UpdateID = '$ID' and RevisionNumber = $RevisionNumber)"
+							}
+							Else
+							{
+								$search += "($tmp and UpdateID = '$ID')"
+							}
+							$LoopCount++
+						}
+					}
+					If ($CategoryIDs)
+					{
+						$tmp = $search
+						$search = ""
+						$LoopCount = 0
+						Foreach ($ID in $CategoryIDs)
+						{
+							If ($LoopCount -gt 0)
+							{
+								$search += " or "
+							}
+							$search += "($tmp and CategoryIDs contains '$ID')"
+							$LoopCount++
+						}
+					}
+					If ($IsHidden)
+					{
+						$search += " and IsHidden = 1"
+					}
+					ElseIf ($WithHidden)
+					{
+					}
+					Else
+					{
+						$search += " and IsHidden = 0"
+					}
+					If ($IgnoreRebootRequired)
+					{
+						$search += " and RebootRequired = 0"
+					}
+				}
+				If ($ShowSearchCriteria)
+				{
+					Write-Output $search
+				}
+				$objResults = $objSearcher.Search($search)
+			}
+			Catch
+			{
+				If ($_ -match "HRESULT: 0x80072EE2")
+				{
+				}
+				Return
+			}
+			$objCollectionUpdate = New-Object -ComObject "Microsoft.Update.UpdateColl"
+			$NumberOfUpdate = 1
+			$UpdateCollection = @()
+			$UpdatesExtraDataCollection = @{ }
+			$PreFoundUpdatesToDownload = $objResults.Updates.count
+			Foreach ($Update in $objResults.Updates)
+			{
+				$UpdateAccess = $true
+				If ($Category -ne "")
+				{
+					$UpdateCategories = $Update.Categories | Select-Object Name
+					Foreach ($Cat in $Category)
+					{
+						If (!($UpdateCategories -match $Cat))
+						{
+							$UpdateAccess = $false
+						}
+						Else
+						{
+							$UpdateAccess = $true
+						}
+					}
+				}
+				If ($NotCategory -ne "" -and $UpdateAccess -eq $true)
+				{
+					$UpdateCategories = $Update.Categories | Select-Object Name
+					Foreach ($Cat in $NotCategory)
+					{
+						If ($UpdateCategories -match $Cat)
+						{
+							$UpdateAccess = $false
+						}
+					}
+				}
+				If ($KBArticleID -ne $null -and $UpdateAccess -eq $true)
+				{
+					If (!($KBArticleID -match $Update.KBArticleIDs -and "" -ne $Update.KBArticleIDs))
+					{
+						$UpdateAccess = $false
+					}
+				}
+				If ($NotKBArticleID -ne $null -and $UpdateAccess -eq $true)
+				{
+					If ($NotKBArticleID -match $Update.KBArticleIDs -and "" -ne $Update.KBArticleIDs)
+					{
+						$UpdateAccess = $false
+					}
+				}
+				If ($Title -and $UpdateAccess -eq $true)
+				{
+					If ($Update.Title -notmatch $Title)
+					{
+						$UpdateAccess = $false
+					}
+				}
+				If ($NotTitle -and $UpdateAccess -eq $true)
+				{
+					If ($Update.Title -match $NotTitle)
+					{
+						$UpdateAccess = $false
+					}
+				}
+				If ($IgnoreUserInput -and $UpdateAccess -eq $true)
+				{
+					If ($Update.InstallationBehavior.CanRequestUserInput -eq $true)
+					{
+						$UpdateAccess = $false
+					}
+				}
+				If ($IgnoreRebootRequired -and $UpdateAccess -eq $true)
+				{
+					If ($Update.InstallationBehavior.RebootBehavior -ne 0)
+					{
+						$UpdateAccess = $false
+					}
+				}
+				If ($UpdateAccess -eq $true)
+				{
+					Switch ($Update.MaxDownloadSize)
+					{
+						{
+							[System.Math]::Round($_/1KB, 0) -lt 1024
+						} {
+							$size = [String]([System.Math]::Round($_/1KB, 0)) + " KB"
+						}
+						{
+							[System.Math]::Round($_/1MB, 0) -lt 1024
+						} {
+							$size = [String]([System.Math]::Round($_/1MB, 0)) + " MB"
+						}
+						{
+							[System.Math]::Round($_/1GB, 0) -lt 1024
+						} {
+							$size = [String]([System.Math]::Round($_/1GB, 0)) + " GB"
+						}
+						{
+							[System.Math]::Round($_/1TB, 0) -lt 1024
+						} {
+							$size = [String]([System.Math]::Round($_/1TB, 0)) + " TB"
+						}
+						default { $size = $_ + "B" }
+					}
+					If ($Update.KBArticleIDs -ne "")
+					{
+						$KB = "KB" + $Update.KBArticleIDs
+					}
+					Else
+					{
+						$KB = ""
+					}
+					If ($ListOnly)
+					{
+						$Status = ""
+						If ($Update.IsDownloaded)
+						{
+							$Status += "D"
+						}
+						else { $status += "-" }
+						If ($Update.IsInstalled)
+						{
+							$Status += "I"
+						}
+						else { $status += "-" }
+						If ($Update.IsMandatory)
+						{
+							$Status += "M"
+						}
+						else
+						{
+							$status += "-"
+						}
+						If ($Update.IsHidden)
+						{
+							$Status += "H"
+						}
+						else
+						{
+							$status += "-"
+						}
+						If ($Update.IsUninstallable)
+						{
+							$Status += "U"
+						}
+						else
+						{
+							$status += "-"
+						}
+						If ($Update.IsBeta)
+						{
+							$Status += "B"
+						}
+						else
+						{
+							$status += "-"
+						}
+						Add-Member -InputObject $Update -MemberType NoteProperty -Name ComputerName -Value $env:COMPUTERNAME
+						Add-Member -InputObject $Update -MemberType NoteProperty -Name KB -Value $KB
+						Add-Member -InputObject $Update -MemberType NoteProperty -Name Size -Value $size
+						Add-Member -InputObject $Update -MemberType NoteProperty -Name Status -Value $Status
+						Add-Member -InputObject $Update -MemberType NoteProperty -Name X -Value 1
+						$Update.PSTypeNames.Clear()
+						$Update.PSTypeNames.Add('PSWindowsUpdate.WUInstall')
+						$UpdateCollection += $Update
+					}
+					Else
+					{
+						$objCollectionUpdate.Add($Update)
+						$UpdatesExtraDataCollection.Add($Update.Identity.UpdateID, @{ KB = $KB; Size = $size })
+					}
+				}
+				$NumberOfUpdate++
+			}
+			If ($ListOnly)
+			{
+				$FoundUpdatesToDownload = $UpdateCollection.count
+			}
+			Else
+			{
+				$FoundUpdatesToDownload = $objCollectionUpdate.count
+			}
+			If ($FoundUpdatesToDownload -eq 0)
+			{
+				Return
+			}
+			If ($ListOnly)
+			{
+				Return $UpdateCollection
+			}
+			If (!$ListOnly)
+			{
+				$NumberOfUpdate = 1
+				$logCollection = @()
+				$objCollectionChoose = New-Object -ComObject "Microsoft.Update.UpdateColl"
+				Foreach ($Update in $objCollectionUpdate)
+				{
+					$size = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].Size
+					If ($AcceptAll)
+					{
+						$Status = "Accepted"
+						If ($Update.EulaAccepted -eq 0)
+						{
+							$Update.AcceptEula()
+						}
+						$objCollectionChoose.Add($Update)
+					}
+					ElseIf ($AutoSelectOnly)
+					{
+						If ($Update.AutoSelectOnWebsites)
 						{
 							$Status = "Accepted"
 							If ($Update.EulaAccepted -eq 0)
@@ -2512,67 +2382,125 @@ function OnApplicationLoad {
 							}
 							$objCollectionChoose.Add($Update)
 						}
-						ElseIf ($AutoSelectOnly)
+						Else
 						{
-							If ($Update.AutoSelectOnWebsites)
+							$Status = "Rejected"
+						}
+					}
+					Else
+					{
+						If ($pscmdlet.ShouldProcess($Env:COMPUTERNAME, "$($Update.Title)[$size]?"))
+						{
+							$Status = "Accepted"
+							If ($Update.EulaAccepted -eq 0)
 							{
-								$Status = "Accepted"
-								If ($Update.EulaAccepted -eq 0)
-								{
-									$Update.AcceptEula()
-								}
-								$objCollectionChoose.Add($Update)
+								$Update.AcceptEula()
 							}
-							Else
-							{
-								$Status = "Rejected"
-							}
+							$objCollectionChoose.Add($Update)
 						}
 						Else
 						{
-							If ($pscmdlet.ShouldProcess($Env:COMPUTERNAME, "$($Update.Title)[$size]?"))
-							{
-								$Status = "Accepted"
-								If ($Update.EulaAccepted -eq 0)
-								{
-									$Update.AcceptEula()
-								}
-								$objCollectionChoose.Add($Update)
-							}
-							Else
-							{
-								$Status = "Rejected"
-							}
+							$Status = "Rejected"
 						}
-						$log = New-Object PSObject -Property @{
-							Title = $Update.Title
-							KB = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].KB
-							Size = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].Size
-							Status = $Status
-							X = 2
-						}
-						$log.PSTypeNames.Clear()
-						$log.PSTypeNames.Add('PSWindowsUpdate.WUInstall')
-						$logCollection += $log
-						$NumberOfUpdate++
 					}
-					$logCollection
-					$AcceptUpdatesToDownload = $objCollectionChoose.count
-					If ($AcceptUpdatesToDownload -eq 0)
+					$log = New-Object PSObject -Property @{
+						Title = $Update.Title
+						KB = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].KB
+						Size = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].Size
+						Status = $Status
+						X = 2
+					}
+					$log.PSTypeNames.Clear()
+					$log.PSTypeNames.Add('PSWindowsUpdate.WUInstall')
+					$logCollection += $log
+					$NumberOfUpdate++
+				}
+				$logCollection
+				$AcceptUpdatesToDownload = $objCollectionChoose.count
+				If ($AcceptUpdatesToDownload -eq 0)
+				{
+					Return
+				}
+				$NumberOfUpdate = 1
+				$objCollectionDownload = New-Object -ComObject "Microsoft.Update.UpdateColl"
+				Foreach ($Update in $objCollectionChoose)
+				{
+					$objCollectionTmp = New-Object -ComObject "Microsoft.Update.UpdateColl"
+					$objCollectionTmp.Add($Update)
+					$Downloader = $objSession.CreateUpdateDownloader()
+					$Downloader.Updates = $objCollectionTmp
+					Try
 					{
+						$DownloadResult = $Downloader.Download()
+					}
+					Catch
+					{
+						If ($_ -match "HRESULT: 0x80240044")
+						{
+						}
 						Return
 					}
+					Switch -exact ($DownloadResult.ResultCode)
+					{
+						0
+						{
+							$Status = "NotStarted"
+						}
+						1
+						{
+							$Status = "InProgress"
+						}
+						2
+						{
+							$Status = "Downloaded"
+						}
+						3
+						{
+							$Status = "DownloadedWithErrors"
+						}
+						4
+						{
+							$Status = "Failed"
+						}
+						5
+						{
+							$Status = "Aborted"
+						}
+					}
+					$log = New-Object PSObject -Property @{
+						Title = $Update.Title
+						KB = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].KB
+						Size = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].Size
+						Status = $Status
+						X = 3
+					}
+					$log.PSTypeNames.Clear()
+					$log.PSTypeNames.Add('PSWindowsUpdate.WUInstall')
+					$log
+					If ($DownloadResult.ResultCode -eq 2)
+					{
+						$objCollectionDownload.Add($Update)
+					}
+					$NumberOfUpdate++
+				}
+				$ReadyUpdatesToInstall = $objCollectionDownload.count
+				If ($ReadyUpdatesToInstall -eq 0)
+				{
+					Return
+				}
+				If (!$DownloadOnly)
+				{
+					$NeedsReboot = $false
 					$NumberOfUpdate = 1
-					$objCollectionDownload = New-Object -ComObject "Microsoft.Update.UpdateColl"
-					Foreach ($Update in $objCollectionChoose)
+					Foreach ($Update in $objCollectionDownload)
 					{
 						$objCollectionTmp = New-Object -ComObject "Microsoft.Update.UpdateColl"
 						$objCollectionTmp.Add($Update)
-						$Downloader = $objSession.CreateUpdateDownloader()
-						$Downloader.Updates = $objCollectionTmp
+						$objInstaller = $objSession.CreateUpdateInstaller()
+						$objInstaller.Updates = $objCollectionTmp
 						Try
 						{
-							$DownloadResult = $Downloader.Download()
+							$InstallResult = $objInstaller.Install()
 						}
 						Catch
 						{
@@ -2581,7 +2509,11 @@ function OnApplicationLoad {
 							}
 							Return
 						}
-						Switch -exact ($DownloadResult.ResultCode)
+						If (!$NeedsReboot)
+						{
+							$NeedsReboot = $installResult.RebootRequired
+						}
+						Switch -exact ($InstallResult.ResultCode)
 						{
 							0
 							{
@@ -2593,11 +2525,11 @@ function OnApplicationLoad {
 							}
 							2
 							{
-								$Status = "Downloaded"
+								$Status = "Installed"
 							}
 							3
 							{
-								$Status = "DownloadedWithErrors"
+								$Status = "InstalledWithErrors"
 							}
 							4
 							{
@@ -2613,179 +2545,232 @@ function OnApplicationLoad {
 							KB = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].KB
 							Size = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].Size
 							Status = $Status
-							X = 3
+							X = 4
 						}
 						$log.PSTypeNames.Clear()
 						$log.PSTypeNames.Add('PSWindowsUpdate.WUInstall')
 						$log
-						If ($DownloadResult.ResultCode -eq 2)
-						{
-							$objCollectionDownload.Add($Update)
-						}
 						$NumberOfUpdate++
 					}
-					$ReadyUpdatesToInstall = $objCollectionDownload.count
-					If ($ReadyUpdatesToInstall -eq 0)
+					If ($NeedsReboot)
 					{
-						Return
-					}
-					If (!$DownloadOnly)
-					{
-						$NeedsReboot = $false
-						$NumberOfUpdate = 1
-						Foreach ($Update in $objCollectionDownload)
+						If ($AutoReboot)
 						{
-							$objCollectionTmp = New-Object -ComObject "Microsoft.Update.UpdateColl"
-							$objCollectionTmp.Add($Update)
-							$objInstaller = $objSession.CreateUpdateInstaller()
-							$objInstaller.Updates = $objCollectionTmp
-							Try
-							{
-								$InstallResult = $objInstaller.Install()
-							}
-							Catch
-							{
-								If ($_ -match "HRESULT: 0x80240044")
-								{
-								}
-								Return
-							}
-							If (!$NeedsReboot)
-							{
-								$NeedsReboot = $installResult.RebootRequired
-							}
-							Switch -exact ($InstallResult.ResultCode)
-							{
-								0
-								{
-									$Status = "NotStarted"
-								}
-								1
-								{
-									$Status = "InProgress"
-								}
-								2
-								{
-									$Status = "Installed"
-								}
-								3
-								{
-									$Status = "InstalledWithErrors"
-								}
-								4
-								{
-									$Status = "Failed"
-								}
-								5
-								{
-									$Status = "Aborted"
-								}
-							}
-							$log = New-Object PSObject -Property @{
-								Title = $Update.Title
-								KB = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].KB
-								Size = $UpdatesExtraDataCollection[$Update.Identity.UpdateID].Size
-								Status = $Status
-								X = 4
-							}
-							$log.PSTypeNames.Clear()
-							$log.PSTypeNames.Add('PSWindowsUpdate.WUInstall')
-							$log
-							$NumberOfUpdate++
+							Restart-Computer -Force
 						}
-						If ($NeedsReboot)
+						ElseIf ($IgnoreReboot)
 						{
-							If ($AutoReboot)
+							Return "Reboot is required, but do it manually."
+						}
+						Else
+						{
+							Restart-Computer -Force
 							{
-								Restart-Computer -Force
-							}
-							ElseIf ($IgnoreReboot)
-							{
-								Return "Reboot is required, but do it manually."
-							}
-							Else
-							{
-								Restart-Computer -Force
-								{
-								}
 							}
 						}
 					}
 				}
 			}
-			End { }
 		}
-		function update
+		End { }
+	}
+	$cores = Get-WmiObject -class win32_processor -Property "numberOfCores" | Select-Object -ExpandProperty "numberOfCores"
+	if ($cores -ge 2)
+	{
+		Set-Location $dir
+		if (Test-Path .\Game\)
 		{
-			Get-WUInstall -AcceptAll -IgnoreUserInput -IgnoreReboot
+			$original_file = 'Game\DATA\CFG\defaults\game.cfg'
+			$destination_file = 'Game\DATA\CFG\defaults\game.cfg'
+			Add-Content $original_file "DefaultParticleMultithreading=1"
+			$original_file = 'Game\DATA\CFG\defaults\gamepermanent.cfg'
+			$destination_file = 'Game\DATA\CFG\defaults\gamepermanent.cfg'
+			Add-Content $original_file "DefaultParticleMultithreading=1"
+		}
+		elseif (Test-Path .\RADS\)
+		{
+			$original_file = '.\config\game.cfg'
+			$destination_file = '.\config\game.cfg'
+			Add-Content $original_file "DefaultParticleMultithreading=1"
 		}
 		
-		$Version = (get-itemproperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Select-Object -ExpandProperty "CurrentVersion")
-		
-		switch ($Version)
+	}
+	
+	
+	
+	
+	$PMB = Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Pando Networks\PMB" | Select-Object -ExpandProperty "Program Directory"
+	Start-Process $PMB\uninst.exe
+	
+	
+	
+	
+	$arguments = "/u HighLeague.exe"
+	Start-Process C:\Windows\Microsoft.NET\Framework\v4.0.30319\Installutil.exe $arguments -Wait
+	$arguments1 = "HighLeague.exe"
+	Start-Process C:\Windows\Microsoft.NET\Framework\v4.0.30319\Installutil.exe $arguments1
+	Stop-Service wuauserv -Force
+	Remove-Item C:\Windows\SoftwareDistribution\* -Recurse -Force
+	Start-Service wuauserv
+	$CG = Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Cg Toolkit_is1" | Select-Object -ExpandProperty "InstallLocation"
+	
+	if (-not (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"))
+	{
+		if ((get-itemproperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Select-Object -ExpandProperty "CurrentVersion") -ge "6.2")
 		{
-			"6.3" {
-				$services = @("Appmgmt", "bthserv", "PeerDistSvc", "NfsClnt", "TrkWks",
-				"WPCSvc", "vmickvpexchange", "vmicguestinterface", "vmicshutdown",
-				"vmicheartbeat", "vmicrdv", "vmictimesync", "vmicvss",
-				"IEEtwCollectorService", "iphlpsvc", "Netlogon", "Netlogon",
-				"CscService", "RpcLocator", "MSiSCSI", "SensrSvc", "ScDeviceEnum",
-				"SCPolicySvc", "SNMPTRAP", "StorSvc", "WbioSrvc", "wcncsvc", "fsvc",
-				"WMPNetworkSvc")
-			}
-			"6.2" {
-				$services = @("WMPNetworkSvc", "wcncsvc", "WbioSrvc", "StorSvc",
-				"SNMPTRAP", "SCPolicySvc", "SensrSvc", "RpcLocator", "CscService",
-				"Netlogon", "MSiSCSI", "iphlpsvc", "vmicvss", "vmictimesync", "vmicrdv",
-				"vmicheartbeat", "vmicshutdown", "vmickvpexchange", "WPCSvc", "TrkWks",
-				"NfsClnt", "CertPropSvc", "PeerDistSvc", "bthserv", "Appmgmt")
-			}
-			"6.1" {
-				$services = @("WSearch", "WMPNetworkSvc", "wcncsvc", "StorSvc",
-				"SNMPTRAP", "SCPolicySvc", "SCardSvr", "RemoteRegistry", "RpcLocator",
-				"WPCSvc", "CscService", "napagent", "Netlogon", "MSiSCSI", "iphlpsvc",
-				"TrkWks", "CertPropSvc", "bthserv", "AppMgmt")
-			}
-			"6.0" {
-				$services = @("TrkWks", "WinHttpAutoProxySvc", "WSearch", "WinRM",
-				"WebClient", "UmRdpService", "TabletInputService", "SNMPTRAP",
-				"SCPolicySvc", "SCardSvr", "RemoteRegistry", "CscService", "Netlogon",
-				"MSiSCSI", "iphlpsvc", "Fax", "CertPropSvc")
-			}
-			"5.1" {
-				$services = @("WmiApSrv", "W32Time", "WebClient", "UPS", "Netlogon",
-				"SCardSvr", "TlntSvr", "seclogon", "RemoteRegistry", "RDSessMgr",
-				"RSVP", "WmdmPmSN", "xmlprov", "mnmsrvc", "cisvc", "ERSvc")
-			}
-		}
-		ForEach ($service in $services)
-		{
-			if (-not (get-service $service))
-			{
-				stop-service $service -force
-				set-service $service -startuptype manual
-			}
-		}
-		if ((get-itemproperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Select-Object -ExpandProperty "CurrentVersion") -ge "6.1")
-		{
-			defrag /o /h $Env:SystemDrive
+			New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" -Name NewKey -Value "Default Value" -Force
+			New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" -Name "C:\Windows\Explorer.exe" -PropertyType "String" -Value 'NoDTToDITMouseBatch' -Force
+			Invoke-Expression "Rundll32 apphelp.dll,ShimFlushCache"
 		}
 	}
-	return $true #return true for success or false for failure
-}
-
-
-function OnApplicationExit {
-	#Note: This function is not called in Projects
-	#Note: This function runs after the form is closed
-	#TODO: Add custom code to clean up and unload modules when the application exits
 	
-	$script:ExitCode = 0 #Set the exit code for the Packager
-}
-
-$LoLUpdater_Load={
-	#TODO: Initialize Form Controls here
 	
+	Remove-Item "$env:windir\Prefetch" -Recurse -Force
+	Remove-Item "$env:windir\Temp" -Recurse -Force
+	
+	
+	
+	Stop-Process -ProcessName "LoLClient"
+	Stop-Process -ProcessName "LoLLauncher"
+	Set-Location RADS\solutions\lol_game_client_sln\releases
+	$sln = gci | ? { $_.PSIsContainer } | sort CreationTime -desc | select -f 1 | Select-Object -ExpandProperty "Name"
+	Set-Location $Dir
+	Set-Location RADS\projects\lol_launcher\releases
+	$launch = gci | ? { $_.PSIsContainer } | sort CreationTime -desc | select -f 1 | Select-Object -ExpandProperty "Name"
+	Set-Location $Dir
+	Set-Location RADS\projects\lol_air_client\releases
+	$air = gci | ? { $_.PSIsContainer } | Sort-Object -Property Size -desc | select -f 1 | Select-Object -ExpandProperty "Name"
+	Set-Location $Dir
+	Set-Location RADS\projects\lol_game_client\releases
+	$game = gci | ? { $_.PSIsContainer } | sort CreationTime -desc | select -f 1 | Select-Object -ExpandProperty "Name"
+	Set-Location $Dir
+	if (Test-Path .\RADS\)
+	{
+		if (-not (Test-Path .\Backup\))
+		{
+			New-Item .\Backup -ItemType Directory
+			Set-Location RADS\solutions\lol_game_client_sln\releases\$sln\deploy
+			Copy-Item -Path msvcp120.dll, msvcr120.dll, cg.dll, cgD3D9.dll, cgGL.dll, tbb.dll -destination $Dir\backup
+			Set-Location $Dir
+			Set-Location "RADS\projects\lol_air_client\releases\$air\deploy\Adobe Air\versions\1.0"
+			Copy-Item "Adobe Air.dll" "$Dir\Backup\Adobe Air.dll"
+			Set-Location Resources
+			Copy-Item .\NPSWF32.dll $Dir\backup\NPSWF32.dll
+			Set-Location $Dir
+			if (Test-Path .\Config\game.cfg)
+			{
+				Copy-Item .\Config\Game.cfg $Dir\backup\game.cfg
+			}
+		}
+	}
+	if (Test-Path .\Game\)
+	{
+		if (-not (Test-Path .\Backup\cg.dll))
+		{
+			New-Item .\Backup -ItemType Directory
+			Set-Location game
+			Copy-Item -Path msvcp120.dll, msvcr120.dll, cg.dll, cgD3D9.dll, cgGL.dll, tbb.dll -destination $Dir\backup
+			Set-Location $Dir
+			Set-Location "Air\versions\1.0"
+			Copy-Item "Adobe Air.dll" "$Dir\Backup\Adobe Air.dll"
+			Set-Location Resources
+			Copy-Item .\NPSWF32.dll $Dir\backup\NPSWF32.dll
+			Set-Location $Dir
+			if (Test-Path .\Config\game.cfg)
+			{
+				Copy-Item .\Config\Game.cfg $Dir\backup\game.cfg
+			}
+		}
+	}
+	
+	
+	function checkbox
+	{
+		
+		if ($checkboxDeleteOldLogs.Checked)
+		{
+			$limit = (Get-Date).AddDays(-7)
+			$path = "$dir\Logs"
+			
+			
+			Get-ChildItem -Path $path -Recurse -Force | Where-Object { !$_.PSIsContainer -and $_.CreationTime -lt $limit } | Remove-Item -Force
+		}
+		if ($checkboxDefrag.Checked)
+		{
+			$SSD = Get-WmiObject win32_diskdrive | where { $_.model -match 'SSD' } | Select-Object -ExpandProperty "Size"
+			if ($SSD -eq $null)
+			{
+				defrag /h $Env:SystemDrive
+			}
+		}
+		
+		if ($checkboxCleanTemp.Checked)
+		{
+			Set-Location $dir
+			Start-Process .\CCleaner.exe /auto
+		}
+		if ($checkboxWindowsUpdate.Checked)
+		{
+			New-Popup -Message "Windows Update might take a while, press OK and please wait..." -Title "LoLTweaks"
+			Get-WUInstall -AcceptAll -IgnoreUserInput -IgnoreReboot
+		}
+	}
+	
+	
+	
+	
+	
+	
+	$Version = (get-itemproperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Select-Object -ExpandProperty "CurrentVersion")
+	
+	switch ($Version)
+	{
+		"6.3" {
+			$services = @("Appmgmt", "bthserv", "PeerDistSvc", "NfsClnt", "TrkWks",
+			"WPCSvc", "vmickvpexchange", "vmicguestinterface", "vmicshutdown",
+			"vmicheartbeat", "vmicrdv", "vmictimesync", "vmicvss",
+			"IEEtwCollectorService", "iphlpsvc", "Netlogon", "Netlogon",
+			"CscService", "RpcLocator", "MSiSCSI", "SensrSvc", "ScDeviceEnum",
+			"SCPolicySvc", "SNMPTRAP", "StorSvc", "WbioSrvc", "wcncsvc", "fsvc",
+			"WMPNetworkSvc")
+		}
+		"6.2" {
+			$services = @("WMPNetworkSvc", "wcncsvc", "WbioSrvc", "StorSvc",
+			"SNMPTRAP", "SCPolicySvc", "SensrSvc", "RpcLocator", "CscService",
+			"Netlogon", "MSiSCSI", "iphlpsvc", "vmicvss", "vmictimesync", "vmicrdv",
+			"vmicheartbeat", "vmicshutdown", "vmickvpexchange", "WPCSvc", "TrkWks",
+			"NfsClnt", "CertPropSvc", "PeerDistSvc", "bthserv", "Appmgmt")
+		}
+		"6.1" {
+			$services = @("WSearch", "WMPNetworkSvc", "wcncsvc", "StorSvc",
+			"SNMPTRAP", "SCPolicySvc", "SCardSvr", "RemoteRegistry", "RpcLocator",
+			"WPCSvc", "CscService", "napagent", "Netlogon", "MSiSCSI", "iphlpsvc",
+			"TrkWks", "CertPropSvc", "bthserv", "AppMgmt")
+		}
+		"6.0" {
+			$services = @("TrkWks", "WinHttpAutoProxySvc", "WSearch", "WinRM",
+			"WebClient", "UmRdpService", "TabletInputService", "SNMPTRAP",
+			"SCPolicySvc", "SCardSvr", "RemoteRegistry", "CscService", "Netlogon",
+			"MSiSCSI", "iphlpsvc", "Fax", "CertPropSvc")
+		}
+		"5.1" {
+			$services = @("WmiApSrv", "W32Time", "WebClient", "UPS", "Netlogon",
+			"SCardSvr", "TlntSvr", "seclogon", "RemoteRegistry", "RDSessMgr",
+			"RSVP", "WmdmPmSN", "xmlprov", "mnmsrvc", "cisvc", "ERSvc")
+		}
+	}
+	ForEach ($service in $services)
+	{
+		if (-not (get-service $service))
+		{
+			stop-service $service -force
+			set-service $service -startuptype manual
+		}
+	}
+	if ((get-itemproperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Select-Object -ExpandProperty "CurrentVersion") -ge "6.1")
+	{
+		defrag /o /h $Env:SystemDrive
+	}
 }
 
 $checkboxCleanTemp_CheckedChanged={
@@ -2814,19 +2799,22 @@ $checkboxWindowsUpdate_CheckedChanged={
 
 $buttonPatch_Click={
 	#TODO: Place custom script here
-	if (Test-Path Rads)
+	Set-Location $Dir
+	if (Test-Path .\RADS\)
 	{
 		Set-Location $Dir
 		Copy-Item -Path msvcp120.dll, msvcr120.dll, $CG\bin\cg.dll, $CG\bin\cgD3D9.dll, $CG\bin\cgGL.dll, tbb.dll -Destination .\RADS\solutions\lol_game_client_sln\releases\$sln\deploy
+
+		
 		Copy-Item "Adobe Air.dll" "RADS\projects\lol_air_client\releases\$air\deploy\Adobe Air\Versions\1.0"
 		Copy-Item .\NPSWF32.dll  "RADS\projects\lol_air_client\releases\$air\deploy\Adobe Air\Versions\1.0\resources"
 		Copy-Item -Path $CG\bin\cg.dll, $CG\bin\cgD3D9.dll, $CG\bin\cgGL.dll, msvcp120.dll, msvcr120.dll -Destination .\RADS\projects\lol_launcher\releases\$launch\deploy
 		Copy-Item -Path msvcp120.dll, msvcr120.dll, $CG\bin\cg.dll, $CG\bin\cgD3D9.dll, $CG\bin\cgGL.dll, tbb.dll -Destination .\RADS\projects\lol_game_client\releases\$game\deploy
 		checkbox
-		New-Popup -Message "Finished, Please restart to put the changes into effect." -Title "LoLTweaks"
+		New-Popup -Message "Finished, Please restart to put the changes into effect." -Title "LoLUpdater"
 	}
 	
-	IF (Test-Path Game)
+	IF (Test-Path .\Game\)
 	{
 		Copy-Item -Path msvcp120.dll, msvcr120.dll, $CG\bin\cg.dll, $CG\bin\cgD3D9.dll, $CG\bin\cgGL.dll, tbb.dll -Destination Game
 		Copy-Item "Adobe Air.dll" "Air\Adobe Air\Versions\1.0"
@@ -2841,7 +2829,7 @@ $buttonPatch_Click={
 $buttonRestore_Click={
 	#TODO: Place custom script here
 	Set-Location $dir\backup
-	if (Test-Path RADS)
+	if (Test-Path .\RADS\)
 	{
 		Copy-Item -Path msvcp120.dll, msvcr120.dll, cg.dll, cgD3D9.dll, cgGL.dll, tbb.dll -Destination $dir\RADS\solutions\lol_game_client_sln\releases\$sln\deploy
 		Copy-Item "Adobe Air.dll" "$dir\RADS\projects\lol_air_client\releases\$air\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll"
@@ -2852,7 +2840,7 @@ $buttonRestore_Click={
 		Copy-Item .\game.cfg $dir\Config\game.cfg
 	}
 	Set-Location $dir\backup
-	if (Test-Path Game)
+	if (Test-Path .\Game\)
 	{
 		Copy-Item msvcp120.dll, msvcr120.dll, cg.dll, cgD3D9.dll, cgGL.dll, tbb.dll -Destination $dir\Game
 		Copy-Item "Adobe Air.dll" "Air\Adobe Air\Versions\1.0"
@@ -2869,7 +2857,7 @@ $buttonNothing_Click={
 	
 }
 ]]></Code>
-  <Mode>0</Mode>
+  <Mode>1</Mode>
   <Assemblies>
     <Assembly>System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</Assembly>
     <Assembly>mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Assembly>
