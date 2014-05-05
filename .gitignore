@@ -1,26 +1,11 @@
 LoLTweaks.TempPoint.psf
-Compiler/loltweaks.ps1
-Compiler/LoLTweaks.exe
 Compiler/lolupdater.exe.config
 Compiler/signtool.exe
-LoLTweaks.Export.ps1
-LoLTweaks.Preview.ps1
-LoLTweaks.psf.psbuild
-LoLTweaks.exe
 Compiler/HighLeague.exe
 HighLeague.exe
-Binaries/Adobe Air.dll
-Binaries/CCleaner.exe
-Binaries/NPSWF32.dll
-Binaries/msvcp120.dll
-Binaries/msvcr120.dll
-Binaries/tbb.dll
 Thumbs.db
-LoLUpdater.Export.ps1
 LoLUpdater.psf.psbuild
 loltweaks.ps1
 Compiler/LoLUpdater.exe
 Compiler/LoLupdater.ps1
-LoLUpdater.exe
-LoLUpdater.exe
 LoLUpdater.exe
