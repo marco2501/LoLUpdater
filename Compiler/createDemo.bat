@@ -1,1 +1,1 @@
-call "callPS2EXE.bat" "loltweaks.ps1" "lolupdater.exe" -sta -runtime20 -x86 -noconsole
+call "callPS2EXE.bat" "lolupdater.ps1" "LoLUpdater.exe" -sta -x86 -noconsole -runtime20
