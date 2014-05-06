@@ -74,6 +74,10 @@ namespace LoLUpdater
             string Rads = @"Dir\Rads";
             System.IO.Directory.Exists(Rads);
             {
+                if (air.exists)
+                {
+
+                }
             }
         }
 

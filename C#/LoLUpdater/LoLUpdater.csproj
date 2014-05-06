@@ -87,11 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="loltweaks.ico" />
-    <None Include="Resources\tbb.dll" />
-    <None Include="Resources\NPSWF32.dll" />
-    <None Include="Resources\msvcr120.dll" />
-    <None Include="Resources\msvcp120.dll" />
-    <None Include="Resources\Adobe Air.dll" />
+    <EmbeddedResource Include="Resources\tbb.dll" />
+    <EmbeddedResource Include="Resources\NPSWF32.dll" />
+    <EmbeddedResource Include="Resources\msvcr120.dll" />
+    <EmbeddedResource Include="Resources\msvcp120.dll" />
+    <EmbeddedResource Include="Resources\Adobe Air.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
