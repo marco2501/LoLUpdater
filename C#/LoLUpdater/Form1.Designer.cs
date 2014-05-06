@@ -84,6 +84,7 @@
             this.checkBox2.TabIndex = 2;
             this.checkBox2.Text = "Delete old logs";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox3
             // 
@@ -94,6 +95,7 @@
             this.checkBox3.TabIndex = 3;
             this.checkBox3.Text = "Defrag";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // checkBox4
             // 
@@ -104,6 +106,7 @@
             this.checkBox4.TabIndex = 4;
             this.checkBox4.Text = "Windows Update";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // checkBox5
             // 
@@ -114,6 +117,7 @@
             this.checkBox5.TabIndex = 5;
             this.checkBox5.Text = "Mouse polling rate";
             this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // checkBox6
             // 
@@ -124,6 +128,7 @@
             this.checkBox6.TabIndex = 6;
             this.checkBox6.Text = "Clear temp";
             this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // checkBox7
             // 
@@ -134,6 +139,7 @@
             this.checkBox7.TabIndex = 6;
             this.checkBox7.Text = "Clear Update Cache";
             this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox7_CheckedChanged);
             // 
             // checkBox8
             // 
@@ -144,6 +150,7 @@
             this.checkBox8.TabIndex = 7;
             this.checkBox8.Text = "Uninstall PMB";
             this.checkBox8.UseVisualStyleBackColor = true;
+            this.checkBox8.CheckedChanged += new System.EventHandler(this.checkBox8_CheckedChanged);
             // 
             // checkBox10
             // 
@@ -154,6 +161,7 @@
             this.checkBox10.TabIndex = 9;
             this.checkBox10.Text = "Trim HDD";
             this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
             // 
             // checkBox11
             // 
@@ -164,6 +172,7 @@
             this.checkBox11.TabIndex = 10;
             this.checkBox11.Text = "Windows Services";
             this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
             // 
             // button1
             // 
@@ -173,6 +182,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Patch";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -182,6 +192,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Restore";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -191,6 +202,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Checkboxes only";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
@@ -206,6 +218,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "LoLUpdater";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
