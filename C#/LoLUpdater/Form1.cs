@@ -81,7 +81,7 @@ namespace LoLUpdater
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
-            DirectoryInfo launchinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
+            DirectoryInfo launchinfo = new DirectoryInfo(@"RADS\projects\lol_launcher\releases");
             DirectoryInfo launch = launchinfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
@@ -91,7 +91,7 @@ namespace LoLUpdater
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
-            System.IO.Directory.Exists(@"Rads");
+            if (Directory.Exists(@"Rads"))
             {
 
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", LoLUpdater.Properties.Resources.tbb);
@@ -109,7 +109,7 @@ namespace LoLUpdater
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_Air);
 
             }
-            System.IO.Directory.Exists(@"Game");
+            if (Directory.Exists(@"Game"))
             {
                 System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tbb);
                 System.IO.File.WriteAllBytes(@"game\msvcp120.dll", LoLUpdater.Properties.Resources.msvcp120);
