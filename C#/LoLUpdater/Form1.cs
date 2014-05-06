@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Reflection;
 
 
 namespace LoLUpdater
@@ -71,33 +70,31 @@ namespace LoLUpdater
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string Rads = @"Dir\Rads";
-            System.IO.Directory.Exists(Rads);
+            System.IO.Directory.Exists(@"Rads");
             {
-                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.tbb);
-                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.msvcp120);
-                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.msvcr120);
+                System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.tbb);
+                System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.msvcp120);
+                System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.msvcr120);
 
-                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_launcher\releases\launch\Deploy", LoLUpdater.Properties.Resources.msvcp120);
-                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_launcher\releases\launch\Deploy", LoLUpdater.Properties.Resources.msvcr120);
+                System.IO.File.WriteAllBytes(@"RADS\projects\lol_launcher\releases\launch\Deploy", LoLUpdater.Properties.Resources.msvcp120);
+                System.IO.File.WriteAllBytes(@"RADS\projects\lol_launcher\releases\launch\Deploy", LoLUpdater.Properties.Resources.msvcr120);
 
-                System.IO.File.WriteAllBytes(@"Dir\RADS\solutions\lol_game_client_sln\releases\sln\Deploy", LoLUpdater.Properties.Resources.tbb);
-                System.IO.File.WriteAllBytes(@"Dir\RADS\solutions\lol_game_client_sln\releases\sln\Deploy", LoLUpdater.Properties.Resources.msvcp120);
-                System.IO.File.WriteAllBytes(@"Dir\RADS\solutions\lol_game_client_sln\releases\sln\Deploy", LoLUpdater.Properties.Resources.msvcr120);
+                System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\sln\Deploy", LoLUpdater.Properties.Resources.tbb);
+                System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\sln\Deploy", LoLUpdater.Properties.Resources.msvcp120);
+                System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\sln\Deploy", LoLUpdater.Properties.Resources.msvcr120);
 
-                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_air_client\releases\air\deploy\Adobe AIR\Versions\1.0\Resources", LoLUpdater.Properties.Resources.NPSWF32);
-                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_air_client\releases\air\deploy\Adobe AIR\Versions\1.0", LoLUpdater.Properties.Resources.Adobe_Air);
+                System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\air\deploy\Adobe AIR\Versions\1.0\Resources", LoLUpdater.Properties.Resources.NPSWF32);
+                System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\air\deploy\Adobe AIR\Versions\1.0", LoLUpdater.Properties.Resources.Adobe_Air);
 
             }
-            string Game = @"Dir\Game";
-            System.IO.Directory.Exists(Game);
+            System.IO.Directory.Exists(@"Game");
             {
-                System.IO.File.WriteAllBytes(@"Dir\game", LoLUpdater.Properties.Resources.tbb);
-                System.IO.File.WriteAllBytes(@"Dir\game", LoLUpdater.Properties.Resources.msvcp120);
-                System.IO.File.WriteAllBytes(@"Dir\game", LoLUpdater.Properties.Resources.msvcr120);
+                System.IO.File.WriteAllBytes(@"game", LoLUpdater.Properties.Resources.tbb);
+                System.IO.File.WriteAllBytes(@"game", LoLUpdater.Properties.Resources.msvcp120);
+                System.IO.File.WriteAllBytes(@"game", LoLUpdater.Properties.Resources.msvcr120);
 
-                System.IO.File.WriteAllBytes(@"Dir\AIR\Versions\1.0\Resources", LoLUpdater.Properties.Resources.NPSWF32);
-                System.IO.File.WriteAllBytes(@"Dir\AIR\Versions\1.0", LoLUpdater.Properties.Resources.Adobe_Air);
+                System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Resources", LoLUpdater.Properties.Resources.NPSWF32);
+                System.IO.File.WriteAllBytes(@"AIR\Versions\1.0", LoLUpdater.Properties.Resources.Adobe_Air);
 
             }
         }
@@ -114,19 +111,26 @@ namespace LoLUpdater
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var Dir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
-            DirectoryInfo airinfo = new DirectoryInfo(@"Dir\RADS\projects\lol_air_client\releases");
-            DirectoryInfo air = airinfo.GetDirectories().OrderByDescending(f => f.CreationTime).FirstOrDefault();
+            var airinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
+            var air = airinfo.GetDirectories()
+                                      .OrderByDescending(d => d.CreationTime)
+                                      .FirstOrDefault();
 
-            DirectoryInfo slninfo = new DirectoryInfo(@"Dir\RADS\solutions\lol_game_client_sln\releases");
-            DirectoryInfo sln = slninfo.GetDirectories().OrderByDescending(f => f.CreationTime).FirstOrDefault();
+            var slninfo = new DirectoryInfo(@"RADS\solutions\lol_game_client_sln\releases");
+            var sln = slninfo.GetDirectories()
+                                      .OrderByDescending(d => d.CreationTime)
+                                      .FirstOrDefault();
 
-            DirectoryInfo gameinfo = new DirectoryInfo(@"Dir\RADS\projects\lol_game_client\releases");
-            DirectoryInfo game = gameinfo.GetDirectories().OrderByDescending(f => f.CreationTime).FirstOrDefault();
+            var launchinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
+            var launch = launchinfo.GetDirectories()
+                                      .OrderByDescending(d => d.CreationTime)
+                                      .FirstOrDefault();
 
-            DirectoryInfo launchinfo = new DirectoryInfo(@"Dir\RADS\projects\lol_launcher\releases");
-            DirectoryInfo launch = launchinfo.GetDirectories().OrderByDescending(f => f.CreationTime).FirstOrDefault();
+            var gameinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
+            var game = gameinfo.GetDirectories()
+                                      .OrderByDescending(d => d.CreationTime)
+                                      .FirstOrDefault();
 
 
         }
