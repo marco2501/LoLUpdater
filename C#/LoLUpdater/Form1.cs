@@ -89,6 +89,17 @@ namespace LoLUpdater
                 System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_air_client\releases\air\deploy\Adobe AIR\Versions\1.0", LoLUpdater.Properties.Resources.Adobe_Air);
 
             }
+            string Game = @"Dir\Game";
+            System.IO.Directory.Exists(Game);
+            {
+                System.IO.File.WriteAllBytes(@"Dir\game", LoLUpdater.Properties.Resources.tbb);
+                System.IO.File.WriteAllBytes(@"Dir\game", LoLUpdater.Properties.Resources.msvcp120);
+                System.IO.File.WriteAllBytes(@"Dir\game", LoLUpdater.Properties.Resources.msvcr120);
+
+                System.IO.File.WriteAllBytes(@"Dir\AIR\Versions\1.0\Resources", LoLUpdater.Properties.Resources.NPSWF32);
+                System.IO.File.WriteAllBytes(@"Dir\AIR\Versions\1.0", LoLUpdater.Properties.Resources.Adobe_Air);
+
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
