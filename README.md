@@ -26,7 +26,7 @@ What does it do?
 ================
 What does LoLUpdater do? (LoLTweaker and WindowsTweaker)
 
-Uninstalls Pando Media Booster
+Option to uninstall Pando Media Booster
 
 Updates Adobe Air.dll (Takes care of the PVP Client) to the latest stable version
 
@@ -38,13 +38,11 @@ Updates tbb.dll (Game DLL) to the latest stable version
 
 Sets DefaultParticleMultithreading=1 if you have more than or equal to 2 CPU cores (game config tweak)
 
-Installs a service that auto sets League of legends.exe to "high" priority when it is ran
+option to Clear Windows Update Cache so that some failed updates might be reinstalled
 
-Clears Windows Update Cache so that some failed updates might be reinstalled
+option to apply a Mouse Polling Rate Fix for Windows 8+ that sets the Mouse Hz to 500Hz
 
-Applies a Mouse Polling Rate Fix for Windows 8+ that sets the Mouse Hz to 500Hz
-
-Clears Temp and Prefetch
+option to Clear Temp and Prefetch
 
 Backs up all files before "patching"
 
@@ -54,7 +52,7 @@ Option to defrag (with SSD detection to stop defrag from happening on SSDs)
 
 Auto-Trimming the Windows drive
 
-Option to run CCleaner
+Option to run windows disc clean
 
 Option to install .net 4.5.1 and do a Windows Update
 
