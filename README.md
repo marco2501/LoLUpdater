@@ -4,7 +4,7 @@ Releases
 https://www.youtube.com/watch?v=R1PSgUoQtJ4
 
 [Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
-
+[Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
 [Download fix for XP/Vista](http://www.mediafire.com/download/5lg1bjvqxwntncy/XP+and+Vista+fix.rar)
 
 
