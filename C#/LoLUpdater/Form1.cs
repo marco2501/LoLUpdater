@@ -74,10 +74,20 @@ namespace LoLUpdater
             string Rads = @"Dir\Rads";
             System.IO.Directory.Exists(Rads);
             {
-                if (air.exists)
-                {
+                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.tbb);
+                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.msvcp120);
+                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.msvcr120);
 
-                }
+                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_launcher\releases\launch\Deploy", LoLUpdater.Properties.Resources.msvcp120);
+                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_launcher\releases\launch\Deploy", LoLUpdater.Properties.Resources.msvcr120);
+
+                System.IO.File.WriteAllBytes(@"Dir\RADS\solutions\lol_game_client_sln\releases\sln\Deploy", LoLUpdater.Properties.Resources.tbb);
+                System.IO.File.WriteAllBytes(@"Dir\RADS\solutions\lol_game_client_sln\releases\sln\Deploy", LoLUpdater.Properties.Resources.msvcp120);
+                System.IO.File.WriteAllBytes(@"Dir\RADS\solutions\lol_game_client_sln\releases\sln\Deploy", LoLUpdater.Properties.Resources.msvcr120);
+
+                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_air_client\releases\air\deploy\Adobe AIR\Versions\1.0\Resources", LoLUpdater.Properties.Resources.NPSWF32);
+                System.IO.File.WriteAllBytes(@"Dir\RADS\projects\lol_air_client\releases\air\deploy\Adobe AIR\Versions\1.0", LoLUpdater.Properties.Resources.Adobe_Air);
+
             }
         }
 
