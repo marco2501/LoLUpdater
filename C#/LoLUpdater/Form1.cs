@@ -70,9 +70,13 @@ namespace LoLUpdater
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             System.IO.Directory.Exists(@"Rads");
             {
-                System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.tbb);
+
+
+
+                System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game , LoLUpdater.Properties.Resources.tbb);
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.msvcp120);
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\game\Deploy", LoLUpdater.Properties.Resources.msvcr120);
 
@@ -112,26 +116,7 @@ namespace LoLUpdater
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            var airinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
-            var air = airinfo.GetDirectories()
-                                      .OrderByDescending(d => d.CreationTime)
-                                      .FirstOrDefault();
-
-            var slninfo = new DirectoryInfo(@"RADS\solutions\lol_game_client_sln\releases");
-            var sln = slninfo.GetDirectories()
-                                      .OrderByDescending(d => d.CreationTime)
-                                      .FirstOrDefault();
-
-            var launchinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
-            var launch = launchinfo.GetDirectories()
-                                      .OrderByDescending(d => d.CreationTime)
-                                      .FirstOrDefault();
-
-            var gameinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
-            var game = gameinfo.GetDirectories()
-                                      .OrderByDescending(d => d.CreationTime)
-                                      .FirstOrDefault();
-
+            
 
         }
     }
