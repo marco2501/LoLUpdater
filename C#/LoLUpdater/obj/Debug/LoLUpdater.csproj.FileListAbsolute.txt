@@ -1,2 +1,0 @@
-c:\users\ilja\documents\visual studio 2013\Projects\LoLUpdater\LoLUpdater\bin\Debug\LoLUpdater.exe.config
-C:\Users\Ilja\Documents\GitHub\LoLUpdater\C#\LoLUpdater\bin\Debug\LoLUpdater.exe.config
