@@ -24,8 +24,53 @@ namespace LoLUpdater
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            DirectoryInfo airinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
+            DirectoryInfo air = airinfo.GetDirectories()
+                                      .OrderByDescending(d => d.CreationTime)
+                                      .FirstOrDefault();
+
+            DirectoryInfo slninfo = new DirectoryInfo(@"RADS\solutions\lol_game_client_sln\releases");
+            DirectoryInfo sln = slninfo.GetDirectories()
+                                      .OrderByDescending(d => d.CreationTime)
+                                      .FirstOrDefault();
+
+            DirectoryInfo launchinfo = new DirectoryInfo(@"RADS\projects\lol_launcher\releases");
+            DirectoryInfo launch = launchinfo.GetDirectories()
+                                      .OrderByDescending(d => d.CreationTime)
+                                      .FirstOrDefault();
+
+            DirectoryInfo gameinfo = new DirectoryInfo(@"RADS\projects\lol_game_client\releases");
+            DirectoryInfo game = gameinfo.GetDirectories()
+                                      .OrderByDescending(d => d.CreationTime)
+                                      .FirstOrDefault();
 
 
+            if (Directory.Exists(@"Backup"))
+            {
+
+                if (Directory.Exists(@"Rads"))
+                {
+                    File.Copy(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll", @"Backup\cg.dll");
+                    File.Copy(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll", @"Backup\cgd3d9.dll");
+                    File.Copy(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll", @"Backup\cggl.dll");
+                    File.Copy(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\msvcr120.dll", @"Backup\msvcr120.dll");
+                    File.Copy(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\msvcp120.dll", @"Backup\msvcp120.dll");
+                    File.Copy(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", @"Backup\tbb.dll");
+                    File.Copy(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll");
+                    File.Copy(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll");
+                }
+                if (Directory.Exists(@"Game"))
+                {
+                    File.Copy(@"game\cg.dll", @"Backup\cg.dll");
+                    File.Copy(@"game\cgd3d9.dll", @"Backup\cgd3d9.dll");
+                    File.Copy(@"game\cggl.dll", @"Backup\cggl.dll");
+                    File.Copy(@"game\msvcr120.dll", @"Backup\msvcr120.dll");
+                    File.Copy(@"game\msvcp120.dll", @"Backup\msvcp120.dll");
+                    File.Copy(@"game\tbb.dll", @"Backup\tbb.dll");
+                    File.Copy(@"AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll.dll");
+                    File.Copy(@"AIR\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll");
+                }
+            }
 
         }
 
