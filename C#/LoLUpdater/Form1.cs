@@ -67,7 +67,7 @@ namespace LoLUpdater
                     File.Copy(@"game\msvcr120.dll", @"Backup\msvcr120.dll");
                     File.Copy(@"game\msvcp120.dll", @"Backup\msvcp120.dll");
                     File.Copy(@"game\tbb.dll", @"Backup\tbb.dll");
-                    File.Copy(@"AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll.dll");
+                    File.Copy(@"AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll");
                     File.Copy(@"AIR\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll");
                 }
             }
@@ -261,14 +261,14 @@ namespace LoLUpdater
                 }
                 if (Directory.Exists(@"Game"))
                 {
-                    File.Copy(@"game\cg.dll", @"Backup\cg.dll");
-                    File.Copy(@"game\cgd3d9.dll", @"Backup\cgd3d9.dll");
-                    File.Copy(@"game\cggl.dll", @"Backup\cggl.dll");
-                    File.Copy(@"game\msvcr120.dll", @"Backup\msvcr120.dll");
-                    File.Copy(@"game\msvcp120.dll", @"Backup\msvcp120.dll");
-                    File.Copy(@"game\tbb.dll", @"Backup\tbb.dll");
-                    File.Copy(@"AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll.dll");
-                    File.Copy(@"AIR\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll");
+                    File.Copy(@"Backup\cg.dll", @"game\cg.dll");
+                    File.Copy(@"Backup\cgd3d9.dll", @"game\cgd3d9.dll");
+                    File.Copy(@"Backup\cggl.dll", @"game\cggl.dll");
+                    File.Copy(@"Backup\msvcr120.dll", @"game\msvcr120.dll");
+                    File.Copy(@"Backup\msvcp120.dll", @"game\msvcp120.dll");
+                    File.Copy(@"Backup\tbb.dll", @"game\tbb.dll");
+                    File.Copy(@"Backup\NPSWF32.dll", @"AIR\Versions\1.0\Resources\NPSWF32.dll");
+                    File.Copy(@"Backup\Adobe Air.dll", @"AIR\Versions\1.0\Adobe Air.dll");
                 }
             }
         }
