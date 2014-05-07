@@ -20,6 +20,15 @@ namespace LoLUpdater
             InitializeComponent();
         }
 
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+
+
+
+        }
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
         }
@@ -71,7 +80,6 @@ namespace LoLUpdater
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             DirectoryInfo airinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
             DirectoryInfo air = airinfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
@@ -92,19 +100,46 @@ namespace LoLUpdater
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
+
+
+            RegistryKey key = Registry.LocalMachine;
+            RegistryKey subKey = key.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Cg Toolkit_is1");
+
+            var CG = subKey.GetValue("InstallLocation"); 
+
+
+
             if (Directory.Exists(@"Rads"))
             {
 
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", LoLUpdater.Properties.Resources.tbb);
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\msvcp120.dll", LoLUpdater.Properties.Resources.msvcp120);
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\msvcr120.dll", LoLUpdater.Properties.Resources.msvcr120);
+                File.Copy(CG + @"bin\cg.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll");
+                File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll");
+                File.Copy(CG + @"bin\cggl.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll");
+                
+
+
 
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\msvcp120.dll", LoLUpdater.Properties.Resources.msvcp120);
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\msvcr120.dll", LoLUpdater.Properties.Resources.msvcr120);
+                File.Copy(CG + @"bin\cg.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cg.dll");
+                File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cgd3d9.dll");
+                File.Copy(CG + @"bin\cggl.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cggl.dll");
+
+
 
                 System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\tbb.dll", LoLUpdater.Properties.Resources.tbb);
                 System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\msvcp120.dll", LoLUpdater.Properties.Resources.msvcp120);
                 System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\msvcr120.dll", LoLUpdater.Properties.Resources.msvcr120);
+                File.Copy(CG + @"bin\cg.dll", @"RADS\solutions\lol_game_client\releases\" + sln + @"\deploy\cg.dll");
+                File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\solutions\lol_game_client\releases\" + sln + @"\deploy\cgd3d9.dll");
+                File.Copy(CG + @"bin\cggl.dll", @"RADS\solutions\lol_game_client\releases\" + sln + @"\deploy\cggl.dll");
+                
+
+
+
 
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
                 System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_Air);
@@ -115,6 +150,11 @@ namespace LoLUpdater
                 System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tbb);
                 System.IO.File.WriteAllBytes(@"game\msvcp120.dll", LoLUpdater.Properties.Resources.msvcp120);
                 System.IO.File.WriteAllBytes(@"game\msvcr120.dll", LoLUpdater.Properties.Resources.msvcr120);
+                File.Copy(CG + @"bin\cg.dll", @"game\cg.dll");
+                File.Copy(CG + @"bin\cgd3d9.dll", @"game\cgd3d9.dll");
+                File.Copy(CG + @"bin\cggl.dll", @"game\cggl.dll");
+                
+
 
                 System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
                 System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_Air);
@@ -132,12 +172,6 @@ namespace LoLUpdater
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-            
-                                   
-
-        }
     }
 }
