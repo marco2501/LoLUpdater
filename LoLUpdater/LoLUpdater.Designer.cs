@@ -17,6 +17,7 @@ namespace LoLUpdater
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.Options = new System.Windows.Forms.GroupBox();
+            this.Defrag = new System.Windows.Forms.CheckBox();
             this.Deleteoldlogs = new System.Windows.Forms.CheckBox();
             this.Cleantemp = new System.Windows.Forms.CheckBox();
             this.UninstallPMB = new System.Windows.Forms.CheckBox();
@@ -33,7 +34,6 @@ namespace LoLUpdater
             this.ElevateButton = new System.Windows.Forms.Button();
             this.Combininggroupbox = new System.Windows.Forms.GroupBox();
             this.AdminOptions = new System.Windows.Forms.GroupBox();
-            this.Defrag = new System.Windows.Forms.CheckBox();
             this.Options.SuspendLayout();
             this.MainFunction.SuspendLayout();
             this.Combininggroupbox.SuspendLayout();
@@ -46,12 +46,23 @@ namespace LoLUpdater
             this.Options.Controls.Add(this.Deleteoldlogs);
             this.Options.Controls.Add(this.Cleantemp);
             this.Options.Controls.Add(this.UninstallPMB);
-            this.Options.Location = new System.Drawing.Point(5, 0);
+            this.Options.Location = new System.Drawing.Point(6, 41);
             this.Options.Name = "Options";
             this.Options.Size = new System.Drawing.Size(116, 108);
             this.Options.TabIndex = 1;
             this.Options.TabStop = false;
             this.Options.Text = "Options";
+            // 
+            // Defrag
+            // 
+            this.Defrag.AutoSize = true;
+            this.Defrag.Location = new System.Drawing.Point(6, 85);
+            this.Defrag.Name = "Defrag";
+            this.Defrag.Size = new System.Drawing.Size(85, 17);
+            this.Defrag.TabIndex = 5;
+            this.Defrag.Text = "Defrag HDD";
+            this.toolTip1.SetToolTip(this.Defrag, "Deletes RIOT logs older than 7 days");
+            this.Defrag.UseVisualStyleBackColor = true;
             // 
             // Deleteoldlogs
             // 
@@ -104,7 +115,7 @@ namespace LoLUpdater
             this.MainFunction.Controls.Add(this.onlycheckboxes);
             this.MainFunction.Controls.Add(this.Patcher);
             this.MainFunction.Controls.Add(this.Restorebackups);
-            this.MainFunction.Location = new System.Drawing.Point(6, 0);
+            this.MainFunction.Location = new System.Drawing.Point(156, 166);
             this.MainFunction.Name = "MainFunction";
             this.MainFunction.Size = new System.Drawing.Size(118, 108);
             this.MainFunction.TabIndex = 3;
@@ -135,7 +146,7 @@ namespace LoLUpdater
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(6, 114);
+            this.OKButton.Location = new System.Drawing.Point(43, 401);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(174, 20);
             this.OKButton.TabIndex = 4;
@@ -190,7 +201,7 @@ namespace LoLUpdater
             // 
             // ElevateButton
             // 
-            this.ElevateButton.Location = new System.Drawing.Point(186, 114);
+            this.ElevateButton.Location = new System.Drawing.Point(683, 468);
             this.ElevateButton.Name = "ElevateButton";
             this.ElevateButton.Size = new System.Drawing.Size(191, 20);
             this.ElevateButton.TabIndex = 7;
@@ -203,9 +214,9 @@ namespace LoLUpdater
             // 
             this.Combininggroupbox.Controls.Add(this.Options);
             this.Combininggroupbox.Controls.Add(this.AdminOptions);
-            this.Combininggroupbox.Location = new System.Drawing.Point(125, 0);
+            this.Combininggroupbox.Location = new System.Drawing.Point(548, 102);
             this.Combininggroupbox.Name = "Combininggroupbox";
-            this.Combininggroupbox.Size = new System.Drawing.Size(252, 108);
+            this.Combininggroupbox.Size = new System.Drawing.Size(252, 185);
             this.Combininggroupbox.TabIndex = 6;
             this.Combininggroupbox.TabStop = false;
             // 
@@ -222,22 +233,11 @@ namespace LoLUpdater
             this.AdminOptions.TabStop = false;
             this.AdminOptions.Text = "Admin Options";
             // 
-            // Defrag
-            // 
-            this.Defrag.AutoSize = true;
-            this.Defrag.Location = new System.Drawing.Point(6, 85);
-            this.Defrag.Name = "Defrag";
-            this.Defrag.Size = new System.Drawing.Size(85, 17);
-            this.Defrag.TabIndex = 5;
-            this.Defrag.Text = "Defrag HDD";
-            this.toolTip1.SetToolTip(this.Defrag, "Deletes RIOT logs older than 7 days");
-            this.Defrag.UseVisualStyleBackColor = true;
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 138);
+            this.ClientSize = new System.Drawing.Size(904, 514);
             this.Controls.Add(this.ElevateButton);
             this.Controls.Add(this.Combininggroupbox);
             this.Controls.Add(this.OKButton);
