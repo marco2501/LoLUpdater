@@ -97,13 +97,13 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>2DB8DA96E42A75A5F4A38D24F0FE0186572FC503</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestTimestampUrl>http://timestamp.comodoca.com/rfc3161</ManifestTimestampUrl>
@@ -120,7 +120,8 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup>
-    <StartupObject>LoLUpdater.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -195,7 +196,6 @@
     <None Include="Resources\msvcr120.dll" />
     <None Include="Resources\msvcp120.dll" />
     <None Include="Resources\Adobe AIR.dll" />
-    <None Include="Resources\CCleaner.exe" />
     <None Include="Resources\df.exe" />
   </ItemGroup>
   <ItemGroup>
