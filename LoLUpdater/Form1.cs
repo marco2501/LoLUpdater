@@ -246,6 +246,16 @@ services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceCo
 
                     mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
 
+System.Diagnostics.Process process3 = new System.Diagnostics.Process();
+System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+startInfo.FileName = "cmd.exe";
+startInfo.Verb = "runas";
+startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
+process3.StartInfo = startInfo;
+process3.Start();
+process3.WaitForExit();
+
                 }
 
                 if (checkBox7.Checked)
