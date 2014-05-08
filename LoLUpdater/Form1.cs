@@ -227,14 +227,16 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
            
                 if (File.Exists(@"Config\game.cfg"))
                 {
-                    File.AppendAllText(@"Config\game.cfg", "DefaultParticleMultithreading=1");
+                    File.AppendAllText(@"Config\game.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
                 }
                 
                     else if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
                     {
-                        File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", "DefaultParticleMultithreading=1");
-                        File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent.cfg", "DefaultParticleMultithreading=1");
-                        File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", "DefaultParticleMultithreading=1");
+                        File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                        File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                        File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                        File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                        
                         
                     }
                 
@@ -342,6 +344,8 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 File.Copy(@"Backup\game.cfg", @"Game\DATA\CFG\defaults\game.cfg", true);
                 File.Copy(@"Backup\gamepermanent.cfg", @"Game\DATA\CFG\defaults\gamepermanent.cfg", true);
                 File.Copy(@"Backup\GamePermanent_zh_MY.cfg", @"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", true);
+                File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", @"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", true);
+                
                 
             }
         }
