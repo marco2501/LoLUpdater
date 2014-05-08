@@ -15,7 +15,6 @@ using WUApiLib;
 using System.Security.Principal;
 using System.Runtime.InteropServices;
 using System.Management;
-using System.Collections;
 namespace LoLUpdater
 {
     public partial class Menu : Form
@@ -141,10 +140,10 @@ namespace LoLUpdater
                         var psi2 = new ProcessStartInfo();
                         psi2.FileName = PMB + @"\uninst.exe";
                         psi2.Verb = "runas";
-                        var process1 = new Process();
-                        process1.StartInfo = psi2;
-                        process1.Start();
-                        process1.WaitForExit();
+                        var PMBUninstallProc = new Process();
+                        PMBUninstallProc.StartInfo = psi2;
+                        PMBUninstallProc.Start();
+                        PMBUninstallProc.WaitForExit();
                     }
                     else
                     {
@@ -153,7 +152,7 @@ namespace LoLUpdater
             }
             var allServices = new Dictionary<string, string[]>
 {
-{ "6.3", new[] { "Appmgmt", "bthserv", "PeerDistSvc", "NfsClnt", "TrkWks", "WPCSvc", "vmickvpexchange", "vmicguestinterface", "vmicshutdown", "vmicheartbeat", "vmicrdv", "vmictimesync", "vmicvss", "IEEtwCollectorService", "iphlpsvc", "Netlogon", "Netlogon", "CscService", "RpcLocator", "MSiSCSI", "SensrSvc", "ScDeviceEnum", "SCPolicySvc", "SNMPTRAP", "StorSvc", "WbioSrvc", "wcncsvc", "fsvc", "WMPNetworkSvc" } },
+{ "6.3", new[] { "Appmgmt", "bthserv", "PeerDistSvc", "NfsClnt", "TrkWks", "WPCSvc", "vmickvpexchange", "vmicguestinterface", "vmicshutdown", "vmicheartbeat", "vmicrdv", "vmictimesync", "vmicvss", "IEEtwCollectorService", "iphlpsvc", "Netlogon", "CscService", "RpcLocator", "MSiSCSI", "SensrSvc", "ScDeviceEnum", "SCPolicySvc", "SNMPTRAP", "StorSvc", "WbioSrvc", "wcncsvc", "fsvc", "WMPNetworkSvc" } },
 { "6.2", new[] { "WMPNetworkSvc", "wcncsvc", "WbioSrvc", "StorSvc", "SNMPTRAP", "SCPolicySvc", "SensrSvc", "RpcLocator", "CscService", "Netlogon", "MSiSCSI", "iphlpsvc", "vmicvss", "vmictimesync", "vmicrdv", "vmicheartbeat", "vmicshutdown", "vmickvpexchange", "WPCSvc", "TrkWks", "NfsClnt", "CertPropSvc", "PeerDistSvc", "bthserv", "Appmgmt" } },
 { "6.1", new[] {"WSearch", "WMPNetworkSvc", "wcncsvc", "StorSvc", "SNMPTRAP", "SCPolicySvc", "SCardSvr", "RemoteRegistry", "RpcLocator", "WPCSvc", "CscService", "napagent", "Netlogon", "MSiSCSI", "iphlpsvc", "TrkWks", "CertPropSvc", "bthserv", "AppMgmt" } },
 { "6.0", new[] { "TrkWks", "WinHttpAutoProxySvc", "WSearch", "WinRM", "WebClient", "UmRdpService", "TabletInputService", "SNMPTRAP", "SCPolicySvc", "SCardSvr", "RemoteRegistry", "CscService", "Netlogon", "MSiSCSI", "iphlpsvc", "Fax", "CertPropSvc" } },
@@ -169,15 +168,26 @@ namespace LoLUpdater
                 Microsoft.Win32.Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers");
                 RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
                 mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
-                System.Diagnostics.Process process3 = new System.Diagnostics.Process();
+                System.Diagnostics.Process applymouseHz = new System.Diagnostics.Process();
                 System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
                 startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
                 startInfo.FileName = "cmd.exe";
                 startInfo.Verb = "runas";
                 startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
-                process3.StartInfo = startInfo;
-                process3.Start();
-                process3.WaitForExit();
+                applymouseHz.StartInfo = startInfo;
+                applymouseHz.Start();
+                applymouseHz.WaitForExit();
+            }
+            if (Defrag.Checked)
+            {
+                System.Diagnostics.Process defrag = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                startInfo.FileName = "dfrgui.exe";
+                startInfo.Verb = "runas";
+                defrag.StartInfo = startInfo;
+                defrag.Start();
+                defrag.WaitForExit();
             }
             if (WindowsUpdate.Checked)
             {

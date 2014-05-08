@@ -33,6 +33,7 @@ namespace LoLUpdater
             this.ElevateButton = new System.Windows.Forms.Button();
             this.Combininggroupbox = new System.Windows.Forms.GroupBox();
             this.AdminOptions = new System.Windows.Forms.GroupBox();
+            this.Defrag = new System.Windows.Forms.CheckBox();
             this.Options.SuspendLayout();
             this.MainFunction.SuspendLayout();
             this.Combininggroupbox.SuspendLayout();
@@ -41,6 +42,7 @@ namespace LoLUpdater
             // 
             // Options
             // 
+            this.Options.Controls.Add(this.Defrag);
             this.Options.Controls.Add(this.Deleteoldlogs);
             this.Options.Controls.Add(this.Cleantemp);
             this.Options.Controls.Add(this.UninstallPMB);
@@ -54,7 +56,7 @@ namespace LoLUpdater
             // Deleteoldlogs
             // 
             this.Deleteoldlogs.AutoSize = true;
-            this.Deleteoldlogs.Location = new System.Drawing.Point(6, 66);
+            this.Deleteoldlogs.Location = new System.Drawing.Point(6, 62);
             this.Deleteoldlogs.Name = "Deleteoldlogs";
             this.Deleteoldlogs.Size = new System.Drawing.Size(96, 17);
             this.Deleteoldlogs.TabIndex = 4;
@@ -220,6 +222,17 @@ namespace LoLUpdater
             this.AdminOptions.TabStop = false;
             this.AdminOptions.Text = "Admin Options";
             // 
+            // Defrag
+            // 
+            this.Defrag.AutoSize = true;
+            this.Defrag.Location = new System.Drawing.Point(6, 85);
+            this.Defrag.Name = "Defrag";
+            this.Defrag.Size = new System.Drawing.Size(85, 17);
+            this.Defrag.TabIndex = 5;
+            this.Defrag.Text = "Defrag HDD";
+            this.toolTip1.SetToolTip(this.Defrag, "Deletes RIOT logs older than 7 days");
+            this.Defrag.UseVisualStyleBackColor = true;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,5 +276,6 @@ namespace LoLUpdater
         private System.Windows.Forms.CheckBox WindowsServices;
         private System.Windows.Forms.CheckBox Mousepollingrate;
         private System.Windows.Forms.GroupBox AdminOptions;
+        private System.Windows.Forms.CheckBox Defrag;
     }
 }
