@@ -184,7 +184,6 @@ services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceCo
 }
 if (checkBox6.Checked)
 {
-
 Microsoft.Win32.Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers");
 RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
 mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
@@ -219,19 +218,16 @@ IInstallationResult installationRes = installer.Install();
 }
 if (checkBox8.Checked)
 {
-    if(Directory.Exists("Logs"))
-    {
-        string[] files = Directory.GetFiles("Logs");
-
-        foreach (string file in files)
-        {
-            FileInfo fi = new FileInfo(file);
-            if (fi.LastAccessTime < DateTime.Now.AddDays(-7))
-                fi.Delete();
-        }
-    }
-    
-
+if(Directory.Exists("Logs"))
+{
+string[] files = Directory.GetFiles("Logs");
+foreach (string file in files)
+{
+FileInfo fi = new FileInfo(file);
+if (fi.LastAccessTime < DateTime.Now.AddDays(-7))
+fi.Delete();
+}
+}
 }
 if (radioButton1.Checked)
 {
@@ -428,6 +424,5 @@ CloseServiceHandle(serviceHandle);
 CloseServiceHandle(scManagerHandle);
 }
 }
-
 }
 }

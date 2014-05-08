@@ -61,6 +61,7 @@ private void InitializeComponent()
             this.checkBox8.Size = new System.Drawing.Size(96, 17);
             this.checkBox8.TabIndex = 4;
             this.checkBox8.Text = "Delete old logs";
+            this.toolTip1.SetToolTip(this.checkBox8, "Deletes RIOT logs older than 7 days");
             this.checkBox8.UseVisualStyleBackColor = true;
             // 
             // checkBox1
@@ -71,6 +72,7 @@ private void InitializeComponent()
             this.checkBox1.Size = new System.Drawing.Size(79, 17);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Clean temp";
+            this.toolTip1.SetToolTip(this.checkBox1, "Cleans harddrive with CCleaner");
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // checkBox3
@@ -81,6 +83,7 @@ private void InitializeComponent()
             this.checkBox3.Size = new System.Drawing.Size(92, 17);
             this.checkBox3.TabIndex = 2;
             this.checkBox3.Text = "Uninstall PMB";
+            this.toolTip1.SetToolTip(this.checkBox3, "Uninstalls Pando Media Booster");
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // checkBox4
@@ -91,6 +94,7 @@ private void InitializeComponent()
             this.checkBox4.Size = new System.Drawing.Size(85, 17);
             this.checkBox4.TabIndex = 3;
             this.checkBox4.Text = "Defrag HDD";
+            this.toolTip1.SetToolTip(this.checkBox4, "Defragments your HDD");
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // radioButton1
@@ -103,6 +107,7 @@ private void InitializeComponent()
             this.radioButton1.TabIndex = 2;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Patch LoL";
+            this.toolTip1.SetToolTip(this.radioButton1, "Patches League of Legends (Garena works too)");
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -125,6 +130,7 @@ private void InitializeComponent()
             this.radioButton3.Size = new System.Drawing.Size(107, 17);
             this.radioButton3.TabIndex = 4;
             this.radioButton3.Text = "Only checkboxes";
+            this.toolTip1.SetToolTip(this.radioButton3, "Select this if you only want to do the checkboxes");
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton2
@@ -135,6 +141,7 @@ private void InitializeComponent()
             this.radioButton2.Size = new System.Drawing.Size(106, 17);
             this.radioButton2.TabIndex = 3;
             this.radioButton2.Text = "Restore backups";
+            this.toolTip1.SetToolTip(this.radioButton2, "Restore backups");
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -144,6 +151,7 @@ private void InitializeComponent()
             this.button1.Size = new System.Drawing.Size(174, 20);
             this.button1.TabIndex = 4;
             this.button1.Text = "OK";
+            this.toolTip1.SetToolTip(this.button1, "Confirm");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -179,6 +187,7 @@ private void InitializeComponent()
             this.checkBox6.Size = new System.Drawing.Size(112, 17);
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "Mouse polling rate";
+            this.toolTip1.SetToolTip(this.checkBox6, "Sets mouseHz to 500hz only for win8+");
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // checkBox5
@@ -189,6 +198,7 @@ private void InitializeComponent()
             this.checkBox5.Size = new System.Drawing.Size(112, 17);
             this.checkBox5.TabIndex = 7;
             this.checkBox5.Text = "Windows services";
+            this.toolTip1.SetToolTip(this.checkBox5, "Sets some services to startuptype manual");
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
             // checkBox2
@@ -199,6 +209,7 @@ private void InitializeComponent()
             this.checkBox2.Size = new System.Drawing.Size(122, 17);
             this.checkBox2.TabIndex = 1;
             this.checkBox2.Text = "Clean update cache";
+            this.toolTip1.SetToolTip(this.checkBox2, "Cleans Windows Update cache");
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // checkBox7
@@ -209,6 +220,7 @@ private void InitializeComponent()
             this.checkBox7.Size = new System.Drawing.Size(106, 17);
             this.checkBox7.TabIndex = 6;
             this.checkBox7.Text = "Windows update";
+            this.toolTip1.SetToolTip(this.checkBox7, "Does a WIndows update");
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -218,6 +230,7 @@ private void InitializeComponent()
             this.button2.Size = new System.Drawing.Size(191, 20);
             this.button2.TabIndex = 7;
             this.button2.Text = "Self-Elevate";
+            this.toolTip1.SetToolTip(this.button2, "Select this if you want to run the program as admin");
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
