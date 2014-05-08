@@ -219,6 +219,19 @@ IInstallationResult installationRes = installer.Install();
 }
 if (checkBox8.Checked)
 {
+    if(Directory.Exists("Logs"))
+    {
+        string[] files = Directory.GetFiles("Logs");
+
+        foreach (string file in files)
+        {
+            FileInfo fi = new FileInfo(file);
+            if (fi.LastAccessTime < DateTime.Now.AddDays(-7))
+                fi.Delete();
+        }
+    }
+    
+
 }
 if (radioButton1.Checked)
 {
@@ -415,5 +428,6 @@ CloseServiceHandle(serviceHandle);
 CloseServiceHandle(scManagerHandle);
 }
 }
+
 }
 }
