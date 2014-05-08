@@ -65,12 +65,12 @@ namespace LoLUpdater
                     File.Copy(gamez + @"\tbb.dll", @"Backup\tbb.dll", true);
                     File.Copy(airz + @"\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll", true);
                     File.Copy(airz + @"\Adobe Air.dll", @"Backup\Adobe Air.dll", true);
-                    
-                             if (File.Exists(@"Config\game.cfg"))
-                {
-                    File.Copy(@"Config\game.cfg", @"Backup\game.cfg", true);
-                }
-                       
+
+                    if (File.Exists(@"Config\game.cfg"))
+                    {
+                        File.Copy(@"Config\game.cfg", @"Backup\game.cfg", true);
+                    }
+
                 }
                 if (Directory.Exists(@"Game"))
                 {
@@ -81,15 +81,15 @@ namespace LoLUpdater
                     File.Copy(@"game\tbb.dll", @"Backup\tbb.dll", true);
                     File.Copy(@"AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll", true);
                     File.Copy(@"AIR\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll", true);
-                    
+
                     if (File.Exists(@"Config\game.cfg"))
-                {
-                    File.Copy(@"Game\DATA\CFG\defaults\game.cfg", @"Backup\game.cfg", true);
+                    {
+                        File.Copy(@"Game\DATA\CFG\defaults\game.cfg", @"Backup\game.cfg", true);
                         File.Copy(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"Backup\gamepermanent.cfg", true);
 
-                }              
-                    
-                    
+                    }
+
+
                 }
             }
 
@@ -132,94 +132,97 @@ namespace LoLUpdater
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
-                
 
 
 
-                if (checkBox1.Checked)
+
+            if (checkBox1.Checked)
+            {
+                System.IO.File.WriteAllBytes("CCleaner.exe", LoLUpdater.Properties.Resources.CCleaner);
+                var cc = new ProcessStartInfo();
+                cc.FileName = @"CCleaner.exe";
+                cc.Arguments = @"/auto";
+                cc.Verb = "runas";
+                var process = new Process();
+                process.StartInfo = cc;
+                process.Start();
+                process.WaitForExit();
+                File.Delete("CCleaner.exe");
+
+            }
+
+            if (checkBox2.Checked)
+            {
+                ServiceController service0 = new ServiceController(@"wuauserv");
+                switch (service0.Status)
                 {
-                    System.IO.File.WriteAllBytes("CCleaner.exe", LoLUpdater.Properties.Resources.CCleaner);
-                    var cc = new ProcessStartInfo();
-                    cc.FileName = @"CCleaner.exe";
-                    cc.Arguments = @"/auto";
-                    cc.Verb = "runas";
-                    var process = new Process();
-                    process.StartInfo = cc;
-                    process.Start();
-                    process.WaitForExit();
-                    File.Delete("CCleaner.exe");
 
+                    case ServiceControllerStatus.Running:
+                        service0.Stop();
+                        service0.WaitForStatus(ServiceControllerStatus.Stopped);
+                        Directory.Delete(windir + @"\SoftwareDistribution", true);
+                        service0.Start();
+                        service0.WaitForStatus(ServiceControllerStatus.Running);
+                        break;
+
+                    case ServiceControllerStatus.Stopped:
+                        Directory.Delete(windir + @"\SoftwareDistribution", true);
+                        service0.Start();
+                        service0.WaitForStatus(ServiceControllerStatus.Running);
+                        break;
                 }
 
-                if (checkBox2.Checked)
-                {
-                    ServiceController service0 = new ServiceController(@"wuauserv");
-                    switch (service0.Status)
+
+
+            }
+
+            if (checkBox3.Checked)
+            {
+                using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB"))
+                    if (Key != null)
                     {
+                        RegistryKey key = Registry.LocalMachine;
+                        RegistryKey subKey = key.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB");
 
-                        case ServiceControllerStatus.Running:
-                            service0.Stop();
-                            Directory.Delete(windir + @"\SoftwareDistribution", true);
-                            service0.Start();
+                        var PMB = subKey.GetValue("Program Directory").ToString();
 
-                            break;
-                        case ServiceControllerStatus.Stopped:
-                            Directory.Delete(windir + @"\SoftwareDistribution", true);
-                            service0.Start();
-                            break;
+
+                        var psi2 = new ProcessStartInfo();
+                        psi2.FileName = PMB + @"\uninst.exe";
+                        psi2.Verb = "runas";
+                        var process1 = new Process();
+                        process1.StartInfo = psi2;
+                        process1.Start();
+                        process1.WaitForExit();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pando Media Booster is already Uninstalled");
                     }
 
 
 
-                }
-
-                if (checkBox3.Checked)
-                {
-                    using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB"))
-                        if (Key != null)
-                        {
-                            RegistryKey key = Registry.LocalMachine;
-                            RegistryKey subKey = key.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB");
-
-                            var PMB = subKey.GetValue("Program Directory").ToString();
 
 
-                            var psi2 = new ProcessStartInfo();
-                            psi2.FileName = PMB + @"\uninst.exe";
-                            psi2.Verb = "runas";
-                            var process1 = new Process();
-                            process1.StartInfo = psi2;
-                            process1.Start();
-                            process1.WaitForExit();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Pando Media Booster is already Uninstalled");
-                        }
+            }
 
+            if (checkBox4.Checked)
+            {
 
+                System.IO.File.WriteAllBytes("df.exe", LoLUpdater.Properties.Resources.df);
+                var df = new ProcessStartInfo();
+                df.FileName = @"df.exe";
+                df.Arguments = root;
+                df.Verb = "runas";
+                var process2 = new Process();
+                process2.StartInfo = df;
+                process2.Start();
+                process2.WaitForExit();
+                File.Delete("df.exe");
 
+            }
 
-
-                }
-
-                if (checkBox4.Checked)
-                {
-
-                    System.IO.File.WriteAllBytes("df.exe", LoLUpdater.Properties.Resources.df);
-                    var df = new ProcessStartInfo();
-                    df.FileName = @"df.exe";
-                    df.Arguments = root;
-                    df.Verb = "runas";
-                    var process2 = new Process();
-                    process2.StartInfo = df;
-                    process2.Start();
-                    process2.WaitForExit();
-                    File.Delete("df.exe");
-
-                }
-
-                var allServices = new Dictionary<string, string[]>
+            var allServices = new Dictionary<string, string[]>
 {
 { "6.3", new[] { "Appmgmt", "bthserv", "PeerDistSvc", "NfsClnt", "TrkWks", "WPCSvc", "vmickvpexchange", "vmicguestinterface", "vmicshutdown", "vmicheartbeat", "vmicrdv", "vmictimesync", "vmicvss", "IEEtwCollectorService", "iphlpsvc", "Netlogon", "Netlogon", "CscService", "RpcLocator", "MSiSCSI", "SensrSvc", "ScDeviceEnum", "SCPolicySvc", "SNMPTRAP", "StorSvc", "WbioSrvc", "wcncsvc", "fsvc", "WMPNetworkSvc" } },
 { "6.2", new[] { "WMPNetworkSvc", "wcncsvc", "WbioSrvc", "StorSvc", "SNMPTRAP", "SCPolicySvc", "SensrSvc", "RpcLocator", "CscService", "Netlogon", "MSiSCSI", "iphlpsvc", "vmicvss", "vmictimesync", "vmicrdv", "vmicheartbeat", "vmicshutdown", "vmickvpexchange", "WPCSvc", "TrkWks", "NfsClnt", "CertPropSvc", "PeerDistSvc", "bthserv", "Appmgmt" } },
@@ -227,99 +230,99 @@ namespace LoLUpdater
 { "6.0", new[] { "TrkWks", "WinHttpAutoProxySvc", "WSearch", "WinRM", "WebClient", "UmRdpService", "TabletInputService", "SNMPTRAP", "SCPolicySvc", "SCardSvr", "RemoteRegistry", "CscService", "Netlogon", "MSiSCSI", "iphlpsvc", "Fax", "CertPropSvc" } },
 { "5.1", new[] { "WmiApSrv", "W32Time", "WebClient", "UPS", "Netlogon", "SCardSvr", "TlntSvr", "seclogon", "RemoteRegistry", "RDSessMgr", "RSVP", "WmdmPmSN", "xmlprov", "mnmsrvc", "cisvc", "ERSvc" } }
 };
-                string[] services;
-                if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
-                {
-services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
-                }
+            string[] services;
+            if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
+            {
+                services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
+            }
 
 
-                if (checkBox6.Checked)
-                {
-                    RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
+            if (checkBox6.Checked)
+            {
+                RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
 
-                    mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
+                mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
 
-System.Diagnostics.Process process3 = new System.Diagnostics.Process();
-System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-startInfo.FileName = "cmd.exe";
-startInfo.Verb = "runas";
-startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
-process3.StartInfo = startInfo;
-process3.Start();
-process3.WaitForExit();
+                System.Diagnostics.Process process3 = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                startInfo.FileName = "cmd.exe";
+                startInfo.Verb = "runas";
+                startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
+                process3.StartInfo = startInfo;
+                process3.Start();
+                process3.WaitForExit();
 
-                }
+            }
 
-                if (checkBox7.Checked)
-                {
-                    UpdateSessionClass uSession = new UpdateSessionClass();
-                    IUpdateSearcher uSearcher = uSession.CreateUpdateSearcher();
-                    ISearchResult uResult = uSearcher.Search(@"IsInstalled=0 and
+            if (checkBox7.Checked)
+            {
+                UpdateSessionClass uSession = new UpdateSessionClass();
+                IUpdateSearcher uSearcher = uSession.CreateUpdateSearcher();
+                ISearchResult uResult = uSearcher.Search(@"IsInstalled=0 and
                     Type='Software'");
 
-                    UpdateDownloader downloader = uSession.CreateUpdateDownloader();
-                    downloader.Updates = uResult.Updates;
-                    downloader.Download();
+                UpdateDownloader downloader = uSession.CreateUpdateDownloader();
+                downloader.Updates = uResult.Updates;
+                downloader.Download();
 
-                    UpdateCollection updatesToInstall = new UpdateCollection();
-                    foreach (IUpdate update in uResult.Updates)
-                    {
-                        if (update.IsDownloaded)
-                            updatesToInstall.Add(update);
-                    }
-
-                    IUpdateInstaller installer = uSession.CreateUpdateInstaller();
-                    installer.Updates = updatesToInstall;
-                    IInstallationResult installationRes = installer.Install();
-
+                UpdateCollection updatesToInstall = new UpdateCollection();
+                foreach (IUpdate update in uResult.Updates)
+                {
+                    if (update.IsDownloaded)
+                        updatesToInstall.Add(update);
                 }
 
+                IUpdateInstaller installer = uSession.CreateUpdateInstaller();
+                installer.Updates = updatesToInstall;
+                IInstallationResult installationRes = installer.Install();
 
-                if (checkBox8.Checked)
+            }
+
+
+            if (checkBox8.Checked)
+            {
+
+
+            }
+
+
+            if (radioButton1.Checked)
+            {
+
+
+
+                int coreCount = 0;
+                foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
                 {
-
-
+                    coreCount += int.Parse(item["NumberOfCores"].ToString());
                 }
 
-
-                if (radioButton1.Checked)
+                if (coreCount >= 2)
                 {
-
-                   
-
-                    int coreCount = 0;
-                    foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
+                    if (Directory.Exists(@"RADS"))
                     {
-                        coreCount += int.Parse(item["NumberOfCores"].ToString());
-                    }
-
-                    if (coreCount >= 2)
-                    {
-                        if (Directory.Exists(@"RADS"))
+                        if (File.Exists(@"Config\game.cfg"))
                         {
-                            if (File.Exists(@"Config\game.cfg"))
-                            {
-                                File.AppendAllText(@"Config\game.cfg", @"DefaultParticleMultithreading=1");
-
-                            }
-
-                            if (Directory.Exists(@"Game"))
-                            {
-
-                                if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
-                                {
-                                    File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", @"DefaultParticleMultithreading=1");
-                                    File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"DefaultParticleMultithreading=1");
-
-                                }
-
-                            }
-
+                            File.AppendAllText(@"Config\game.cfg", @"DefaultParticleMultithreading=1");
 
                         }
-                 
+
+                        if (Directory.Exists(@"Game"))
+                        {
+
+                            if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
+                            {
+                                File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", @"DefaultParticleMultithreading=1");
+                                File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"DefaultParticleMultithreading=1");
+
+                            }
+
+                        }
+
+
+                    }
+
                     if (Directory.Exists(@"Rads"))
                     {
                         string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
@@ -427,9 +430,9 @@ process3.WaitForExit();
                 }
             }
         }
-    
 
-        
+
+
 
 
 
@@ -551,4 +554,3 @@ process3.WaitForExit();
 
 
 }
-    
