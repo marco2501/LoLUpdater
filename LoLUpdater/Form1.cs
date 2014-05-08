@@ -155,22 +155,19 @@ namespace LoLUpdater
 
                 if (checkBox2.Checked)
                 {
-                    ServiceController service = new ServiceController("wuauserv");
-                    switch (service.Status)
+                    ServiceController service0 = new ServiceController(@"wuauserv");
+                    switch (service0.Status)
                     {
+
                         case ServiceControllerStatus.Running:
-
-
-                            service.Stop();
-
+                            service0.Stop();
                             Directory.Delete(windir + @"\SoftwareDistribution", true);
+                            service0.Start();
 
-                            service.Start();
                             break;
                         case ServiceControllerStatus.Stopped:
-
                             Directory.Delete(windir + @"\SoftwareDistribution", true);
-                            service.Start();
+                            service0.Start();
                             break;
                     }
 
