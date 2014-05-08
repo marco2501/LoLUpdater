@@ -70,8 +70,7 @@ namespace LoLUpdater
                 {
                     File.Copy(@"Config\game.cfg", @"Backup\game.cfg", true);
                 }
-                    else {}
-                   
+                       
                 }
                 if (Directory.Exists(@"Game"))
                 {
@@ -88,8 +87,7 @@ namespace LoLUpdater
                     File.Copy(@"Game\DATA\CFG\defaults\game.cfg", @"Backup\game.cfg", true);
                         File.Copy(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"Backup\gamepermanent.cfg", true);
 
-                }
-                    else {}                    
+                }              
                     
                     
                 }
@@ -397,7 +395,6 @@ process3.WaitForExit();
                         {
                             File.Copy(@"Backup\game.cfg", @"Config\game.cfg", true);
                         }
-                        else { }
                         if (Directory.Exists(@"Game"))
                         {
                             File.Copy(@"Backup\cg.dll", @"game\cg.dll", true);
@@ -416,7 +413,6 @@ process3.WaitForExit();
                                 File.Copy(@"Backup\gamepermanent.cfg", @"Game\DATA\CFG\defaults\gamepermanent.cfg", true);
 
                             }
-                            else { }
 
 
 
