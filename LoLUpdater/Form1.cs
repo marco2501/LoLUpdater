@@ -29,10 +29,7 @@ namespace LoLUpdater
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string airr = @"RADS\projects\lol_air_client\releases";
-            string slnr = @"RADS\solutions\lol_game_client_sln\releases";
-            string launchr = @"RADS\projects\lol_launcher\releases";
-            string gamer = @"RADS\projects\lol_game_client\releases";
+
             DirectoryInfo airinfo = new DirectoryInfo(airr);
             DirectoryInfo air = airinfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
@@ -98,7 +95,10 @@ namespace LoLUpdater
 
         }
 
-
+        string airr = @"RADS\projects\lol_air_client\releases";
+        string slnr = @"RADS\solutions\lol_game_client_sln\releases";
+        string launchr = @"RADS\projects\lol_launcher\releases";
+        string gamer = @"RADS\projects\lol_game_client\releases";
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -107,13 +107,10 @@ namespace LoLUpdater
 
 
             RegistryKey keycg = Registry.LocalMachine;
-            RegistryKey subKeycg = keycg.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Cg Toolkit_is1");
-            var CG = subKeycg.GetValue(@"InstallLocation") + @"bin\";
+            RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
+            var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
 
-            string airr = @"RADS\projects\lol_air_client\releases";
-            string slnr = @"RADS\solutions\lol_game_client_sln\releases";
-            string launchr = @"RADS\projects\lol_launcher\releases";
-            string gamer = @"RADS\projects\lol_game_client\releases";
+
 
             DirectoryInfo airinfo = new DirectoryInfo(airr);
             DirectoryInfo air = airinfo.GetDirectories()
