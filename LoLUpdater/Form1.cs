@@ -25,6 +25,11 @@ InitializeComponent();
 }
 private void Form1_Load(object sender, EventArgs e)
 {
+if (!Directory.Exists("Backup"))
+{
+Directory.CreateDirectory("Backup");
+if (Directory.Exists("Rads"))
+{
 DirectoryInfo airinfo = new DirectoryInfo(airr);
 DirectoryInfo air = airinfo.GetDirectories()
 .OrderByDescending(d => d.CreationTime)
@@ -41,11 +46,6 @@ DirectoryInfo gameinfo = new DirectoryInfo(gamer);
 DirectoryInfo game = gameinfo.GetDirectories()
 .OrderByDescending(d => d.CreationTime)
 .FirstOrDefault();
-if (!Directory.Exists("Backup"))
-{
-Directory.CreateDirectory("Backup");
-if (Directory.Exists("Rads"))
-{
 string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
 string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
 File.Copy(gamez + @"\cg.dll", @"Backup\cg.dll", true);
@@ -66,8 +66,8 @@ File.Copy(@"game\cg.dll", @"Backup\cg.dll", true);
 File.Copy(@"game\cgd3d9.dll", @"Backup\cgd3d9.dll", true);
 File.Copy(@"game\cggl.dll", @"Backup\cggl.dll", true);
 File.Copy(@"game\tbb.dll", @"Backup\tbb.dll", true);
-File.Copy(@"AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll", true);
-File.Copy(@"AIR\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll", true);
+File.Copy(@"Air\Adobe Air\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll", true);
+File.Copy(@"Air\Adobe Air\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll", true);
 if (File.Exists(@"Config\game.cfg"))
 {
 File.Copy(@"Game\DATA\CFG\defaults\game.cfg", @"Backup\game.cfg", true);
@@ -87,22 +87,6 @@ string root = System.IO.Path.GetPathRoot(Environment.SystemDirectory);
 RegistryKey keycg = Registry.LocalMachine;
 RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
 var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
-DirectoryInfo airinfo = new DirectoryInfo(airr);
-DirectoryInfo air = airinfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-DirectoryInfo slninfo = new DirectoryInfo(slnr);
-DirectoryInfo sln = slninfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-DirectoryInfo launchinfo = new DirectoryInfo(launchr);
-DirectoryInfo launch = launchinfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-DirectoryInfo gameinfo = new DirectoryInfo(gamer);
-DirectoryInfo game = gameinfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
 if (checkBox1.Checked)
 {
 System.IO.File.WriteAllBytes("CCleaner.exe", LoLUpdater.Properties.Resources.CCleaner);
@@ -255,6 +239,22 @@ File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", "DefaultParticle
 }
 if (Directory.Exists("Rads"))
 {
+DirectoryInfo airinfo = new DirectoryInfo(airr);
+DirectoryInfo air = airinfo.GetDirectories()
+.OrderByDescending(d => d.CreationTime)
+.FirstOrDefault();
+DirectoryInfo slninfo = new DirectoryInfo(slnr);
+DirectoryInfo sln = slninfo.GetDirectories()
+.OrderByDescending(d => d.CreationTime)
+.FirstOrDefault();
+DirectoryInfo launchinfo = new DirectoryInfo(launchr);
+DirectoryInfo launch = launchinfo.GetDirectories()
+.OrderByDescending(d => d.CreationTime)
+.FirstOrDefault();
+DirectoryInfo gameinfo = new DirectoryInfo(gamer);
+DirectoryInfo game = gameinfo.GetDirectories()
+.OrderByDescending(d => d.CreationTime)
+.FirstOrDefault();
 string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
 string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
 string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
@@ -279,8 +279,8 @@ System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tb
 File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
 File.Copy(CG + @"\cgd3d9.dll", @"game\cgd3d9.dll", true);
 File.Copy(CG + @"\cggl.dll", @"game\cggl.dll", true);
-System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
-System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
+System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
+System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
 }
 System.Windows.Forms.MessageBox.Show("Finished!");
 }
@@ -288,6 +288,22 @@ else if (radioButton2.Checked)
 {
 if (Directory.Exists("Rads"))
 {
+DirectoryInfo airinfo = new DirectoryInfo(airr);
+DirectoryInfo air = airinfo.GetDirectories()
+.OrderByDescending(d => d.CreationTime)
+.FirstOrDefault();
+DirectoryInfo slninfo = new DirectoryInfo(slnr);
+DirectoryInfo sln = slninfo.GetDirectories()
+.OrderByDescending(d => d.CreationTime)
+.FirstOrDefault();
+DirectoryInfo launchinfo = new DirectoryInfo(launchr);
+DirectoryInfo launch = launchinfo.GetDirectories()
+.OrderByDescending(d => d.CreationTime)
+.FirstOrDefault();
+DirectoryInfo gameinfo = new DirectoryInfo(gamer);
+DirectoryInfo game = gameinfo.GetDirectories()
+.OrderByDescending(d => d.CreationTime)
+.FirstOrDefault();
 string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
 string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
 string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
@@ -317,8 +333,8 @@ File.Copy(@"Backup\cggl.dll", @"game\cggl.dll", true);
 File.Copy(@"Backup\msvcr120.dll", @"game\msvcr120.dll", true);
 File.Copy(@"Backup\msvcp120.dll", @"game\msvcp120.dll", true);
 File.Copy(@"Backup\tbb.dll", @"game\tbb.dll", true);
-File.Copy(@"Backup\NPSWF32.dll", @"AIR\Versions\1.0\Resources\NPSWF32.dll", true);
-File.Copy(@"Backup\Adobe Air.dll", @"AIR\Versions\1.0\Adobe Air.dll", true);
+File.Copy(@"Backup\NPSWF32.dll", @"\AIR\Adobe Air\Versions\1.0\Resources\NPSWF32.dll", true);
+File.Copy(@"Backup\Adobe Air.dll", @"\AIR\Adobe Air\Versions\1.0\Adobe Air.dll", true);
 if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
 {
 File.Copy(@"Backup\game.cfg", @"Game\DATA\CFG\defaults\game.cfg", true);
