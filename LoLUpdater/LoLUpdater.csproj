@@ -120,8 +120,7 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>LoLUpdater.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
