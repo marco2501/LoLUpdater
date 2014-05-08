@@ -17,9 +17,9 @@ using System.Runtime.InteropServices;
 using System.Management;
 namespace LoLUpdater
 {
-public partial class Form1 : Form
+public partial class Menu : Form
 {
-public Form1()
+public Menu()
 {
 InitializeComponent();
 }
@@ -89,20 +89,18 @@ private void button1_Click(object sender, EventArgs e)
     RegistryKey keycg = Registry.LocalMachine;
     RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
     var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
-    if (checkBox1.Checked)
+    if (Cleantemp.Checked)
     {
-        System.IO.File.WriteAllBytes("CCleaner.exe", LoLUpdater.Properties.Resources.CCleaner);
         var cc = new ProcessStartInfo();
-        cc.FileName = "CCleaner.exe";
-        cc.Arguments = "/auto";
+        cc.FileName = "cleanmgr";
+        cc.Arguments = "sagerun:1";
         cc.Verb = "runas";
         var process = new Process();
         process.StartInfo = cc;
         process.Start();
         process.WaitForExit();
-        File.Delete("CCleaner.exe");
     }
-    if (checkBox2.Checked)
+    if (Cleanupdatecache.Checked)
     {
         ServiceController service0 = new ServiceController("wuauserv");
         switch (service0.Status)
@@ -121,7 +119,7 @@ private void button1_Click(object sender, EventArgs e)
                 break;
         }
     }
-    if (checkBox3.Checked)
+    if (UninstallPMB.Checked)
     {
         using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB"))
             if (Key != null)
@@ -142,7 +140,7 @@ private void button1_Click(object sender, EventArgs e)
                 MessageBox.Show("Pando Media Booster is already Uninstalled");
             }
     }
-    if (checkBox4.Checked)
+    if (Defrag.Checked)
     {
         System.IO.File.WriteAllBytes("df.exe", LoLUpdater.Properties.Resources.df);
         var df = new ProcessStartInfo();
@@ -164,11 +162,11 @@ private void button1_Click(object sender, EventArgs e)
 { "5.1", new[] { "WmiApSrv", "W32Time", "WebClient", "UPS", "Netlogon", "SCardSvr", "TlntSvr", "seclogon", "RemoteRegistry", "RDSessMgr", "RSVP", "WmdmPmSN", "xmlprov", "mnmsrvc", "cisvc", "ERSvc" } }
 };
     string[] services;
-    if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
+    if (WindowsServices.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
     {
         services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
     }
-    if (checkBox6.Checked)
+    if (Mousepollingrate.Checked)
     {
         Microsoft.Win32.Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers");
         RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
@@ -183,7 +181,7 @@ private void button1_Click(object sender, EventArgs e)
         process3.Start();
         process3.WaitForExit();
     }
-    if (checkBox7.Checked)
+    if (WindowsUpdate.Checked)
     {
         UpdateSessionClass uSession = new UpdateSessionClass();
         IUpdateSearcher uSearcher = uSession.CreateUpdateSearcher();
@@ -202,7 +200,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
         installer.Updates = updatesToInstall;
         IInstallationResult installationRes = installer.Install();
     }
-    if (checkBox8.Checked)
+    if (Deleteoldlogs.Checked)
     {
         if (Directory.Exists("Logs"))
         {
@@ -215,7 +213,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
             }
         }
     }
-    if (radioButton1.Checked)
+    if (Patcher.Checked)
     {
         int coreCount = 0;
         foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
@@ -289,7 +287,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
         }
         System.Windows.Forms.MessageBox.Show("Finished!");
     }
-    else if (radioButton2.Checked)
+    else if (Restorebackups.Checked)
     {
         if (Directory.Exists("Rads"))
         {
@@ -352,7 +350,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
         System.Windows.Forms.MessageBox.Show("Finished!");
     }
 
-    else if (radioButton3.Checked)
+    else if (onlycheckboxes.Checked)
     {
         System.Windows.Forms.MessageBox.Show("Finished!");
 
@@ -448,5 +446,6 @@ CloseServiceHandle(serviceHandle);
 CloseServiceHandle(scManagerHandle);
 }
 }
+
 }
 }

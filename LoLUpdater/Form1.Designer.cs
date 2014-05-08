@@ -1,6 +1,6 @@
 namespace LoLUpdater
 {
-partial class Form1
+partial class Menu
 {
 private System.ComponentModel.IContainer components = null;
 protected override void Dispose(bool disposing)
@@ -15,25 +15,25 @@ base.Dispose(disposing);
 private void InitializeComponent()
 {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.Deleteoldlogs = new System.Windows.Forms.CheckBox();
+            this.Cleantemp = new System.Windows.Forms.CheckBox();
+            this.UninstallPMB = new System.Windows.Forms.CheckBox();
+            this.Defrag = new System.Windows.Forms.CheckBox();
+            this.Patcher = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.onlycheckboxes = new System.Windows.Forms.RadioButton();
+            this.Restorebackups = new System.Windows.Forms.RadioButton();
+            this.OKButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.Mousepollingrate = new System.Windows.Forms.CheckBox();
+            this.WindowsServices = new System.Windows.Forms.CheckBox();
+            this.Cleanupdatecache = new System.Windows.Forms.CheckBox();
+            this.WindowsUpdate = new System.Windows.Forms.CheckBox();
+            this.ElevateButton = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -42,10 +42,10 @@ private void InitializeComponent()
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox8);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.checkBox3);
-            this.groupBox1.Controls.Add(this.checkBox4);
+            this.groupBox1.Controls.Add(this.Deleteoldlogs);
+            this.groupBox1.Controls.Add(this.Cleantemp);
+            this.groupBox1.Controls.Add(this.UninstallPMB);
+            this.groupBox1.Controls.Add(this.Defrag);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(116, 108);
@@ -53,68 +53,68 @@ private void InitializeComponent()
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Options";
             // 
-            // checkBox8
+            // Deleteoldlogs
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(6, 85);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(96, 17);
-            this.checkBox8.TabIndex = 4;
-            this.checkBox8.Text = "Delete old logs";
-            this.toolTip1.SetToolTip(this.checkBox8, "Deletes RIOT logs older than 7 days");
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.Deleteoldlogs.AutoSize = true;
+            this.Deleteoldlogs.Location = new System.Drawing.Point(6, 85);
+            this.Deleteoldlogs.Name = "Deleteoldlogs";
+            this.Deleteoldlogs.Size = new System.Drawing.Size(96, 17);
+            this.Deleteoldlogs.TabIndex = 4;
+            this.Deleteoldlogs.Text = "Delete old logs";
+            this.toolTip1.SetToolTip(this.Deleteoldlogs, "Deletes RIOT logs older than 7 days");
+            this.Deleteoldlogs.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // Cleantemp
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 20);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(79, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Clean temp";
-            this.toolTip1.SetToolTip(this.checkBox1, "Cleans harddrive with CCleaner");
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.Cleantemp.AutoSize = true;
+            this.Cleantemp.Location = new System.Drawing.Point(6, 20);
+            this.Cleantemp.Name = "Cleantemp";
+            this.Cleantemp.Size = new System.Drawing.Size(79, 17);
+            this.Cleantemp.TabIndex = 0;
+            this.Cleantemp.Text = "Clean temp";
+            this.toolTip1.SetToolTip(this.Cleantemp, "Cleans hardrive with cleanmanager");
+            this.Cleantemp.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // UninstallPMB
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(6, 42);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(92, 17);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Uninstall PMB";
-            this.toolTip1.SetToolTip(this.checkBox3, "Uninstalls Pando Media Booster");
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.UninstallPMB.AutoSize = true;
+            this.UninstallPMB.Location = new System.Drawing.Point(6, 42);
+            this.UninstallPMB.Name = "UninstallPMB";
+            this.UninstallPMB.Size = new System.Drawing.Size(92, 17);
+            this.UninstallPMB.TabIndex = 2;
+            this.UninstallPMB.Text = "Uninstall PMB";
+            this.toolTip1.SetToolTip(this.UninstallPMB, "Uninstalls Pando Media Booster");
+            this.UninstallPMB.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // Defrag
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(6, 64);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(85, 17);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "Defrag HDD";
-            this.toolTip1.SetToolTip(this.checkBox4, "Defragments your HDD");
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.Defrag.AutoSize = true;
+            this.Defrag.Location = new System.Drawing.Point(6, 64);
+            this.Defrag.Name = "Defrag";
+            this.Defrag.Size = new System.Drawing.Size(85, 17);
+            this.Defrag.TabIndex = 3;
+            this.Defrag.Text = "Defrag HDD";
+            this.toolTip1.SetToolTip(this.Defrag, "Defragments your HDD");
+            this.Defrag.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // Patcher
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(74, 17);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Patch LoL";
-            this.toolTip1.SetToolTip(this.radioButton1, "Patches League of Legends (Garena works too)");
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.Patcher.AutoSize = true;
+            this.Patcher.Checked = true;
+            this.Patcher.Location = new System.Drawing.Point(6, 19);
+            this.Patcher.Name = "Patcher";
+            this.Patcher.Size = new System.Drawing.Size(74, 17);
+            this.Patcher.TabIndex = 2;
+            this.Patcher.TabStop = true;
+            this.Patcher.Text = "Patch LoL";
+            this.toolTip1.SetToolTip(this.Patcher, "Patches League of Legends (Garena works too)");
+            this.Patcher.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.radioButton3);
-            this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Controls.Add(this.radioButton2);
+            this.groupBox2.Controls.Add(this.onlycheckboxes);
+            this.groupBox2.Controls.Add(this.Patcher);
+            this.groupBox2.Controls.Add(this.Restorebackups);
             this.groupBox2.Location = new System.Drawing.Point(6, 0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(118, 108);
@@ -122,38 +122,93 @@ private void InitializeComponent()
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Main function";
             // 
-            // radioButton3
+            // onlycheckboxes
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 65);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(107, 17);
-            this.radioButton3.TabIndex = 4;
-            this.radioButton3.Text = "Only checkboxes";
-            this.toolTip1.SetToolTip(this.radioButton3, "Select this if you only want to do the checkboxes");
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.onlycheckboxes.AutoSize = true;
+            this.onlycheckboxes.Location = new System.Drawing.Point(6, 65);
+            this.onlycheckboxes.Name = "onlycheckboxes";
+            this.onlycheckboxes.Size = new System.Drawing.Size(107, 17);
+            this.onlycheckboxes.TabIndex = 4;
+            this.onlycheckboxes.Text = "Only checkboxes";
+            this.toolTip1.SetToolTip(this.onlycheckboxes, "Select this if you only want to do the checkboxes");
+            this.onlycheckboxes.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // Restorebackups
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 42);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(106, 17);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.Text = "Restore backups";
-            this.toolTip1.SetToolTip(this.radioButton2, "Restore backups");
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.Restorebackups.AutoSize = true;
+            this.Restorebackups.Location = new System.Drawing.Point(6, 42);
+            this.Restorebackups.Name = "Restorebackups";
+            this.Restorebackups.Size = new System.Drawing.Size(106, 17);
+            this.Restorebackups.TabIndex = 3;
+            this.Restorebackups.Text = "Restore backups";
+            this.toolTip1.SetToolTip(this.Restorebackups, "Restore backups");
+            this.Restorebackups.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // OKButton
             // 
-            this.button1.Location = new System.Drawing.Point(6, 114);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(174, 20);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "OK";
-            this.toolTip1.SetToolTip(this.button1, "Confirm");
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.OKButton.Location = new System.Drawing.Point(6, 114);
+            this.OKButton.Name = "OKButton";
+            this.OKButton.Size = new System.Drawing.Size(174, 20);
+            this.OKButton.TabIndex = 4;
+            this.OKButton.Text = "OK";
+            this.toolTip1.SetToolTip(this.OKButton, "Confirm");
+            this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Mousepollingrate
+            // 
+            this.Mousepollingrate.AutoSize = true;
+            this.Mousepollingrate.Location = new System.Drawing.Point(6, 85);
+            this.Mousepollingrate.Name = "Mousepollingrate";
+            this.Mousepollingrate.Size = new System.Drawing.Size(112, 17);
+            this.Mousepollingrate.TabIndex = 8;
+            this.Mousepollingrate.Text = "Mouse polling rate";
+            this.toolTip1.SetToolTip(this.Mousepollingrate, "Sets mouseHz to 500hz only for win8+");
+            this.Mousepollingrate.UseVisualStyleBackColor = true;
+            // 
+            // WindowsServices
+            // 
+            this.WindowsServices.AutoSize = true;
+            this.WindowsServices.Location = new System.Drawing.Point(6, 64);
+            this.WindowsServices.Name = "WindowsServices";
+            this.WindowsServices.Size = new System.Drawing.Size(112, 17);
+            this.WindowsServices.TabIndex = 7;
+            this.WindowsServices.Text = "Windows services";
+            this.toolTip1.SetToolTip(this.WindowsServices, "Sets some services to startuptype manual");
+            this.WindowsServices.UseVisualStyleBackColor = true;
+            // 
+            // Cleanupdatecache
+            // 
+            this.Cleanupdatecache.AutoSize = true;
+            this.Cleanupdatecache.Location = new System.Drawing.Point(6, 18);
+            this.Cleanupdatecache.Name = "Cleanupdatecache";
+            this.Cleanupdatecache.Size = new System.Drawing.Size(122, 17);
+            this.Cleanupdatecache.TabIndex = 1;
+            this.Cleanupdatecache.Text = "Clean update cache";
+            this.toolTip1.SetToolTip(this.Cleanupdatecache, "Cleans Windows Update cache");
+            this.Cleanupdatecache.UseVisualStyleBackColor = true;
+            // 
+            // WindowsUpdate
+            // 
+            this.WindowsUpdate.AutoSize = true;
+            this.WindowsUpdate.Location = new System.Drawing.Point(6, 41);
+            this.WindowsUpdate.Name = "WindowsUpdate";
+            this.WindowsUpdate.Size = new System.Drawing.Size(106, 17);
+            this.WindowsUpdate.TabIndex = 6;
+            this.WindowsUpdate.Text = "Windows update";
+            this.toolTip1.SetToolTip(this.WindowsUpdate, "Does a WIndows update");
+            this.WindowsUpdate.UseVisualStyleBackColor = true;
+            // 
+            // ElevateButton
+            // 
+            this.ElevateButton.Location = new System.Drawing.Point(186, 114);
+            this.ElevateButton.Name = "ElevateButton";
+            this.ElevateButton.Size = new System.Drawing.Size(191, 20);
+            this.ElevateButton.TabIndex = 7;
+            this.ElevateButton.Text = "Self-Elevate";
+            this.toolTip1.SetToolTip(this.ElevateButton, "Select this if you want to run the program as admin");
+            this.ElevateButton.UseVisualStyleBackColor = true;
+            this.ElevateButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox4
             // 
@@ -168,10 +223,10 @@ private void InitializeComponent()
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.checkBox6);
-            this.groupBox3.Controls.Add(this.checkBox5);
-            this.groupBox3.Controls.Add(this.checkBox2);
-            this.groupBox3.Controls.Add(this.checkBox7);
+            this.groupBox3.Controls.Add(this.Mousepollingrate);
+            this.groupBox3.Controls.Add(this.WindowsServices);
+            this.groupBox3.Controls.Add(this.Cleanupdatecache);
+            this.groupBox3.Controls.Add(this.WindowsUpdate);
             this.groupBox3.Location = new System.Drawing.Point(122, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(130, 108);
@@ -179,74 +234,19 @@ private void InitializeComponent()
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Admin Options";
             // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(6, 85);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(112, 17);
-            this.checkBox6.TabIndex = 8;
-            this.checkBox6.Text = "Mouse polling rate";
-            this.toolTip1.SetToolTip(this.checkBox6, "Sets mouseHz to 500hz only for win8+");
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(6, 64);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(112, 17);
-            this.checkBox5.TabIndex = 7;
-            this.checkBox5.Text = "Windows services";
-            this.toolTip1.SetToolTip(this.checkBox5, "Sets some services to startuptype manual");
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(6, 18);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(122, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Clean update cache";
-            this.toolTip1.SetToolTip(this.checkBox2, "Cleans Windows Update cache");
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(6, 41);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(106, 17);
-            this.checkBox7.TabIndex = 6;
-            this.checkBox7.Text = "Windows update";
-            this.toolTip1.SetToolTip(this.checkBox7, "Does a WIndows update");
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(186, 114);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(191, 20);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Self-Elevate";
-            this.toolTip1.SetToolTip(this.button2, "Select this if you want to run the program as admin");
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // Form1
+            // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 138);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ElevateButton);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.OKButton);
             this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "Menu";
             this.Text = "LoLUpdater";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
@@ -261,22 +261,22 @@ private void InitializeComponent()
 }
 #endregion
 private System.Windows.Forms.GroupBox groupBox1;
-private System.Windows.Forms.CheckBox checkBox4;
-private System.Windows.Forms.CheckBox checkBox3;
-private System.Windows.Forms.CheckBox checkBox1;
-private System.Windows.Forms.RadioButton radioButton1;
+private System.Windows.Forms.CheckBox Defrag;
+private System.Windows.Forms.CheckBox UninstallPMB;
+private System.Windows.Forms.CheckBox Cleantemp;
+private System.Windows.Forms.RadioButton Patcher;
 private System.Windows.Forms.GroupBox groupBox2;
-private System.Windows.Forms.RadioButton radioButton3;
-private System.Windows.Forms.RadioButton radioButton2;
-private System.Windows.Forms.Button button1;
+private System.Windows.Forms.RadioButton onlycheckboxes;
+private System.Windows.Forms.RadioButton Restorebackups;
+private System.Windows.Forms.Button OKButton;
 private System.Windows.Forms.ToolTip toolTip1;
 private System.Windows.Forms.GroupBox groupBox4;
-private System.Windows.Forms.Button button2;
-private System.Windows.Forms.CheckBox checkBox8;
-private System.Windows.Forms.CheckBox checkBox7;
-private System.Windows.Forms.CheckBox checkBox2;
-private System.Windows.Forms.CheckBox checkBox5;
-private System.Windows.Forms.CheckBox checkBox6;
+private System.Windows.Forms.Button ElevateButton;
+private System.Windows.Forms.CheckBox Deleteoldlogs;
+private System.Windows.Forms.CheckBox WindowsUpdate;
+private System.Windows.Forms.CheckBox Cleanupdatecache;
+private System.Windows.Forms.CheckBox WindowsServices;
+private System.Windows.Forms.CheckBox Mousepollingrate;
 private System.Windows.Forms.GroupBox groupBox3;
 }
 }
