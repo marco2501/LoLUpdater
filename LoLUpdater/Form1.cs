@@ -25,6 +25,15 @@ namespace LoLUpdater
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+        }
+        string airr = @"RADS\projects\lol_air_client\releases";
+        string slnr = @"RADS\solutions\lol_game_client_sln\releases";
+        string launchr = @"RADS\projects\lol_launcher\releases";
+        string gamer = @"RADS\projects\lol_game_client\releases";
+        private void button1_Click(object sender, EventArgs e)
+        {
+
             if (!Directory.Exists("Backup"))
             {
                 Directory.CreateDirectory("Backup");
@@ -73,27 +82,21 @@ namespace LoLUpdater
                     {
                         File.Copy(@"Game\DATA\CFG\defaults\game.cfg", @"Backup\game.cfg", true);
                         File.Copy(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"Backup\gamepermanent.cfg", true);
-                          if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg"))
-                    {
-                        File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", @"Backup\GamePermanent_zh_MY.cfg", true);
-                          }
-                                         if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg"))
-                    {
-                        File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", @"Backup\GamePermanent_en_SG.cfg", true);
-                          }
-                         
+                        if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg"))
+                        {
+                            File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", @"Backup\GamePermanent_zh_MY.cfg", true);
+                        }
+                        if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg"))
+                        {
+                            File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", @"Backup\GamePermanent_en_SG.cfg", true);
+                        }
+
 
 
                     }
                 }
             }
-        }
-        string airr = @"RADS\projects\lol_air_client\releases";
-        string slnr = @"RADS\solutions\lol_game_client_sln\releases";
-        string launchr = @"RADS\projects\lol_launcher\releases";
-        string gamer = @"RADS\projects\lol_game_client\releases";
-        private void button1_Click(object sender, EventArgs e)
-        {
+
             var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
             string root = System.IO.Path.GetPathRoot(Environment.SystemDirectory);
             RegistryKey keycg = Registry.LocalMachine;
