@@ -91,12 +91,12 @@ namespace LoLUpdater
             var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
             if (Cleantemp.Checked)
             {
-                var cc = new ProcessStartInfo();
-                cc.FileName = "cleanmgr";
-                cc.Arguments = "sagerun:1";
-                cc.Verb = "runas";
+                var cm = new ProcessStartInfo();
+                cm.FileName = "cleanmgr";
+                cm.Arguments = "sagerun:1";
+                cm.Verb = "runas";
                 var process = new Process();
-                process.StartInfo = cc;
+                process.StartInfo = cm;
                 process.Start();
                 process.WaitForExit();
             }

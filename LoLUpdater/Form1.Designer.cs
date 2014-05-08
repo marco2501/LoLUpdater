@@ -1,28 +1,28 @@
 namespace LoLUpdater
 {
-partial class Menu
-{
-private System.ComponentModel.IContainer components = null;
-protected override void Dispose(bool disposing)
-{
-if (disposing && (components != null))
-{
-components.Dispose();
-}
-base.Dispose(disposing);
-}
-#region Windows Form Designer generated code
-private void InitializeComponent()
-{
+    partial class Menu
+    {
+        private System.ComponentModel.IContainer components = null;
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+        #region Windows Form Designer generated code
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Options = new System.Windows.Forms.GroupBox();
             this.Deleteoldlogs = new System.Windows.Forms.CheckBox();
             this.Cleantemp = new System.Windows.Forms.CheckBox();
             this.UninstallPMB = new System.Windows.Forms.CheckBox();
             this.Defrag = new System.Windows.Forms.CheckBox();
             this.Patcher = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.MainFunction = new System.Windows.Forms.GroupBox();
             this.onlycheckboxes = new System.Windows.Forms.RadioButton();
             this.Restorebackups = new System.Windows.Forms.RadioButton();
             this.OKButton = new System.Windows.Forms.Button();
@@ -32,26 +32,26 @@ private void InitializeComponent()
             this.Cleanupdatecache = new System.Windows.Forms.CheckBox();
             this.WindowsUpdate = new System.Windows.Forms.CheckBox();
             this.ElevateButton = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.Combininggroupbox = new System.Windows.Forms.GroupBox();
+            this.AdminOptions = new System.Windows.Forms.GroupBox();
+            this.Options.SuspendLayout();
+            this.MainFunction.SuspendLayout();
+            this.Combininggroupbox.SuspendLayout();
+            this.AdminOptions.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // Options
             // 
-            this.groupBox1.Controls.Add(this.Deleteoldlogs);
-            this.groupBox1.Controls.Add(this.Cleantemp);
-            this.groupBox1.Controls.Add(this.UninstallPMB);
-            this.groupBox1.Controls.Add(this.Defrag);
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(116, 108);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Options";
+            this.Options.Controls.Add(this.Deleteoldlogs);
+            this.Options.Controls.Add(this.Cleantemp);
+            this.Options.Controls.Add(this.UninstallPMB);
+            this.Options.Controls.Add(this.Defrag);
+            this.Options.Location = new System.Drawing.Point(5, 0);
+            this.Options.Name = "Options";
+            this.Options.Size = new System.Drawing.Size(116, 108);
+            this.Options.TabIndex = 1;
+            this.Options.TabStop = false;
+            this.Options.Text = "Options";
             // 
             // Deleteoldlogs
             // 
@@ -110,17 +110,17 @@ private void InitializeComponent()
             this.toolTip1.SetToolTip(this.Patcher, "Patches League of Legends (Garena works too)");
             this.Patcher.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // MainFunction
             // 
-            this.groupBox2.Controls.Add(this.onlycheckboxes);
-            this.groupBox2.Controls.Add(this.Patcher);
-            this.groupBox2.Controls.Add(this.Restorebackups);
-            this.groupBox2.Location = new System.Drawing.Point(6, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(118, 108);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Main function";
+            this.MainFunction.Controls.Add(this.onlycheckboxes);
+            this.MainFunction.Controls.Add(this.Patcher);
+            this.MainFunction.Controls.Add(this.Restorebackups);
+            this.MainFunction.Location = new System.Drawing.Point(6, 0);
+            this.MainFunction.Name = "MainFunction";
+            this.MainFunction.Size = new System.Drawing.Size(118, 108);
+            this.MainFunction.TabIndex = 3;
+            this.MainFunction.TabStop = false;
+            this.MainFunction.Text = "Main function";
             // 
             // onlycheckboxes
             // 
@@ -210,29 +210,28 @@ private void InitializeComponent()
             this.ElevateButton.UseVisualStyleBackColor = true;
             this.ElevateButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // groupBox4
+            // Combininggroupbox
             // 
-            this.groupBox4.Controls.Add(this.groupBox1);
-            this.groupBox4.Controls.Add(this.groupBox3);
-            this.groupBox4.Location = new System.Drawing.Point(125, 0);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(252, 108);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "ccccc";
+            this.Combininggroupbox.Controls.Add(this.Options);
+            this.Combininggroupbox.Controls.Add(this.AdminOptions);
+            this.Combininggroupbox.Location = new System.Drawing.Point(125, 0);
+            this.Combininggroupbox.Name = "Combininggroupbox";
+            this.Combininggroupbox.Size = new System.Drawing.Size(252, 108);
+            this.Combininggroupbox.TabIndex = 6;
+            this.Combininggroupbox.TabStop = false;
             // 
-            // groupBox3
+            // AdminOptions
             // 
-            this.groupBox3.Controls.Add(this.Mousepollingrate);
-            this.groupBox3.Controls.Add(this.WindowsServices);
-            this.groupBox3.Controls.Add(this.Cleanupdatecache);
-            this.groupBox3.Controls.Add(this.WindowsUpdate);
-            this.groupBox3.Location = new System.Drawing.Point(122, 0);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(130, 108);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Admin Options";
+            this.AdminOptions.Controls.Add(this.Mousepollingrate);
+            this.AdminOptions.Controls.Add(this.WindowsServices);
+            this.AdminOptions.Controls.Add(this.Cleanupdatecache);
+            this.AdminOptions.Controls.Add(this.WindowsUpdate);
+            this.AdminOptions.Location = new System.Drawing.Point(122, 0);
+            this.AdminOptions.Name = "AdminOptions";
+            this.AdminOptions.Size = new System.Drawing.Size(130, 108);
+            this.AdminOptions.TabIndex = 5;
+            this.AdminOptions.TabStop = false;
+            this.AdminOptions.Text = "Admin Options";
             // 
             // Menu
             // 
@@ -240,43 +239,43 @@ private void InitializeComponent()
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 138);
             this.Controls.Add(this.ElevateButton);
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.Combininggroupbox);
             this.Controls.Add(this.OKButton);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.MainFunction);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Menu";
             this.Text = "LoLUpdater";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.Options.ResumeLayout(false);
+            this.Options.PerformLayout();
+            this.MainFunction.ResumeLayout(false);
+            this.MainFunction.PerformLayout();
+            this.Combininggroupbox.ResumeLayout(false);
+            this.AdminOptions.ResumeLayout(false);
+            this.AdminOptions.PerformLayout();
             this.ResumeLayout(false);
 
-}
-#endregion
-private System.Windows.Forms.GroupBox groupBox1;
-private System.Windows.Forms.CheckBox Defrag;
-private System.Windows.Forms.CheckBox UninstallPMB;
-private System.Windows.Forms.CheckBox Cleantemp;
-private System.Windows.Forms.RadioButton Patcher;
-private System.Windows.Forms.GroupBox groupBox2;
-private System.Windows.Forms.RadioButton onlycheckboxes;
-private System.Windows.Forms.RadioButton Restorebackups;
-private System.Windows.Forms.Button OKButton;
-private System.Windows.Forms.ToolTip toolTip1;
-private System.Windows.Forms.GroupBox groupBox4;
-private System.Windows.Forms.Button ElevateButton;
-private System.Windows.Forms.CheckBox Deleteoldlogs;
-private System.Windows.Forms.CheckBox WindowsUpdate;
-private System.Windows.Forms.CheckBox Cleanupdatecache;
-private System.Windows.Forms.CheckBox WindowsServices;
-private System.Windows.Forms.CheckBox Mousepollingrate;
-private System.Windows.Forms.GroupBox groupBox3;
-}
+        }
+        #endregion
+        private System.Windows.Forms.GroupBox Options;
+        private System.Windows.Forms.CheckBox Defrag;
+        private System.Windows.Forms.CheckBox UninstallPMB;
+        private System.Windows.Forms.CheckBox Cleantemp;
+        private System.Windows.Forms.RadioButton Patcher;
+        private System.Windows.Forms.GroupBox MainFunction;
+        private System.Windows.Forms.RadioButton onlycheckboxes;
+        private System.Windows.Forms.RadioButton Restorebackups;
+        private System.Windows.Forms.Button OKButton;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.GroupBox Combininggroupbox;
+        private System.Windows.Forms.Button ElevateButton;
+        private System.Windows.Forms.CheckBox Deleteoldlogs;
+        private System.Windows.Forms.CheckBox WindowsUpdate;
+        private System.Windows.Forms.CheckBox Cleanupdatecache;
+        private System.Windows.Forms.CheckBox WindowsServices;
+        private System.Windows.Forms.CheckBox Mousepollingrate;
+        private System.Windows.Forms.GroupBox AdminOptions;
+    }
 }
