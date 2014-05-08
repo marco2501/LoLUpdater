@@ -24,7 +24,7 @@ Put files in right location
 
 	All files go to LoL folder
 
-	Run LoLTweaks.exe
+	Run LoLUpdater.exe
 
 
 What does it do?
