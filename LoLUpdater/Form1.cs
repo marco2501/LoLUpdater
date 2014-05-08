@@ -184,6 +184,8 @@ services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceCo
 }
 if (checkBox6.Checked)
 {
+
+Microsoft.Win32.Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers");
 RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
 mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
 System.Diagnostics.Process process3 = new System.Diagnostics.Process();
@@ -201,7 +203,7 @@ if (checkBox7.Checked)
 UpdateSessionClass uSession = new UpdateSessionClass();
 IUpdateSearcher uSearcher = uSession.CreateUpdateSearcher();
 ISearchResult uResult = uSearcher.Search(@"IsInstalled=0 and
-Type='Software'");
+Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and RebootRequired=0);
 UpdateDownloader downloader = uSession.CreateUpdateDownloader();
 downloader.Updates = uResult.Updates;
 downloader.Download();
