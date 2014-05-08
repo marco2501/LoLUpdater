@@ -72,7 +72,16 @@ namespace LoLUpdater
                     {
                         File.Copy(@"Game\DATA\CFG\defaults\game.cfg", @"Backup\game.cfg", true);
                         File.Copy(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"Backup\gamepermanent.cfg", true);
+                          if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg"))
+                    {
                         File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", @"Backup\GamePermanent_zh_MY.cfg", true);
+                          }
+                                         if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg"))
+                    {
+                        File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", @"Backup\GamePermanent_en_SG.cfg", true);
+                          }
+                         
+
 
                     }
                 }
@@ -341,8 +350,15 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                     {
                         File.Copy(@"Backup\game.cfg", @"Game\DATA\CFG\defaults\game.cfg", true);
                         File.Copy(@"Backup\gamepermanent.cfg", @"Game\DATA\CFG\defaults\gamepermanent.cfg", true);
-                        File.Copy(@"Backup\GamePermanent_zh_MY.cfg", @"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", true);
-                        File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", @"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", true);
+                        if (File.Exists(@"Backup\GamePermanent_zh_MY.cfg"))
+                        {
+                            File.Copy(@"Backup\GamePermanent_zh_MY.cfg", @"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", true);
+                        
+                                if (File.Exists(@"Backup\GamePermanent_en_SG.cfg"))
+                        {
+                               File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", @"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", true);
+                        }
+                     
 
 
                     }
