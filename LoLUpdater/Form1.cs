@@ -203,7 +203,7 @@ if (checkBox7.Checked)
 UpdateSessionClass uSession = new UpdateSessionClass();
 IUpdateSearcher uSearcher = uSession.CreateUpdateSearcher();
 ISearchResult uResult = uSearcher.Search(@"IsInstalled=0 and
-Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and RebootRequired=0);
+Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and RebootRequired=0");
 UpdateDownloader downloader = uSession.CreateUpdateDownloader();
 downloader.Updates = uResult.Updates;
 downloader.Download();
