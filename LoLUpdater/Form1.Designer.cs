@@ -47,6 +47,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -55,6 +56,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox8);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.checkBox3);
             this.groupBox1.Controls.Add(this.checkBox4);
@@ -74,7 +76,6 @@
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Clean temp";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox3
             // 
@@ -85,7 +86,6 @@
             this.checkBox3.TabIndex = 2;
             this.checkBox3.Text = "Uninstall PMB";
             this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // checkBox4
             // 
@@ -96,7 +96,7 @@
             this.checkBox4.TabIndex = 3;
             this.checkBox4.Text = "Defrag HDD";
             this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            
             // 
             // checkBox7
             // 
@@ -107,7 +107,6 @@
             this.checkBox7.TabIndex = 6;
             this.checkBox7.Text = "Windows update";
             this.checkBox7.UseVisualStyleBackColor = true;
-            this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox7_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -118,7 +117,6 @@
             this.checkBox2.TabIndex = 1;
             this.checkBox2.Text = "Clean update cache";
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -131,7 +129,6 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Patch LoL";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // groupBox2
             // 
@@ -154,7 +151,6 @@
             this.radioButton3.TabIndex = 4;
             this.radioButton3.Text = "Only checkboxes";
             this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -165,7 +161,6 @@
             this.radioButton2.TabIndex = 3;
             this.radioButton2.Text = "Restore backups";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // button1
             // 
@@ -188,7 +183,6 @@
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Admin Options";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // checkBox5
             // 
@@ -199,7 +193,6 @@
             this.checkBox5.TabIndex = 7;
             this.checkBox5.Text = "Windows services";
             this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // groupBox4
             // 
@@ -229,7 +222,16 @@
             this.checkBox6.TabIndex = 8;
             this.checkBox6.Text = "Mouse polling rate";
             this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(6, 85);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(71, 17);
+            this.checkBox8.TabIndex = 4;
+            this.checkBox8.Text = "Trim SSD";
+            this.checkBox8.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -279,6 +281,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox8;
     }
 }
 
