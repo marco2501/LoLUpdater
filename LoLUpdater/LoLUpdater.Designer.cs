@@ -46,7 +46,7 @@ namespace LoLUpdater
             this.Options.Controls.Add(this.Deleteoldlogs);
             this.Options.Controls.Add(this.Cleantemp);
             this.Options.Controls.Add(this.UninstallPMB);
-            this.Options.Location = new System.Drawing.Point(6, 41);
+            this.Options.Location = new System.Drawing.Point(131, 12);
             this.Options.Name = "Options";
             this.Options.Size = new System.Drawing.Size(116, 108);
             this.Options.TabIndex = 1;
@@ -115,7 +115,7 @@ namespace LoLUpdater
             this.MainFunction.Controls.Add(this.onlycheckboxes);
             this.MainFunction.Controls.Add(this.Patcher);
             this.MainFunction.Controls.Add(this.Restorebackups);
-            this.MainFunction.Location = new System.Drawing.Point(156, 166);
+            this.MainFunction.Location = new System.Drawing.Point(12, 12);
             this.MainFunction.Name = "MainFunction";
             this.MainFunction.Size = new System.Drawing.Size(118, 108);
             this.MainFunction.TabIndex = 3;
@@ -146,9 +146,9 @@ namespace LoLUpdater
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(43, 401);
+            this.OKButton.Location = new System.Drawing.Point(12, 126);
             this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(174, 20);
+            this.OKButton.Size = new System.Drawing.Size(182, 20);
             this.OKButton.TabIndex = 4;
             this.OKButton.Text = "OK";
             this.toolTip1.SetToolTip(this.OKButton, "Confirm");
@@ -201,9 +201,9 @@ namespace LoLUpdater
             // 
             // ElevateButton
             // 
-            this.ElevateButton.Location = new System.Drawing.Point(683, 468);
+            this.ElevateButton.Location = new System.Drawing.Point(198, 126);
             this.ElevateButton.Name = "ElevateButton";
-            this.ElevateButton.Size = new System.Drawing.Size(191, 20);
+            this.ElevateButton.Size = new System.Drawing.Size(185, 20);
             this.ElevateButton.TabIndex = 7;
             this.ElevateButton.Text = "Self-Elevate";
             this.toolTip1.SetToolTip(this.ElevateButton, "Select this if you want to run the program as admin");
@@ -212,11 +212,10 @@ namespace LoLUpdater
             // 
             // Combininggroupbox
             // 
-            this.Combininggroupbox.Controls.Add(this.Options);
             this.Combininggroupbox.Controls.Add(this.AdminOptions);
-            this.Combininggroupbox.Location = new System.Drawing.Point(548, 102);
+            this.Combininggroupbox.Location = new System.Drawing.Point(131, 12);
             this.Combininggroupbox.Name = "Combininggroupbox";
-            this.Combininggroupbox.Size = new System.Drawing.Size(252, 185);
+            this.Combininggroupbox.Size = new System.Drawing.Size(252, 108);
             this.Combininggroupbox.TabIndex = 6;
             this.Combininggroupbox.TabStop = false;
             // 
@@ -237,7 +236,8 @@ namespace LoLUpdater
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 514);
+            this.ClientSize = new System.Drawing.Size(390, 155);
+            this.Controls.Add(this.Options);
             this.Controls.Add(this.ElevateButton);
             this.Controls.Add(this.Combininggroupbox);
             this.Controls.Add(this.OKButton);
