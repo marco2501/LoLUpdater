@@ -1,417 +1,278 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
-using Microsoft.Win32;
-using System.Diagnostics;
-using System.ServiceProcess;
-using WUApiLib;
-using System.Security.Principal;
-using System.Runtime.InteropServices;
-using System.Management;
 namespace LoLUpdater
 {
-public partial class Form1 : Form
+partial class Form1
 {
-public Form1()
+/// <summary>
+/// Required designer variable.
+/// </summary>
+private System.ComponentModel.IContainer components = null;
+/// <summary>
+/// Clean up any resources being used.
+/// </summary>
+/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+protected override void Dispose(bool disposing)
 {
-InitializeComponent();
+if (disposing && (components != null))
+{
+components.Dispose();
 }
-private void Form1_Load(object sender, EventArgs e)
-{
-DirectoryInfo airinfo = new DirectoryInfo(airr);
-DirectoryInfo air = airinfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-DirectoryInfo slninfo = new DirectoryInfo(slnr);
-DirectoryInfo sln = slninfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-DirectoryInfo launchinfo = new DirectoryInfo(launchr);
-DirectoryInfo launch = launchinfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-DirectoryInfo gameinfo = new DirectoryInfo(gamer);
-DirectoryInfo game = gameinfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-if (!Directory.Exists(@"Backup"))
-{
-Directory.CreateDirectory(@"Backup");
-if (Directory.Exists(@"Rads"))
-{
-string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
-string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
-File.Copy(gamez + @"\cg.dll", @"Backup\cg.dll", true);
-File.Copy(gamez + @"\cgd3d9.dll", @"Backup\cgd3d9.dll", true);
-File.Copy(gamez + @"\cggl.dll", @"Backup\cggl.dll", true);
-File.Copy(gamez + @"\tbb.dll", @"Backup\tbb.dll", true);
-File.Copy(airz + @"\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll", true);
-File.Copy(airz + @"\Adobe Air.dll", @"Backup\Adobe Air.dll", true);
-if (File.Exists(@"Config\game.cfg"))
-{
-File.Copy(@"Config\game.cfg", @"Backup\game.cfg", true);
+base.Dispose(disposing);
 }
-}
-if (Directory.Exists(@"Game"))
+#region Windows Form Designer generated code
+/// <summary>
+/// Required method for Designer support - do not modify
+/// the contents of this method with the code editor.
+/// </summary>
+private void InitializeComponent()
 {
-Directory.CreateDirectory(@"Backup");
-File.Copy(@"game\cg.dll", @"Backup\cg.dll", true);
-File.Copy(@"game\cgd3d9.dll", @"Backup\cgd3d9.dll", true);
-File.Copy(@"game\cggl.dll", @"Backup\cggl.dll", true);
-File.Copy(@"game\tbb.dll", @"Backup\tbb.dll", true);
-File.Copy(@"AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll", true);
-File.Copy(@"AIR\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll", true);
-if (File.Exists(@"Config\game.cfg"))
-{
-File.Copy(@"Game\DATA\CFG\defaults\game.cfg", @"Backup\game.cfg", true);
-File.Copy(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"Backup\gamepermanent.cfg", true);
+this.components = new System.ComponentModel.Container();
+System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+this.groupBox1 = new System.Windows.Forms.GroupBox();
+this.checkBox8 = new System.Windows.Forms.CheckBox();
+this.checkBox1 = new System.Windows.Forms.CheckBox();
+this.checkBox3 = new System.Windows.Forms.CheckBox();
+this.checkBox4 = new System.Windows.Forms.CheckBox();
+this.radioButton1 = new System.Windows.Forms.RadioButton();
+this.groupBox2 = new System.Windows.Forms.GroupBox();
+this.radioButton3 = new System.Windows.Forms.RadioButton();
+this.radioButton2 = new System.Windows.Forms.RadioButton();
+this.button1 = new System.Windows.Forms.Button();
+this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+this.groupBox4 = new System.Windows.Forms.GroupBox();
+this.button2 = new System.Windows.Forms.Button();
+this.checkBox7 = new System.Windows.Forms.CheckBox();
+this.checkBox2 = new System.Windows.Forms.CheckBox();
+this.checkBox5 = new System.Windows.Forms.CheckBox();
+this.checkBox6 = new System.Windows.Forms.CheckBox();
+this.groupBox3 = new System.Windows.Forms.GroupBox();
+this.groupBox1.SuspendLayout();
+this.groupBox2.SuspendLayout();
+this.groupBox4.SuspendLayout();
+this.groupBox3.SuspendLayout();
+this.SuspendLayout();
+//
+// groupBox1
+//
+this.groupBox1.Controls.Add(this.checkBox8);
+this.groupBox1.Controls.Add(this.checkBox1);
+this.groupBox1.Controls.Add(this.checkBox3);
+this.groupBox1.Controls.Add(this.checkBox4);
+this.groupBox1.Location = new System.Drawing.Point(0, 0);
+this.groupBox1.Name = "groupBox1";
+this.groupBox1.Size = new System.Drawing.Size(101, 108);
+this.groupBox1.TabIndex = 1;
+this.groupBox1.TabStop = false;
+this.groupBox1.Text = "Options";
+//
+// checkBox8
+//
+this.checkBox8.AutoSize = true;
+this.checkBox8.Location = new System.Drawing.Point(6, 85);
+this.checkBox8.Name = "checkBox8";
+this.checkBox8.Size = new System.Drawing.Size(71, 17);
+this.checkBox8.TabIndex = 4;
+this.checkBox8.Text = "Trim SSD";
+this.checkBox8.UseVisualStyleBackColor = true;
+//
+// checkBox1
+//
+this.checkBox1.AutoSize = true;
+this.checkBox1.Location = new System.Drawing.Point(6, 20);
+this.checkBox1.Name = "checkBox1";
+this.checkBox1.Size = new System.Drawing.Size(79, 17);
+this.checkBox1.TabIndex = 0;
+this.checkBox1.Text = "Clean temp";
+this.checkBox1.UseVisualStyleBackColor = true;
+//
+// checkBox3
+//
+this.checkBox3.AutoSize = true;
+this.checkBox3.Location = new System.Drawing.Point(6, 42);
+this.checkBox3.Name = "checkBox3";
+this.checkBox3.Size = new System.Drawing.Size(92, 17);
+this.checkBox3.TabIndex = 2;
+this.checkBox3.Text = "Uninstall PMB";
+this.checkBox3.UseVisualStyleBackColor = true;
+//
+// checkBox4
+//
+this.checkBox4.AutoSize = true;
+this.checkBox4.Location = new System.Drawing.Point(6, 64);
+this.checkBox4.Name = "checkBox4";
+this.checkBox4.Size = new System.Drawing.Size(85, 17);
+this.checkBox4.TabIndex = 3;
+this.checkBox4.Text = "Defrag HDD";
+this.checkBox4.UseVisualStyleBackColor = true;
+//
+// radioButton1
+//
+this.radioButton1.AutoSize = true;
+this.radioButton1.Checked = true;
+this.radioButton1.Location = new System.Drawing.Point(6, 19);
+this.radioButton1.Name = "radioButton1";
+this.radioButton1.Size = new System.Drawing.Size(74, 17);
+this.radioButton1.TabIndex = 2;
+this.radioButton1.TabStop = true;
+this.radioButton1.Text = "Patch LoL";
+this.radioButton1.UseVisualStyleBackColor = true;
+//
+// groupBox2
+//
+this.groupBox2.Controls.Add(this.radioButton3);
+this.groupBox2.Controls.Add(this.radioButton1);
+this.groupBox2.Controls.Add(this.radioButton2);
+this.groupBox2.Location = new System.Drawing.Point(6, 0);
+this.groupBox2.Name = "groupBox2";
+this.groupBox2.Size = new System.Drawing.Size(118, 108);
+this.groupBox2.TabIndex = 3;
+this.groupBox2.TabStop = false;
+this.groupBox2.Text = "Main function";
+//
+// radioButton3
+//
+this.radioButton3.AutoSize = true;
+this.radioButton3.Location = new System.Drawing.Point(6, 65);
+this.radioButton3.Name = "radioButton3";
+this.radioButton3.Size = new System.Drawing.Size(107, 17);
+this.radioButton3.TabIndex = 4;
+this.radioButton3.Text = "Only checkboxes";
+this.radioButton3.UseVisualStyleBackColor = true;
+//
+// radioButton2
+//
+this.radioButton2.AutoSize = true;
+this.radioButton2.Location = new System.Drawing.Point(6, 42);
+this.radioButton2.Name = "radioButton2";
+this.radioButton2.Size = new System.Drawing.Size(106, 17);
+this.radioButton2.TabIndex = 3;
+this.radioButton2.Text = "Restore backups";
+this.radioButton2.UseVisualStyleBackColor = true;
+//
+// button1
+//
+this.button1.Location = new System.Drawing.Point(6, 114);
+this.button1.Name = "button1";
+this.button1.Size = new System.Drawing.Size(174, 20);
+this.button1.TabIndex = 4;
+this.button1.Text = "OK";
+this.button1.UseVisualStyleBackColor = true;
+this.button1.Click += new System.EventHandler(this.button1_Click);
+//
+// groupBox4
+//
+this.groupBox4.Controls.Add(this.groupBox1);
+this.groupBox4.Controls.Add(this.groupBox3);
+this.groupBox4.Location = new System.Drawing.Point(125, 0);
+this.groupBox4.Name = "groupBox4";
+this.groupBox4.Size = new System.Drawing.Size(228, 108);
+this.groupBox4.TabIndex = 6;
+this.groupBox4.TabStop = false;
+//
+// button2
+//
+this.button2.Location = new System.Drawing.Point(186, 114);
+this.button2.Name = "button2";
+this.button2.Size = new System.Drawing.Size(173, 20);
+this.button2.TabIndex = 7;
+this.button2.Text = "Self-Elevate";
+this.button2.UseVisualStyleBackColor = true;
+this.button2.Click += new System.EventHandler(this.button2_Click);
+//
+// checkBox7
+//
+this.checkBox7.AutoSize = true;
+this.checkBox7.Location = new System.Drawing.Point(6, 41);
+this.checkBox7.Name = "checkBox7";
+this.checkBox7.Size = new System.Drawing.Size(106, 17);
+this.checkBox7.TabIndex = 6;
+this.checkBox7.Text = "Windows update";
+this.checkBox7.UseVisualStyleBackColor = true;
+//
+// checkBox2
+//
+this.checkBox2.AutoSize = true;
+this.checkBox2.Location = new System.Drawing.Point(6, 18);
+this.checkBox2.Name = "checkBox2";
+this.checkBox2.Size = new System.Drawing.Size(122, 17);
+this.checkBox2.TabIndex = 1;
+this.checkBox2.Text = "Clean update cache";
+this.checkBox2.UseVisualStyleBackColor = true;
+//
+// checkBox5
+//
+this.checkBox5.AutoSize = true;
+this.checkBox5.Location = new System.Drawing.Point(6, 64);
+this.checkBox5.Name = "checkBox5";
+this.checkBox5.Size = new System.Drawing.Size(112, 17);
+this.checkBox5.TabIndex = 7;
+this.checkBox5.Text = "Windows services";
+this.checkBox5.UseVisualStyleBackColor = true;
+//
+// checkBox6
+//
+this.checkBox6.AutoSize = true;
+this.checkBox6.Location = new System.Drawing.Point(6, 85);
+this.checkBox6.Name = "checkBox6";
+this.checkBox6.Size = new System.Drawing.Size(112, 17);
+this.checkBox6.TabIndex = 8;
+this.checkBox6.Text = "Mouse polling rate";
+this.checkBox6.UseVisualStyleBackColor = true;
+//
+// groupBox3
+//
+this.groupBox3.Controls.Add(this.checkBox6);
+this.groupBox3.Controls.Add(this.checkBox5);
+this.groupBox3.Controls.Add(this.checkBox2);
+this.groupBox3.Controls.Add(this.checkBox7);
+this.groupBox3.Location = new System.Drawing.Point(104, 0);
+this.groupBox3.Name = "groupBox3";
+this.groupBox3.Size = new System.Drawing.Size(130, 108);
+this.groupBox3.TabIndex = 5;
+this.groupBox3.TabStop = false;
+this.groupBox3.Text = "Admin Options";
+//
+// Form1
+//
+this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+this.ClientSize = new System.Drawing.Size(362, 141);
+this.Controls.Add(this.button2);
+this.Controls.Add(this.groupBox4);
+this.Controls.Add(this.button1);
+this.Controls.Add(this.groupBox2);
+this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+this.MaximizeBox = false;
+this.Name = "Form1";
+this.Text = "LoLUpdater";
+this.Load += new System.EventHandler(this.Form1_Load);
+this.groupBox1.ResumeLayout(false);
+this.groupBox1.PerformLayout();
+this.groupBox2.ResumeLayout(false);
+this.groupBox2.PerformLayout();
+this.groupBox4.ResumeLayout(false);
+this.groupBox3.ResumeLayout(false);
+this.groupBox3.PerformLayout();
+this.ResumeLayout(false);
 }
-}
-}
-}
-string airr = @"RADS\projects\lol_air_client\releases";
-string slnr = @"RADS\solutions\lol_game_client_sln\releases";
-string launchr = @"RADS\projects\lol_launcher\releases";
-string gamer = @"RADS\projects\lol_game_client\releases";
-private void button1_Click(object sender, EventArgs e)
-{
-var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
-string root = System.IO.Path.GetPathRoot(Environment.SystemDirectory);
-RegistryKey keycg = Registry.LocalMachine;
-RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
-var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
-DirectoryInfo airinfo = new DirectoryInfo(airr);
-DirectoryInfo air = airinfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-DirectoryInfo slninfo = new DirectoryInfo(slnr);
-DirectoryInfo sln = slninfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-DirectoryInfo launchinfo = new DirectoryInfo(launchr);
-DirectoryInfo launch = launchinfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-DirectoryInfo gameinfo = new DirectoryInfo(gamer);
-DirectoryInfo game = gameinfo.GetDirectories()
-.OrderByDescending(d => d.CreationTime)
-.FirstOrDefault();
-if (checkBox1.Checked)
-{
-System.IO.File.WriteAllBytes("CCleaner.exe", LoLUpdater.Properties.Resources.CCleaner);
-var cc = new ProcessStartInfo();
-cc.FileName = @"CCleaner.exe";
-cc.Arguments = @"/auto";
-cc.Verb = "runas";
-var process = new Process();
-process.StartInfo = cc;
-process.Start();
-process.WaitForExit();
-File.Delete("CCleaner.exe");
-}
-if (checkBox2.Checked)
-{
-ServiceController service0 = new ServiceController(@"wuauserv");
-switch (service0.Status)
-{
-case ServiceControllerStatus.Running:
-service0.Stop();
-service0.WaitForStatus(ServiceControllerStatus.Stopped);
-Directory.Delete(windir + @"\SoftwareDistribution", true);
-service0.Start();
-service0.WaitForStatus(ServiceControllerStatus.Running);
-break;
-case ServiceControllerStatus.Stopped:
-Directory.Delete(windir + @"\SoftwareDistribution", true);
-service0.Start();
-service0.WaitForStatus(ServiceControllerStatus.Running);
-break;
-}
-}
-if (checkBox3.Checked)
-{
-using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB"))
-if (Key != null)
-{
-RegistryKey key = Registry.LocalMachine;
-RegistryKey subKey = key.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB");
-var PMB = subKey.GetValue("Program Directory").ToString();
-var psi2 = new ProcessStartInfo();
-psi2.FileName = PMB + @"\uninst.exe";
-psi2.Verb = "runas";
-var process1 = new Process();
-process1.StartInfo = psi2;
-process1.Start();
-process1.WaitForExit();
-}
-else
-{
-MessageBox.Show("Pando Media Booster is already Uninstalled");
-}
-}
-if (checkBox4.Checked)
-{
-System.IO.File.WriteAllBytes("df.exe", LoLUpdater.Properties.Resources.df);
-var df = new ProcessStartInfo();
-df.FileName = @"df.exe";
-df.Arguments = root;
-df.Verb = "runas";
-var process2 = new Process();
-process2.StartInfo = df;
-process2.Start();
-process2.WaitForExit();
-File.Delete("df.exe");
-}
-var allServices = new Dictionary<string, string[]>
-{
-{ "6.3", new[] { "Appmgmt", "bthserv", "PeerDistSvc", "NfsClnt", "TrkWks", "WPCSvc", "vmickvpexchange", "vmicguestinterface", "vmicshutdown", "vmicheartbeat", "vmicrdv", "vmictimesync", "vmicvss", "IEEtwCollectorService", "iphlpsvc", "Netlogon", "Netlogon", "CscService", "RpcLocator", "MSiSCSI", "SensrSvc", "ScDeviceEnum", "SCPolicySvc", "SNMPTRAP", "StorSvc", "WbioSrvc", "wcncsvc", "fsvc", "WMPNetworkSvc" } },
-{ "6.2", new[] { "WMPNetworkSvc", "wcncsvc", "WbioSrvc", "StorSvc", "SNMPTRAP", "SCPolicySvc", "SensrSvc", "RpcLocator", "CscService", "Netlogon", "MSiSCSI", "iphlpsvc", "vmicvss", "vmictimesync", "vmicrdv", "vmicheartbeat", "vmicshutdown", "vmickvpexchange", "WPCSvc", "TrkWks", "NfsClnt", "CertPropSvc", "PeerDistSvc", "bthserv", "Appmgmt" } },
-{ "6.1", new[] {"WSearch", "WMPNetworkSvc", "wcncsvc", "StorSvc", "SNMPTRAP", "SCPolicySvc", "SCardSvr", "RemoteRegistry", "RpcLocator", "WPCSvc", "CscService", "napagent", "Netlogon", "MSiSCSI", "iphlpsvc", "TrkWks", "CertPropSvc", "bthserv", "AppMgmt" } },
-{ "6.0", new[] { "TrkWks", "WinHttpAutoProxySvc", "WSearch", "WinRM", "WebClient", "UmRdpService", "TabletInputService", "SNMPTRAP", "SCPolicySvc", "SCardSvr", "RemoteRegistry", "CscService", "Netlogon", "MSiSCSI", "iphlpsvc", "Fax", "CertPropSvc" } },
-{ "5.1", new[] { "WmiApSrv", "W32Time", "WebClient", "UPS", "Netlogon", "SCardSvr", "TlntSvr", "seclogon", "RemoteRegistry", "RDSessMgr", "RSVP", "WmdmPmSN", "xmlprov", "mnmsrvc", "cisvc", "ERSvc" } }
-};
-string[] services;
-if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
-{
-services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
-}
-if (checkBox6.Checked)
-{
-RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
-mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
-System.Diagnostics.Process process3 = new System.Diagnostics.Process();
-System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-startInfo.FileName = "cmd.exe";
-startInfo.Verb = "runas";
-startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
-process3.StartInfo = startInfo;
-process3.Start();
-process3.WaitForExit();
-}
-if (checkBox7.Checked)
-{
-UpdateSessionClass uSession = new UpdateSessionClass();
-IUpdateSearcher uSearcher = uSession.CreateUpdateSearcher();
-ISearchResult uResult = uSearcher.Search(@"IsInstalled=0 and
-Type='Software'");
-UpdateDownloader downloader = uSession.CreateUpdateDownloader();
-downloader.Updates = uResult.Updates;
-downloader.Download();
-UpdateCollection updatesToInstall = new UpdateCollection();
-foreach (IUpdate update in uResult.Updates)
-{
-if (update.IsDownloaded)
-updatesToInstall.Add(update);
-}
-IUpdateInstaller installer = uSession.CreateUpdateInstaller();
-installer.Updates = updatesToInstall;
-IInstallationResult installationRes = installer.Install();
-}
-if (checkBox8.Checked)
-{
-}
-if (radioButton1.Checked)
-{
-int coreCount = 0;
-foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
-{
-coreCount += int.Parse(item["NumberOfCores"].ToString());
-}
-if (coreCount >= 2)
-{
-if (Directory.Exists(@"RADS"))
-{
-if (File.Exists(@"Config\game.cfg"))
-{
-File.AppendAllText(@"Config\game.cfg", @"DefaultParticleMultithreading=1");
-}
-if (Directory.Exists(@"Game"))
-{
-if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
-{
-File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", @"DefaultParticleMultithreading=1");
-File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"DefaultParticleMultithreading=1");
-}
-}
-}
-if (Directory.Exists(@"Rads"))
-{
-string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
-string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
-string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
-string launchz = @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy";
-System.IO.File.WriteAllBytes(gamez + @"\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-File.Copy(CG + @"\cg.dll", gamez + @"\cg.dll", true);
-File.Copy(CG + @"\cgd3d9.dll", gamez + @"\cgd3d9.dll", true);
-File.Copy(CG + @"\cggl.dll", gamez + @"\cggl.dll", true);
-File.Copy(CG + @"\cg.dll", launchz + @"\cg.dll", true);
-File.Copy(CG + @"\cgd3d9.dll", launchz + @"\cgd3d9.dll", true);
-File.Copy(CG + @"\cggl.dll", launchz + @"\cggl.dll", true);
-System.IO.File.WriteAllBytes(slnz + @"\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-File.Copy(CG + @"\cg.dll", slnz + @"\cg.dll", true);
-File.Copy(CG + @"\cgd3d9.dll", slnz + @"\cgd3d9.dll", true);
-File.Copy(CG + @"\cggl.dll", slnz + @"\cggl.dll", true);
-System.IO.File.WriteAllBytes(airz + @"\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
-System.IO.File.WriteAllBytes(airz + @"\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
-}
-if (Directory.Exists(@"Game"))
-{
-System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
-File.Copy(CG + @"\cgd3d9.dll", @"game\cgd3d9.dll", true);
-File.Copy(CG + @"\cggl.dll", @"game\cggl.dll", true);
-System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
-System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
-}
-System.Windows.Forms.MessageBox.Show("Finished!");
-}
-else if (radioButton2.Checked)
-{
-if (Directory.Exists(@"Rads"))
-{
-string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
-string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
-string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
-string launchz = @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy";
-File.Copy(@"Backup\cg.dll", gamez + @"\cg.dll", true);
-File.Copy(@"Backup\cgd3d9.dll", gamez + @"\cgd3d9.dll", true);
-File.Copy(@"Backup\cggl.dll", gamez + @"\cggl.dll", true);
-File.Copy(@"Backup\tbb.dll", gamez + @"\tbb.dll", true);
-File.Copy(@"Backup\cg.dll", slnz + @"\deploy\cg.dll", true);
-File.Copy(@"Backup\cgd3d9.dll", slnz + @"\cgd3d9.dll", true);
-File.Copy(@"Backup\cggl.dll", slnz + @"\cggl.dll", true);
-File.Copy(@"Backup\tbb.dll", slnz + @"\tbb.dll", true);
-File.Copy(@"Backup\cg.dll", launchz + @"\cg.dll", true);
-File.Copy(@"Backup\cgd3d9.dll", launchz + @"\\cgd3d9.dll", true);
-File.Copy(@"Backup\cggl.dll", launchz + @"\\cggl.dll", true);
-File.Copy(@"Backup\NPSWF32.dll", airz + @"\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", true);
-File.Copy(@"Backup\Adobe Air.dll", airz + @"\Adobe AIR\Versions\1.0\Adobe Air.dll", true);
-if (File.Exists(@"Backup\game.cfg"))
-{
-File.Copy(@"Backup\game.cfg", @"Config\game.cfg", true);
-}
-if (Directory.Exists(@"Game"))
-{
-File.Copy(@"Backup\cg.dll", @"game\cg.dll", true);
-File.Copy(@"Backup\cgd3d9.dll", @"game\cgd3d9.dll", true);
-File.Copy(@"Backup\cggl.dll", @"game\cggl.dll", true);
-File.Copy(@"Backup\msvcr120.dll", @"game\msvcr120.dll", true);
-File.Copy(@"Backup\msvcp120.dll", @"game\msvcp120.dll", true);
-File.Copy(@"Backup\tbb.dll", @"game\tbb.dll", true);
-File.Copy(@"Backup\NPSWF32.dll", @"AIR\Versions\1.0\Resources\NPSWF32.dll", true);
-File.Copy(@"Backup\Adobe Air.dll", @"AIR\Versions\1.0\Adobe Air.dll", true);
-if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
-{
-File.Copy(@"Backup\game.cfg", @"Game\DATA\CFG\defaults\game.cfg", true);
-File.Copy(@"Backup\gamepermanent.cfg", @"Game\DATA\CFG\defaults\gamepermanent.cfg", true);
-}
-}
-System.Windows.Forms.MessageBox.Show("Finished!");
-}
-else if (radioButton3.Checked)
-{
-System.Windows.Forms.MessageBox.Show("Finished!");
-}
-}
-}
-}
-private void button2_Click(object sender, EventArgs e)
-{
-if (!IsRunAsAdmin())
-{
-Elevate();
-Application.Exit();
-}
-}
-internal static bool IsRunAsAdmin()
-{
-var Principle = new WindowsPrincipal(WindowsIdentity.GetCurrent());
-return Principle.IsInRole(WindowsBuiltInRole.Administrator);
-}
-private static bool Elevate()
-{
-var SelfProc = new ProcessStartInfo
-{
-UseShellExecute = true,
-WorkingDirectory = Environment.CurrentDirectory,
-FileName = Application.ExecutablePath,
-Verb = "runas"
-};
-Process.Start(SelfProc);
-return true;
-}
-public static class ServiceHelper
-{
-[DllImport("advapi32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-public static extern Boolean ChangeServiceConfig(
-IntPtr hService,
-UInt32 nServiceType,
-UInt32 nStartType,
-UInt32 nErrorControl,
-String lpBinaryPathName,
-String lpLoadOrderGroup,
-IntPtr lpdwTagId,
-[In] char[] lpDependencies,
-String lpServiceStartName,
-String lpPassword,
-String lpDisplayName);
-[DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-static extern IntPtr OpenService(
-IntPtr hSCManager, string lpServiceName, uint dwDesiredAccess);
-[DllImport("advapi32.dll", EntryPoint = "OpenSCManagerW", ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = true)]
-public static extern IntPtr OpenSCManager(
-string machineName, string databaseName, uint dwAccess);
-[DllImport("advapi32.dll", EntryPoint = "CloseServiceHandle")]
-public static extern int CloseServiceHandle(IntPtr hSCObject);
-private const uint SERVICE_NO_CHANGE = 0xFFFFFFFF;
-private const uint SERVICE_QUERY_CONFIG = 0x00000001;
-private const uint SERVICE_CHANGE_CONFIG = 0x00000002;
-private const uint SC_MANAGER_ALL_ACCESS = 0x000F003F;
-public static void ChangeStartMode(ServiceController svc, ServiceStartMode mode)
-{
-var scManagerHandle = OpenSCManager(null, null, SC_MANAGER_ALL_ACCESS);
-if (scManagerHandle == IntPtr.Zero)
-{
-throw new ExternalException("Open Service Manager Error");
-}
-var serviceHandle = OpenService(
-scManagerHandle,
-svc.ServiceName,
-SERVICE_QUERY_CONFIG | SERVICE_CHANGE_CONFIG);
-if (serviceHandle == IntPtr.Zero)
-{
-throw new ExternalException("Open Service Error");
-}
-var result = ChangeServiceConfig(
-serviceHandle,
-SERVICE_NO_CHANGE,
-(uint)mode,
-SERVICE_NO_CHANGE,
-null,
-null,
-IntPtr.Zero,
-null,
-null,
-null,
-null);
-if (result == false)
-{
-int nError = Marshal.GetLastWin32Error();
-var win32Exception = new Win32Exception(nError);
-throw new ExternalException("Could not change service start type: "
-+ win32Exception.Message);
-}
-CloseServiceHandle(serviceHandle);
-CloseServiceHandle(scManagerHandle);
-}
-}
+#endregion
+private System.Windows.Forms.GroupBox groupBox1;
+private System.Windows.Forms.CheckBox checkBox4;
+private System.Windows.Forms.CheckBox checkBox3;
+private System.Windows.Forms.CheckBox checkBox1;
+private System.Windows.Forms.RadioButton radioButton1;
+private System.Windows.Forms.GroupBox groupBox2;
+private System.Windows.Forms.RadioButton radioButton3;
+private System.Windows.Forms.RadioButton radioButton2;
+private System.Windows.Forms.Button button1;
+private System.Windows.Forms.ToolTip toolTip1;
+private System.Windows.Forms.GroupBox groupBox4;
+private System.Windows.Forms.Button button2;
+private System.Windows.Forms.CheckBox checkBox8;
+private System.Windows.Forms.CheckBox checkBox7;
+private System.Windows.Forms.CheckBox checkBox2;
+private System.Windows.Forms.CheckBox checkBox5;
+private System.Windows.Forms.CheckBox checkBox6;
+private System.Windows.Forms.GroupBox groupBox3;
 }
 }
