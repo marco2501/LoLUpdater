@@ -59,7 +59,7 @@ if (File.Exists(@"Config\game.cfg"))
 File.Copy(@"Config\game.cfg", @"Backup\game.cfg", true);
 }
 }
-if (Directory.Exists(@"Game"))
+else if (Directory.Exists(@"Game"))
 {
 Directory.CreateDirectory(@"Backup");
 File.Copy(@"game\cg.dll", @"Backup\cg.dll", true);
@@ -262,7 +262,7 @@ File.Copy(CG + @"\cggl.dll", slnz + @"\cggl.dll", true);
 System.IO.File.WriteAllBytes(airz + @"\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
 System.IO.File.WriteAllBytes(airz + @"\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
 }
-if (Directory.Exists(@"Game"))
+else if (Directory.Exists(@"Game"))
 {
 System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tbb);
 File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
@@ -298,7 +298,7 @@ if (File.Exists(@"Backup\game.cfg"))
 {
 File.Copy(@"Backup\game.cfg", @"Config\game.cfg", true);
 }
-if (Directory.Exists(@"Game"))
+else if (Directory.Exists(@"Game"))
 {
 File.Copy(@"Backup\cg.dll", @"game\cg.dll", true);
 File.Copy(@"Backup\cgd3d9.dll", @"game\cgd3d9.dll", true);
