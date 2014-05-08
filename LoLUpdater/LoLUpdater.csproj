@@ -196,7 +196,6 @@
     <None Include="Resources\msvcr120.dll" />
     <None Include="Resources\msvcp120.dll" />
     <None Include="Resources\Adobe AIR.dll" />
-    <None Include="Resources\df.exe" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
