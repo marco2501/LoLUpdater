@@ -29,25 +29,26 @@ namespace LoLUpdater
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
-            string root = System.IO.Path.GetPathRoot(Environment.SystemDirectory);
-
-            DirectoryInfo airinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
+            string airr = @"RADS\projects\lol_air_client\releases";
+            string slnr = @"RADS\solutions\lol_game_client_sln\releases";
+            string launchr = @"RADS\projects\lol_launcher\releases";
+            string gamer = @"RADS\projects\lol_game_client\releases";
+            DirectoryInfo airinfo = new DirectoryInfo(airr);
             DirectoryInfo air = airinfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
-            DirectoryInfo slninfo = new DirectoryInfo(@"RADS\solutions\lol_game_client_sln\releases");
+            DirectoryInfo slninfo = new DirectoryInfo(slnr);
             DirectoryInfo sln = slninfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
-            DirectoryInfo launchinfo = new DirectoryInfo(@"RADS\projects\lol_launcher\releases");
+            DirectoryInfo launchinfo = new DirectoryInfo(launchr);
             DirectoryInfo launch = launchinfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
-            DirectoryInfo gameinfo = new DirectoryInfo(@"RADS\projects\lol_game_client\releases");
+            DirectoryInfo gameinfo = new DirectoryInfo(gamer);
             DirectoryInfo game = gameinfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
@@ -109,22 +110,27 @@ namespace LoLUpdater
             RegistryKey subKeycg = keycg.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Cg Toolkit_is1");
             var CG = subKeycg.GetValue(@"InstallLocation") + @"bin\";
 
-            DirectoryInfo airinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
+            string airr = @"RADS\projects\lol_air_client\releases";
+            string slnr = @"RADS\solutions\lol_game_client_sln\releases";
+            string launchr = @"RADS\projects\lol_launcher\releases";
+            string gamer = @"RADS\projects\lol_game_client\releases";
+
+            DirectoryInfo airinfo = new DirectoryInfo(airr);
             DirectoryInfo air = airinfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
-            DirectoryInfo slninfo = new DirectoryInfo(@"RADS\solutions\lol_game_client_sln\releases");
+            DirectoryInfo slninfo = new DirectoryInfo(slnr);
             DirectoryInfo sln = slninfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
-            DirectoryInfo launchinfo = new DirectoryInfo(@"RADS\projects\lol_launcher\releases");
+            DirectoryInfo launchinfo = new DirectoryInfo(launchr);
             DirectoryInfo launch = launchinfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
 
-            DirectoryInfo gameinfo = new DirectoryInfo(@"RADS\projects\lol_game_client\releases");
+            DirectoryInfo gameinfo = new DirectoryInfo(gamer);
             DirectoryInfo game = gameinfo.GetDirectories()
                                       .OrderByDescending(d => d.CreationTime)
                                       .FirstOrDefault();
