@@ -27,8 +27,11 @@ namespace LoLUpdater
 
         }
 
+
         private void Form1_Load(object sender, EventArgs e)
         {
+
+           
 
             DirectoryInfo airinfo = new DirectoryInfo(airr);
             DirectoryInfo air = airinfo.GetDirectories()
@@ -143,10 +146,10 @@ namespace LoLUpdater
                     cc.FileName = @"CCleaner.exe";
                     cc.Arguments = @"/auto";
                     cc.Verb = "runas";
-                    var process18 = new Process();
-                    process18.StartInfo = cc;
-                    process18.Start();
-                    process18.WaitForExit();
+                    var process = new Process();
+                    process.StartInfo = cc;
+                    process.Start();
+                    process.WaitForExit();
                     File.Delete("CCleaner.exe");
 
                 }
@@ -190,10 +193,10 @@ namespace LoLUpdater
                             var psi2 = new ProcessStartInfo();
                             psi2.FileName = PMB + @"\uninst.exe";
                             psi2.Verb = "runas";
-                            var process3 = new Process();
-                            process3.StartInfo = psi2;
-                            process3.Start();
-                            process3.WaitForExit();
+                            var process1 = new Process();
+                            process1.StartInfo = psi2;
+                            process1.Start();
+                            process1.WaitForExit();
                         }
                         else
                         {
@@ -214,10 +217,10 @@ namespace LoLUpdater
                     df.FileName = @"df.exe";
                     df.Arguments = root;
                     df.Verb = "runas";
-                    var process13 = new Process();
-                    process13.StartInfo = df;
-                    process13.Start();
-                    process13.WaitForExit();
+                    var process2 = new Process();
+                    process2.StartInfo = df;
+                    process2.Start();
+                    process2.WaitForExit();
                     File.Delete("df.exe");
 
                 }
@@ -429,6 +432,8 @@ services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceCo
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+
             if (!IsRunAsAdmin())
             {
                 Elevate();

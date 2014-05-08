@@ -50,6 +50,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.checkBox3);
             this.groupBox1.Controls.Add(this.checkBox4);
-            this.groupBox1.Location = new System.Drawing.Point(125, 0);
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(101, 108);
             this.groupBox1.TabIndex = 1;
@@ -162,15 +163,17 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Location = new System.Drawing.Point(124, 6);
+            this.groupBox4.Controls.Add(this.groupBox1);
+            this.groupBox4.Controls.Add(this.groupBox3);
+            this.groupBox4.Location = new System.Drawing.Point(125, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(228, 102);
+            this.groupBox4.Size = new System.Drawing.Size(228, 108);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(185, 114);
+            this.button2.Location = new System.Drawing.Point(186, 114);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(173, 20);
             this.button2.TabIndex = 7;
@@ -224,7 +227,7 @@
             this.groupBox3.Controls.Add(this.checkBox5);
             this.groupBox3.Controls.Add(this.checkBox2);
             this.groupBox3.Controls.Add(this.checkBox7);
-            this.groupBox3.Location = new System.Drawing.Point(229, 0);
+            this.groupBox3.Location = new System.Drawing.Point(104, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(130, 108);
             this.groupBox3.TabIndex = 5;
@@ -235,9 +238,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 138);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(362, 141);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.button1);
@@ -252,6 +253,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
