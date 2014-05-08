@@ -9,14 +9,14 @@ https://www.youtube.com/watch?v=R1PSgUoQtJ4
 
 [Download .Net4.5.2](http://www.microsoft.com/en-us/download/confirmation.aspx?id=42643)
 
-
-
+I if you have installed previous versions of lolupdater i suggest you reinstall LoL.
 
 
 
 Installation
 ============
 Put files in right location
+
 
 	League must be installed on “X:\Riot Games\League of Legends” (X = any drive letter)
 

@@ -46,6 +46,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -145,20 +146,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="LoLUpdater.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -180,22 +181,14 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Adobe Air.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\msvcp120.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\msvcr120.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NPSWF32.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\tbb.dll" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LoLUpdater.ico" />
+    <None Include="Resources\NPSWF32.dll" />
+    <None Include="Resources\msvcr120.dll" />
+    <None Include="Resources\msvcp120.dll" />
+    <None Include="Resources\Adobe AIR.dll" />
     <None Include="Resources\CCleaner.exe" />
     <None Include="Resources\df.exe" />
   </ItemGroup>

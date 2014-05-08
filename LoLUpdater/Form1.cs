@@ -293,8 +293,6 @@ if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.T
                 {
 
                     System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-                    System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\msvcp120.dll", LoLUpdater.Properties.Resources.msvcp120);
-                    System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\msvcr120.dll", LoLUpdater.Properties.Resources.msvcr120);
                     File.Copy(CG + @"bin\cg.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll", true);
                     File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll", true);
                     File.Copy(CG + @"bin\cggl.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll", true);
@@ -302,8 +300,6 @@ if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.T
 
 
 
-                    System.IO.File.WriteAllBytes(@"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\msvcp120.dll", LoLUpdater.Properties.Resources.msvcp120);
-                    System.IO.File.WriteAllBytes(@"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\msvcr120.dll", LoLUpdater.Properties.Resources.msvcr120);
                     File.Copy(CG + @"bin\cg.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cg.dll", true);
                     File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cgd3d9.dll", true);
                     File.Copy(CG + @"bin\cggl.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cggl.dll", true);
@@ -311,8 +307,6 @@ if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.T
 
 
                     System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-                    System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\msvcp120.dll", LoLUpdater.Properties.Resources.msvcp120);
-                    System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\msvcr120.dll", LoLUpdater.Properties.Resources.msvcr120);
                     File.Copy(CG + @"bin\cg.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cg.dll", true);
                     File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cgd3d9.dll", true);
                     File.Copy(CG + @"bin\cggl.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cggl.dll", true);
@@ -322,14 +316,12 @@ if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.T
 
 
                     System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
-                    System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_Air);
+                    System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
 
                 }
                 if (Directory.Exists(@"Game"))
                 {
                     System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-                    System.IO.File.WriteAllBytes(@"game\msvcp120.dll", LoLUpdater.Properties.Resources.msvcp120);
-                    System.IO.File.WriteAllBytes(@"game\msvcr120.dll", LoLUpdater.Properties.Resources.msvcr120);
                     File.Copy(CG + @"bin\cg.dll", @"game\cg.dll", true);
                     File.Copy(CG + @"bin\cgd3d9.dll", @"game\cgd3d9.dll", true);
                     File.Copy(CG + @"bin\cggl.dll", @"game\cggl.dll", true);
@@ -337,7 +329,7 @@ if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.T
 
 
                     System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
-                    System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_Air);
+                    System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
 
                 }
                 System.Windows.Forms.MessageBox.Show("Finished!");
@@ -349,23 +341,17 @@ if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.T
                     File.Copy(@"Backup\cg.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll", true);
                     File.Copy(@"Backup\cgd3d9.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll", true);
                     File.Copy(@"Backup\cggl.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll", true);
-                    File.Copy(@"Backup\msvcr120.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\msvcr120.dll", true);
-                    File.Copy(@"Backup\msvcp120.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\msvcp120.dll", true);
                     File.Copy(@"Backup\tbb.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", true);
 
                     File.Copy(@"Backup\cg.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cg.dll", true);
                     File.Copy(@"Backup\cgd3d9.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cgd3d9.dll", true);
                     File.Copy(@"Backup\cggl.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cggl.dll", true);
-                    File.Copy(@"Backup\msvcr120.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\msvcr120.dll", true);
-                    File.Copy(@"Backup\msvcp120.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\msvcp120.dll", true);
                     File.Copy(@"Backup\tbb.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\tbb.dll", true);
 
 
                     File.Copy(@"Backup\cg.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cg.dll", true);
                     File.Copy(@"Backup\cgd3d9.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cgd3d9.dll", true);
                     File.Copy(@"Backup\cggl.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cggl.dll", true);
-                    File.Copy(@"Backup\msvcr120.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\msvcr120.dll", true);
-                    File.Copy(@"Backup\msvcp120.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\msvcp120.dll", true);
 
                     File.Copy(@"Backup\NPSWF32.dll", @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", true);
                     File.Copy(@"Backup\Adobe Air.dll", @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", true);

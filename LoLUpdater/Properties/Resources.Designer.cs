@@ -63,9 +63,9 @@ namespace LoLUpdater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Adobe_Air {
+        internal static byte[] Adobe_AIR {
             get {
-                object obj = ResourceManager.GetObject("Adobe_Air", resourceCulture);
+                object obj = ResourceManager.GetObject("Adobe_AIR", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -86,26 +86,6 @@ namespace LoLUpdater.Properties {
         internal static byte[] df {
             get {
                 object obj = ResourceManager.GetObject("df", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] msvcp120 {
-            get {
-                object obj = ResourceManager.GetObject("msvcp120", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] msvcr120 {
-            get {
-                object obj = ResourceManager.GetObject("msvcr120", resourceCulture);
                 return ((byte[])(obj));
             }
         }
