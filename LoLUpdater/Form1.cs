@@ -258,7 +258,7 @@ var allServices = new Dictionary<string, string[]>
 string[]services;
 if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
 {
-services.ToList().ForEach(x => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
+// services.ToList().ForEach(x => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
 }
 
 
