@@ -41,10 +41,10 @@ DirectoryInfo gameinfo = new DirectoryInfo(gamer);
 DirectoryInfo game = gameinfo.GetDirectories()
 .OrderByDescending(d => d.CreationTime)
 .FirstOrDefault();
-if (!Directory.Exists(@"Backup"))
+if (!Directory.Exists("Backup"))
 {
-Directory.CreateDirectory(@"Backup");
-if (Directory.Exists(@"Rads"))
+Directory.CreateDirectory("Backup");
+if (Directory.Exists("Rads"))
 {
 string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
 string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
@@ -59,7 +59,7 @@ if (File.Exists(@"Config\game.cfg"))
 File.Copy(@"Config\game.cfg", @"Backup\game.cfg", true);
 }
 }
-else if (Directory.Exists(@"Game"))
+else if (Directory.Exists("Game"))
 {
 Directory.CreateDirectory(@"Backup");
 File.Copy(@"game\cg.dll", @"Backup\cg.dll", true);
@@ -107,8 +107,8 @@ if (checkBox1.Checked)
 {
 System.IO.File.WriteAllBytes("CCleaner.exe", LoLUpdater.Properties.Resources.CCleaner);
 var cc = new ProcessStartInfo();
-cc.FileName = @"CCleaner.exe";
-cc.Arguments = @"/auto";
+cc.FileName = "CCleaner.exe";
+cc.Arguments = "/auto";
 cc.Verb = "runas";
 var process = new Process();
 process.StartInfo = cc;
@@ -118,7 +118,7 @@ File.Delete("CCleaner.exe");
 }
 if (checkBox2.Checked)
 {
-ServiceController service0 = new ServiceController(@"wuauserv");
+ServiceController service0 = new ServiceController("wuauserv");
 switch (service0.Status)
 {
 case ServiceControllerStatus.Running:
@@ -160,7 +160,7 @@ if (checkBox4.Checked)
 {
 System.IO.File.WriteAllBytes("df.exe", LoLUpdater.Properties.Resources.df);
 var df = new ProcessStartInfo();
-df.FileName = @"df.exe";
+df.FileName = "df.exe";
 df.Arguments = root;
 df.Verb = "runas";
 var process2 = new Process();
@@ -229,13 +229,13 @@ coreCount += int.Parse(item["NumberOfCores"].ToString());
 }
 if (coreCount >= 2)
 {
-if (Directory.Exists(@"RADS"))
+if (Directory.Exists("RADS"))
 {
 if (File.Exists(@"Config\game.cfg"))
 {
 File.AppendAllText(@"Config\game.cfg", @"DefaultParticleMultithreading=1");
 }
-if (Directory.Exists(@"Game"))
+if (Directory.Exists("Game"))
 {
 if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
 {
@@ -244,7 +244,7 @@ File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"DefaultParticl
 }
 }
 }
-if (Directory.Exists(@"Rads"))
+if (Directory.Exists("Rads"))
 {
 string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
 string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
@@ -264,7 +264,7 @@ File.Copy(CG + @"\cggl.dll", slnz + @"\cggl.dll", true);
 System.IO.File.WriteAllBytes(airz + @"\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
 System.IO.File.WriteAllBytes(airz + @"\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
 }
-else if (Directory.Exists(@"Game"))
+else if (Directory.Exists("Game"))
 {
 System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tbb);
 File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
@@ -277,7 +277,7 @@ System.Windows.Forms.MessageBox.Show("Finished!");
 }
 else if (radioButton2.Checked)
 {
-if (Directory.Exists(@"Rads"))
+if (Directory.Exists("Rads"))
 {
 string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
 string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
@@ -300,7 +300,7 @@ if (File.Exists(@"Backup\game.cfg"))
 {
 File.Copy(@"Backup\game.cfg", @"Config\game.cfg", true);
 }
-else if (Directory.Exists(@"Game"))
+else if (Directory.Exists("Game"))
 {
 File.Copy(@"Backup\cg.dll", @"game\cg.dll", true);
 File.Copy(@"Backup\cgd3d9.dll", @"game\cgd3d9.dll", true);
