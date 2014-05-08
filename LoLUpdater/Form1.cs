@@ -227,17 +227,17 @@ namespace LoLUpdater
 
                 if (checkBox3.Checked)
                 {
-                    using (RegistryKey Key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Pando Networks\PMB"))
+                    using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB"))
                         if (Key != null)
                         {
                             RegistryKey key = Registry.LocalMachine;
-                            RegistryKey subKey = key.OpenSubKey(@"SOFTWARE\Wow6432Node\Pando Networks\PMB");
+                            RegistryKey subKey = key.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB");
 
-                            var PMB = subKey.GetValue(@"Program Directory");
+                            var PMB = subKey.GetValue("Program Directory").ToString();
 
 
                             var psi2 = new ProcessStartInfo();
-                            psi2.FileName = PMB + @"Uninst.exe";
+                            psi2.FileName = PMB + @"\uninst.exe";
                             psi2.Verb = "runas";
                             var process3 = new Process();
                             process3.StartInfo = psi2;
@@ -282,7 +282,7 @@ namespace LoLUpdater
                 string[] services;
                 if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
                 {
-services.ToList().ForEach(x => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
+            // services.ToList().ForEach(x => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
                 }
 
 
