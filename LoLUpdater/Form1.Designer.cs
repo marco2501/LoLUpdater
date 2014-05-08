@@ -20,7 +20,6 @@ namespace LoLUpdater
             this.Deleteoldlogs = new System.Windows.Forms.CheckBox();
             this.Cleantemp = new System.Windows.Forms.CheckBox();
             this.UninstallPMB = new System.Windows.Forms.CheckBox();
-            this.Defrag = new System.Windows.Forms.CheckBox();
             this.Patcher = new System.Windows.Forms.RadioButton();
             this.MainFunction = new System.Windows.Forms.GroupBox();
             this.onlycheckboxes = new System.Windows.Forms.RadioButton();
@@ -45,7 +44,6 @@ namespace LoLUpdater
             this.Options.Controls.Add(this.Deleteoldlogs);
             this.Options.Controls.Add(this.Cleantemp);
             this.Options.Controls.Add(this.UninstallPMB);
-            this.Options.Controls.Add(this.Defrag);
             this.Options.Location = new System.Drawing.Point(5, 0);
             this.Options.Name = "Options";
             this.Options.Size = new System.Drawing.Size(116, 108);
@@ -56,7 +54,7 @@ namespace LoLUpdater
             // Deleteoldlogs
             // 
             this.Deleteoldlogs.AutoSize = true;
-            this.Deleteoldlogs.Location = new System.Drawing.Point(6, 85);
+            this.Deleteoldlogs.Location = new System.Drawing.Point(6, 66);
             this.Deleteoldlogs.Name = "Deleteoldlogs";
             this.Deleteoldlogs.Size = new System.Drawing.Size(96, 17);
             this.Deleteoldlogs.TabIndex = 4;
@@ -85,17 +83,6 @@ namespace LoLUpdater
             this.UninstallPMB.Text = "Uninstall PMB";
             this.toolTip1.SetToolTip(this.UninstallPMB, "Uninstalls Pando Media Booster");
             this.UninstallPMB.UseVisualStyleBackColor = true;
-            // 
-            // Defrag
-            // 
-            this.Defrag.AutoSize = true;
-            this.Defrag.Location = new System.Drawing.Point(6, 64);
-            this.Defrag.Name = "Defrag";
-            this.Defrag.Size = new System.Drawing.Size(85, 17);
-            this.Defrag.TabIndex = 3;
-            this.Defrag.Text = "Defrag HDD";
-            this.toolTip1.SetToolTip(this.Defrag, "Defragments your HDD");
-            this.Defrag.UseVisualStyleBackColor = true;
             // 
             // Patcher
             // 
@@ -260,7 +247,6 @@ namespace LoLUpdater
         }
         #endregion
         private System.Windows.Forms.GroupBox Options;
-        private System.Windows.Forms.CheckBox Defrag;
         private System.Windows.Forms.CheckBox UninstallPMB;
         private System.Windows.Forms.CheckBox Cleantemp;
         private System.Windows.Forms.RadioButton Patcher;

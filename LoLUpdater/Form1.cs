@@ -151,10 +151,6 @@ namespace LoLUpdater
                         MessageBox.Show("Pando Media Booster is already Uninstalled");
                     }
             }
-            if (Defrag.Checked)
-            {
-
-            }
             var allServices = new Dictionary<string, string[]>
 {
 { "6.3", new[] { "Appmgmt", "bthserv", "PeerDistSvc", "NfsClnt", "TrkWks", "WPCSvc", "vmickvpexchange", "vmicguestinterface", "vmicshutdown", "vmicheartbeat", "vmicrdv", "vmictimesync", "vmicvss", "IEEtwCollectorService", "iphlpsvc", "Netlogon", "Netlogon", "CscService", "RpcLocator", "MSiSCSI", "SensrSvc", "ScDeviceEnum", "SCPolicySvc", "SNMPTRAP", "StorSvc", "WbioSrvc", "wcncsvc", "fsvc", "WMPNetworkSvc" } },
