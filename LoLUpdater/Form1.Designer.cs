@@ -46,6 +46,7 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -59,7 +60,7 @@
             this.groupBox1.Controls.Add(this.checkBox4);
             this.groupBox1.Location = new System.Drawing.Point(120, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(101, 90);
+            this.groupBox1.Size = new System.Drawing.Size(101, 108);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Options";
@@ -139,7 +140,7 @@
             this.groupBox2.Controls.Add(this.radioButton2);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(118, 90);
+            this.groupBox2.Size = new System.Drawing.Size(118, 108);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Main function";
@@ -168,7 +169,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 102);
+            this.button1.Location = new System.Drawing.Point(6, 141);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(171, 20);
             this.button1.TabIndex = 4;
@@ -183,7 +184,7 @@
             this.groupBox3.Controls.Add(this.checkBox7);
             this.groupBox3.Location = new System.Drawing.Point(100, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(130, 90);
+            this.groupBox3.Size = new System.Drawing.Size(130, 108);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Admin Options";
@@ -205,13 +206,13 @@
             this.groupBox4.Controls.Add(this.groupBox3);
             this.groupBox4.Location = new System.Drawing.Point(124, 6);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(238, 90);
+            this.groupBox4.Size = new System.Drawing.Size(238, 109);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(183, 102);
+            this.button2.Location = new System.Drawing.Point(181, 141);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(171, 20);
             this.button2.TabIndex = 7;
@@ -219,11 +220,23 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(230, 93);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(112, 17);
+            this.checkBox6.TabIndex = 8;
+            this.checkBox6.Text = "Mouse polling rate";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 130);
+            this.ClientSize = new System.Drawing.Size(373, 204);
+            this.Controls.Add(this.checkBox6);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox4);
@@ -243,6 +256,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -264,6 +278,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
     }
 }
 

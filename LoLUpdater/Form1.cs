@@ -14,6 +14,7 @@ using System.ServiceProcess;
 using WUApiLib;
 using System.Security.Principal;
 using System.Runtime.InteropServices;
+using System.Management;
 namespace LoLUpdater
 {
     public partial class Form1 : Form
@@ -64,7 +65,13 @@ namespace LoLUpdater
                     File.Copy(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", @"Backup\tbb.dll", true);
                     File.Copy(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll", true);
                     File.Copy(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll", true);
+                    
+                             if (File.Exists(@"Config\game.cfg"))
+                {
                     File.Copy(@"Config\game.cfg", @"Backup\game.cfg", true);
+                }
+                    else {}
+                   
                 }
                 if (Directory.Exists(@"Game"))
                 {
@@ -77,7 +84,16 @@ namespace LoLUpdater
                     File.Copy(@"game\tbb.dll", @"Backup\tbb.dll", true);
                     File.Copy(@"AIR\Versions\1.0\Resources\NPSWF32.dll", @"Backup\NPSWF32.dll", true);
                     File.Copy(@"AIR\Versions\1.0\Adobe Air.dll", @"Backup\Adobe Air.dll", true);
-                    File.Copy(@"Config\game.cfg", @"Backup\game.cfg", true);
+                    
+                    if (File.Exists(@"Config\game.cfg"))
+                {
+                    File.Copy(@"Game\DATA\CFG\defaults\game.cfg", @"Backup\game.cfg", true);
+                        File.Copy(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"Backup\gamepermanent.cfg", true);
+
+                }
+                    else {}                    
+                    
+                    
                 }
             }
 
@@ -108,6 +124,11 @@ namespace LoLUpdater
             var checkBox5 = sender as CheckBox;
         }
 
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox6 = sender as CheckBox;
+        }
+
         private void checkBox7_CheckedChanged(object sender, EventArgs e)
         {
             var checkBox7 = sender as CheckBox;
@@ -131,123 +152,155 @@ namespace LoLUpdater
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
-            string root = System.IO.Path.GetPathRoot(Environment.SystemDirectory);
-
-
-            RegistryKey keycg = Registry.LocalMachine;
-            RegistryKey subKeycg = keycg.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Cg Toolkit_is1");
-            var CG = subKeycg.GetValue(@"InstallLocation");
-
-            DirectoryInfo airinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
-            DirectoryInfo air = airinfo.GetDirectories()
-                                      .OrderByDescending(d => d.CreationTime)
-                                      .FirstOrDefault();
-
-            DirectoryInfo slninfo = new DirectoryInfo(@"RADS\solutions\lol_game_client_sln\releases");
-            DirectoryInfo sln = slninfo.GetDirectories()
-                                      .OrderByDescending(d => d.CreationTime)
-                                      .FirstOrDefault();
-
-            DirectoryInfo launchinfo = new DirectoryInfo(@"RADS\projects\lol_launcher\releases");
-            DirectoryInfo launch = launchinfo.GetDirectories()
-                                      .OrderByDescending(d => d.CreationTime)
-                                      .FirstOrDefault();
-
-            DirectoryInfo gameinfo = new DirectoryInfo(@"RADS\projects\lol_game_client\releases");
-            DirectoryInfo game = gameinfo.GetDirectories()
-                                      .OrderByDescending(d => d.CreationTime)
-                                      .FirstOrDefault();
-
-
-
-            if (checkBox1.Checked)
+            int coreCount = 0;
+            foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
             {
-                System.IO.File.WriteAllBytes("CCleaner.exe", LoLUpdater.Properties.Resources.CCleaner);
-                var cc = new ProcessStartInfo();
-                cc.FileName = @"CCleaner.exe";
-                cc.Arguments = @"/auto";
-                cc.Verb = "runas";
-                var process18 = new Process();
-                process18.StartInfo = cc;
-                process18.Start();
-                process18.WaitForExit();
-                File.Delete("CCleaner.exe");
-
+                coreCount += int.Parse(item["NumberOfCores"].ToString());
             }
 
-            if (checkBox2.Checked)
+            if (coreCount >= 2)
             {
-                ServiceController service = new ServiceController("wuauserv");
-                switch (service.Status)
+                if (Directory.Exists(@"RADS"))
                 {
-                    case ServiceControllerStatus.Running:
+                    if (File.Exists(@"Config\game.cfg"))
+                    {
+                        File.AppendAllText(@"Config\game.cfg", @"DefaultParticleMultithreading=1");
+
+                    }
+
+                    if (Directory.Exists(@"Game"))
+                    {
+
+                        if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
+                        {
+                            File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", @"DefaultParticleMultithreading=1");
+                            File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"DefaultParticleMultithreading=1");
+
+                        }
+
+                    }
 
 
-                        service.Stop();
-
-                        Directory.Delete(windir + @"\SoftwareDistribution", true);
-
-                        service.Start();
-                        break;
-                    case ServiceControllerStatus.Stopped:
-
-                        Directory.Delete(windir + @"\SoftwareDistribution", true);
-                        service.Start();
-                        break;
                 }
 
 
+                var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+                string root = System.IO.Path.GetPathRoot(Environment.SystemDirectory);
 
-            }
 
-            if (checkBox3.Checked)
-            {
-                using (RegistryKey Key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Pando Networks\PMB"))
-                    if (Key != null)
+                RegistryKey keycg = Registry.LocalMachine;
+                RegistryKey subKeycg = keycg.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Cg Toolkit_is1");
+                var CG = subKeycg.GetValue(@"InstallLocation");
+
+                DirectoryInfo airinfo = new DirectoryInfo(@"RADS\projects\lol_air_client\releases");
+                DirectoryInfo air = airinfo.GetDirectories()
+                                          .OrderByDescending(d => d.CreationTime)
+                                          .FirstOrDefault();
+
+                DirectoryInfo slninfo = new DirectoryInfo(@"RADS\solutions\lol_game_client_sln\releases");
+                DirectoryInfo sln = slninfo.GetDirectories()
+                                          .OrderByDescending(d => d.CreationTime)
+                                          .FirstOrDefault();
+
+                DirectoryInfo launchinfo = new DirectoryInfo(@"RADS\projects\lol_launcher\releases");
+                DirectoryInfo launch = launchinfo.GetDirectories()
+                                          .OrderByDescending(d => d.CreationTime)
+                                          .FirstOrDefault();
+
+                DirectoryInfo gameinfo = new DirectoryInfo(@"RADS\projects\lol_game_client\releases");
+                DirectoryInfo game = gameinfo.GetDirectories()
+                                          .OrderByDescending(d => d.CreationTime)
+                                          .FirstOrDefault();
+
+
+
+                if (checkBox1.Checked)
+                {
+                    System.IO.File.WriteAllBytes("CCleaner.exe", LoLUpdater.Properties.Resources.CCleaner);
+                    var cc = new ProcessStartInfo();
+                    cc.FileName = @"CCleaner.exe";
+                    cc.Arguments = @"/auto";
+                    cc.Verb = "runas";
+                    var process18 = new Process();
+                    process18.StartInfo = cc;
+                    process18.Start();
+                    process18.WaitForExit();
+                    File.Delete("CCleaner.exe");
+
+                }
+
+                if (checkBox2.Checked)
+                {
+                    ServiceController service = new ServiceController("wuauserv");
+                    switch (service.Status)
                     {
-                        RegistryKey key = Registry.LocalMachine;
-                        RegistryKey subKey = key.OpenSubKey(@"SOFTWARE\Wow6432Node\Pando Networks\PMB");
-
-                        var PMB = subKey.GetValue(@"Program Directory");
+                        case ServiceControllerStatus.Running:
 
 
-                        var psi2 = new ProcessStartInfo();
-                        psi2.FileName = PMB + @"Uninst.exe";
-                        psi2.Verb = "runas";
-                        var process3 = new Process();
-                        process3.StartInfo = psi2;
-                        process3.Start();
-                        process3.WaitForExit();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Pando Media Booster is already Uninstalled");
+                            service.Stop();
+
+                            Directory.Delete(windir + @"\SoftwareDistribution", true);
+
+                            service.Start();
+                            break;
+                        case ServiceControllerStatus.Stopped:
+
+                            Directory.Delete(windir + @"\SoftwareDistribution", true);
+                            service.Start();
+                            break;
                     }
 
 
 
+                }
+
+                if (checkBox3.Checked)
+                {
+                    using (RegistryKey Key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Pando Networks\PMB"))
+                        if (Key != null)
+                        {
+                            RegistryKey key = Registry.LocalMachine;
+                            RegistryKey subKey = key.OpenSubKey(@"SOFTWARE\Wow6432Node\Pando Networks\PMB");
+
+                            var PMB = subKey.GetValue(@"Program Directory");
 
 
-            }
+                            var psi2 = new ProcessStartInfo();
+                            psi2.FileName = PMB + @"Uninst.exe";
+                            psi2.Verb = "runas";
+                            var process3 = new Process();
+                            process3.StartInfo = psi2;
+                            process3.Start();
+                            process3.WaitForExit();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Pando Media Booster is already Uninstalled");
+                        }
 
-            if (checkBox4.Checked)
-            {
 
-                System.IO.File.WriteAllBytes("df.exe", LoLUpdater.Properties.Resources.df);
-                var df = new ProcessStartInfo();
-                df.FileName = @"df.exe";
-                df.Arguments = root;
-                df.Verb = "runas";
-                var process13 = new Process();
-                process13.StartInfo = df;
-                process13.Start();
-                process13.WaitForExit();
-                File.Delete("df.exe");
 
-            }
 
-var allServices = new Dictionary<string, string[]>
+
+                }
+
+                if (checkBox4.Checked)
+                {
+
+                    System.IO.File.WriteAllBytes("df.exe", LoLUpdater.Properties.Resources.df);
+                    var df = new ProcessStartInfo();
+                    df.FileName = @"df.exe";
+                    df.Arguments = root;
+                    df.Verb = "runas";
+                    var process13 = new Process();
+                    process13.StartInfo = df;
+                    process13.Start();
+                    process13.WaitForExit();
+                    File.Delete("df.exe");
+
+                }
+
+                var allServices = new Dictionary<string, string[]>
 {
 { "6.3", new[] { "Appmgmt", "bthserv", "PeerDistSvc", "NfsClnt", "TrkWks", "WPCSvc", "vmickvpexchange", "vmicguestinterface", "vmicshutdown", "vmicheartbeat", "vmicrdv", "vmictimesync", "vmicvss", "IEEtwCollectorService", "iphlpsvc", "Netlogon", "Netlogon", "CscService", "RpcLocator", "MSiSCSI", "SensrSvc", "ScDeviceEnum", "SCPolicySvc", "SNMPTRAP", "StorSvc", "WbioSrvc", "wcncsvc", "fsvc", "WMPNetworkSvc" } },
 { "6.2", new[] { "WMPNetworkSvc", "wcncsvc", "WbioSrvc", "StorSvc", "SNMPTRAP", "SCPolicySvc", "SensrSvc", "RpcLocator", "CscService", "Netlogon", "MSiSCSI", "iphlpsvc", "vmicvss", "vmictimesync", "vmicrdv", "vmicheartbeat", "vmicshutdown", "vmickvpexchange", "WPCSvc", "TrkWks", "NfsClnt", "CertPropSvc", "PeerDistSvc", "bthserv", "Appmgmt" } },
@@ -255,129 +308,152 @@ var allServices = new Dictionary<string, string[]>
 { "6.0", new[] { "TrkWks", "WinHttpAutoProxySvc", "WSearch", "WinRM", "WebClient", "UmRdpService", "TabletInputService", "SNMPTRAP", "SCPolicySvc", "SCardSvr", "RemoteRegistry", "CscService", "Netlogon", "MSiSCSI", "iphlpsvc", "Fax", "CertPropSvc" } },
 { "5.1", new[] { "WmiApSrv", "W32Time", "WebClient", "UPS", "Netlogon", "SCardSvr", "TlntSvr", "seclogon", "RemoteRegistry", "RDSessMgr", "RSVP", "WmdmPmSN", "xmlprov", "mnmsrvc", "cisvc", "ERSvc" } }
 };
-string[]services;
-if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
-{
-// services.ToList().ForEach(x => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
-}
+                string[] services;
+                if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
+                {
+                    // services.ToList().ForEach(x => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
+                }
 
 
-            if (checkBox7.Checked)
-            {
-                UpdateSessionClass uSession = new UpdateSessionClass();
-                IUpdateSearcher uSearcher = uSession.CreateUpdateSearcher();
-                ISearchResult uResult = uSearcher.Search(@"IsInstalled=0 and
+                if (checkBox6.Checked)
+                {
+                    RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
+
+                    mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
+
+                }
+
+                if (checkBox7.Checked)
+                {
+                    UpdateSessionClass uSession = new UpdateSessionClass();
+                    IUpdateSearcher uSearcher = uSession.CreateUpdateSearcher();
+                    ISearchResult uResult = uSearcher.Search(@"IsInstalled=0 and
                     Type='Software'");
 
-                UpdateDownloader downloader = uSession.CreateUpdateDownloader();
-                downloader.Updates = uResult.Updates;
-                downloader.Download();
+                    UpdateDownloader downloader = uSession.CreateUpdateDownloader();
+                    downloader.Updates = uResult.Updates;
+                    downloader.Download();
 
-                UpdateCollection updatesToInstall = new UpdateCollection();
-                foreach (IUpdate update in uResult.Updates)
-                {
-                    if (update.IsDownloaded)
-                        updatesToInstall.Add(update);
-                }
+                    UpdateCollection updatesToInstall = new UpdateCollection();
+                    foreach (IUpdate update in uResult.Updates)
+                    {
+                        if (update.IsDownloaded)
+                            updatesToInstall.Add(update);
+                    }
 
-                IUpdateInstaller installer = uSession.CreateUpdateInstaller();
-                installer.Updates = updatesToInstall;
-                IInstallationResult installationRes = installer.Install();
-
-            }
-
-
-            if (radioButton1.Checked)
-            {
-                if (Directory.Exists(@"Rads"))
-                {
-
-                    System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-                    File.Copy(CG + @"bin\cg.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll", true);
-                    File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll", true);
-                    File.Copy(CG + @"bin\cggl.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll", true);
-
-
-
-
-                    File.Copy(CG + @"bin\cg.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cg.dll", true);
-                    File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cgd3d9.dll", true);
-                    File.Copy(CG + @"bin\cggl.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cggl.dll", true);
-
-
-
-                    System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-                    File.Copy(CG + @"bin\cg.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cg.dll", true);
-                    File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cgd3d9.dll", true);
-                    File.Copy(CG + @"bin\cggl.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cggl.dll", true);
-
-
-
-
-
-                    System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
-                    System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
+                    IUpdateInstaller installer = uSession.CreateUpdateInstaller();
+                    installer.Updates = updatesToInstall;
+                    IInstallationResult installationRes = installer.Install();
 
                 }
-                if (Directory.Exists(@"Game"))
+
+
+                if (radioButton1.Checked)
                 {
-                    System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-                    File.Copy(CG + @"bin\cg.dll", @"game\cg.dll", true);
-                    File.Copy(CG + @"bin\cgd3d9.dll", @"game\cgd3d9.dll", true);
-                    File.Copy(CG + @"bin\cggl.dll", @"game\cggl.dll", true);
+                    if (Directory.Exists(@"Rads"))
+                    {
+
+                        System.IO.File.WriteAllBytes(@"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", LoLUpdater.Properties.Resources.tbb);
+                        File.Copy(CG + @"bin\cg.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll", true);
+                        File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll", true);
+                        File.Copy(CG + @"bin\cggl.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll", true);
 
 
 
-                    System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
-                    System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
 
+                        File.Copy(CG + @"bin\cg.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cg.dll", true);
+                        File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cgd3d9.dll", true);
+                        File.Copy(CG + @"bin\cggl.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cggl.dll", true);
+
+
+
+                        System.IO.File.WriteAllBytes(@"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\tbb.dll", LoLUpdater.Properties.Resources.tbb);
+                        File.Copy(CG + @"bin\cg.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cg.dll", true);
+                        File.Copy(CG + @"bin\cgd3d9.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cgd3d9.dll", true);
+                        File.Copy(CG + @"bin\cggl.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cggl.dll", true);
+
+                        System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
+                        System.IO.File.WriteAllBytes(@"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
+
+                    }
+                    if (Directory.Exists(@"Game"))
+                    {
+                        System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tbb);
+                        File.Copy(CG + @"bin\cg.dll", @"game\cg.dll", true);
+                        File.Copy(CG + @"bin\cgd3d9.dll", @"game\cgd3d9.dll", true);
+                        File.Copy(CG + @"bin\cggl.dll", @"game\cggl.dll", true);
+
+
+
+                        System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
+                        System.IO.File.WriteAllBytes(@"AIR\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
+
+                    }
+                    System.Windows.Forms.MessageBox.Show("Finished!");
                 }
-                System.Windows.Forms.MessageBox.Show("Finished!");
-            }
-            else if (radioButton2.Checked)
-            {
-                if (Directory.Exists(@"Rads"))
+                else if (radioButton2.Checked)
                 {
-                    File.Copy(@"Backup\cg.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll", true);
-                    File.Copy(@"Backup\cgd3d9.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll", true);
-                    File.Copy(@"Backup\cggl.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll", true);
-                    File.Copy(@"Backup\tbb.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", true);
+                    if (Directory.Exists(@"Rads"))
+                    {
+                        File.Copy(@"Backup\cg.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll", true);
+                        File.Copy(@"Backup\cgd3d9.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll", true);
+                        File.Copy(@"Backup\cggl.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll", true);
+                        File.Copy(@"Backup\tbb.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", true);
 
-                    File.Copy(@"Backup\cg.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cg.dll", true);
-                    File.Copy(@"Backup\cgd3d9.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cgd3d9.dll", true);
-                    File.Copy(@"Backup\cggl.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cggl.dll", true);
-                    File.Copy(@"Backup\tbb.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\tbb.dll", true);
+                        File.Copy(@"Backup\cg.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cg.dll", true);
+                        File.Copy(@"Backup\cgd3d9.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cgd3d9.dll", true);
+                        File.Copy(@"Backup\cggl.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cggl.dll", true);
+                        File.Copy(@"Backup\tbb.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\tbb.dll", true);
 
 
-                    File.Copy(@"Backup\cg.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cg.dll", true);
-                    File.Copy(@"Backup\cgd3d9.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cgd3d9.dll", true);
-                    File.Copy(@"Backup\cggl.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cggl.dll", true);
+                        File.Copy(@"Backup\cg.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cg.dll", true);
+                        File.Copy(@"Backup\cgd3d9.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cgd3d9.dll", true);
+                        File.Copy(@"Backup\cggl.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cggl.dll", true);
 
-                    File.Copy(@"Backup\NPSWF32.dll", @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", true);
-                    File.Copy(@"Backup\Adobe Air.dll", @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", true);
-                    File.Copy(@"Backup\game.cfg", @"Config\game.cfg", true);
+                        File.Copy(@"Backup\NPSWF32.dll", @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", true);
+
+                        File.Copy(@"Backup\Adobe Air.dll", @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", true);
+                        if (File.Exists(@"Backup\game.cfg"))
+                        {
+                            File.Copy(@"Backup\game.cfg", @"Config\game.cfg", true);
+                        }
+                        else { }
+                        if (Directory.Exists(@"Game"))
+                        {
+                            File.Copy(@"Backup\cg.dll", @"game\cg.dll", true);
+                            File.Copy(@"Backup\cgd3d9.dll", @"game\cgd3d9.dll", true);
+                            File.Copy(@"Backup\cggl.dll", @"game\cggl.dll", true);
+                            File.Copy(@"Backup\msvcr120.dll", @"game\msvcr120.dll", true);
+                            File.Copy(@"Backup\msvcp120.dll", @"game\msvcp120.dll", true);
+                            File.Copy(@"Backup\tbb.dll", @"game\tbb.dll", true);
+                            File.Copy(@"Backup\NPSWF32.dll", @"AIR\Versions\1.0\Resources\NPSWF32.dll", true);
+                            File.Copy(@"Backup\Adobe Air.dll", @"AIR\Versions\1.0\Adobe Air.dll", true);
+
+
+                            if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
+                            {
+                                File.Copy(@"Backup\game.cfg", @"Game\DATA\CFG\defaults\game.cfg", true);
+                                File.Copy(@"Backup\gamepermanent.cfg", @"Game\DATA\CFG\defaults\gamepermanent.cfg", true);
+
+                            }
+                            else { }
+
+
+
+                        }
+                        System.Windows.Forms.MessageBox.Show("Finished!");
+                    }
+                    else if (radioButton3.Checked)
+                    {
+
+                        System.Windows.Forms.MessageBox.Show("Finished!");
+                    }
                 }
-                if (Directory.Exists(@"Game"))
-                {
-                    File.Copy(@"Backup\cg.dll", @"game\cg.dll", true);
-                    File.Copy(@"Backup\cgd3d9.dll", @"game\cgd3d9.dll", true);
-                    File.Copy(@"Backup\cggl.dll", @"game\cggl.dll", true);
-                    File.Copy(@"Backup\msvcr120.dll", @"game\msvcr120.dll", true);
-                    File.Copy(@"Backup\msvcp120.dll", @"game\msvcp120.dll", true);
-                    File.Copy(@"Backup\tbb.dll", @"game\tbb.dll", true);
-                    File.Copy(@"Backup\NPSWF32.dll", @"AIR\Versions\1.0\Resources\NPSWF32.dll", true);
-                    File.Copy(@"Backup\Adobe Air.dll", @"AIR\Versions\1.0\Adobe Air.dll", true);
-                    File.Copy(@"Backup\game.cfg", @"Config\game.cfg", true);
-
-                }
-                System.Windows.Forms.MessageBox.Show("Finished!");
-            }
-            else if (radioButton3.Checked)
-            {
-
-                System.Windows.Forms.MessageBox.Show("Finished!");
             }
         }
+    
+
+        
 
 
 
@@ -492,6 +568,8 @@ if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.T
                 CloseServiceHandle(scManagerHandle);
             }
         }
+
+
     }
 }
     
