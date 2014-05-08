@@ -152,36 +152,7 @@ namespace LoLUpdater
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int coreCount = 0;
-            foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
-            {
-                coreCount += int.Parse(item["NumberOfCores"].ToString());
-            }
-
-            if (coreCount >= 2)
-            {
-                if (Directory.Exists(@"RADS"))
-                {
-                    if (File.Exists(@"Config\game.cfg"))
-                    {
-                        File.AppendAllText(@"Config\game.cfg", @"DefaultParticleMultithreading=1");
-
-                    }
-
-                    if (Directory.Exists(@"Game"))
-                    {
-
-                        if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
-                        {
-                            File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", @"DefaultParticleMultithreading=1");
-                            File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"DefaultParticleMultithreading=1");
-
-                        }
-
-                    }
-
-
-                }
+    
 
 
                 var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
@@ -311,7 +282,7 @@ namespace LoLUpdater
                 string[] services;
                 if (checkBox5.Checked && allServices.TryGetValue(Environment.OSVersion.Version.ToString(), out services))
                 {
-                    // services.ToList().ForEach(x => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
+services.ToList().ForEach(x => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
                 }
 
 
@@ -350,6 +321,37 @@ namespace LoLUpdater
 
                 if (radioButton1.Checked)
                 {
+                    int coreCount = 0;
+                    foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
+                    {
+                        coreCount += int.Parse(item["NumberOfCores"].ToString());
+                    }
+
+                    if (coreCount >= 2)
+                    {
+                        if (Directory.Exists(@"RADS"))
+                        {
+                            if (File.Exists(@"Config\game.cfg"))
+                            {
+                                File.AppendAllText(@"Config\game.cfg", @"DefaultParticleMultithreading=1");
+
+                            }
+
+                            if (Directory.Exists(@"Game"))
+                            {
+
+                                if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
+                                {
+                                    File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", @"DefaultParticleMultithreading=1");
+                                    File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"DefaultParticleMultithreading=1");
+
+                                }
+
+                            }
+
+
+                        }
+
                     if (Directory.Exists(@"Rads"))
                     {
 
