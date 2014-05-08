@@ -233,14 +233,14 @@ if (Directory.Exists("RADS"))
 {
 if (File.Exists(@"Config\game.cfg"))
 {
-File.AppendAllText(@"Config\game.cfg", @"DefaultParticleMultithreading=1");
+File.AppendAllText(@"Config\game.cfg", "DefaultParticleMultithreading=1");
 }
 if (Directory.Exists("Game"))
 {
 if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
 {
-File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", @"DefaultParticleMultithreading=1");
-File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", @"DefaultParticleMultithreading=1");
+File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", "DefaultParticleMultithreading=1");
+File.AppendAllText(@"Game\DATA\CFG\defaults\gamepermanent.cfg", "DefaultParticleMultithreading=1");
 }
 }
 }
