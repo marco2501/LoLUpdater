@@ -31,7 +31,6 @@ namespace LoLUpdater
         private void Form1_Load(object sender, EventArgs e)
         {
 
-           
 
             DirectoryInfo airinfo = new DirectoryInfo(airr);
             DirectoryInfo air = airinfo.GetDirectories()
@@ -325,30 +324,31 @@ process3.WaitForExit();
 
 
                         }
-
+                 
                     if (Directory.Exists(@"Rads"))
                     {
                         string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
                         string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
                         string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
+                        string launchz = @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy";
                         System.IO.File.WriteAllBytes(gamez + @"\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-                        File.Copy(CG + @"\cg.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll", true);
-                        File.Copy(CG + @"\cgd3d9.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll", true);
-                        File.Copy(CG + @"\cggl.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll", true);
+                        File.Copy(CG + @"\cg.dll", gamez + @"\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", gamez + @"\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", gamez + @"\cggl.dll", true);
 
 
 
 
-                        File.Copy(CG + @"\cg.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cg.dll", true);
-                        File.Copy(CG + @"\cgd3d9.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cgd3d9.dll", true);
-                        File.Copy(CG + @"\cggl.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cggl.dll", true);
+                        File.Copy(CG + @"\cg.dll", launchz + @"\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", launchz + @"\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", launchz + @"\cggl.dll", true);
 
 
 
                         System.IO.File.WriteAllBytes(slnz + @"\tbb.dll", LoLUpdater.Properties.Resources.tbb);
-                        File.Copy(CG + @"\cg.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cg.dll", true);
-                        File.Copy(CG + @"\cgd3d9.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cgd3d9.dll", true);
-                        File.Copy(CG + @"\cggl.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cggl.dll", true);
+                        File.Copy(CG + @"\cg.dll", slnz + @"\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", slnz + @"\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", slnz + @"\cggl.dll", true);
 
                         System.IO.File.WriteAllBytes(airz + @"\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
                         System.IO.File.WriteAllBytes(airz + @"\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
@@ -373,24 +373,29 @@ process3.WaitForExit();
                 {
                     if (Directory.Exists(@"Rads"))
                     {
-                        File.Copy(@"Backup\cg.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cg.dll", true);
-                        File.Copy(@"Backup\cgd3d9.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cgd3d9.dll", true);
-                        File.Copy(@"Backup\cggl.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\cggl.dll", true);
-                        File.Copy(@"Backup\tbb.dll", @"RADS\projects\lol_game_client\releases\" + game + @"\deploy\tbb.dll", true);
+                        string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
+                        string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
+                        string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
+                        string launchz = @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy";
 
-                        File.Copy(@"Backup\cg.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cg.dll", true);
-                        File.Copy(@"Backup\cgd3d9.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cgd3d9.dll", true);
-                        File.Copy(@"Backup\cggl.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\cggl.dll", true);
-                        File.Copy(@"Backup\tbb.dll", @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy\tbb.dll", true);
+                        File.Copy(@"Backup\cg.dll", gamez + @"\cg.dll", true);
+                        File.Copy(@"Backup\cgd3d9.dll", gamez + @"\cgd3d9.dll", true);
+                        File.Copy(@"Backup\cggl.dll", gamez + @"\cggl.dll", true);
+                        File.Copy(@"Backup\tbb.dll", gamez + @"\tbb.dll", true);
+
+                        File.Copy(@"Backup\cg.dll", slnz + @"\deploy\cg.dll", true);
+                        File.Copy(@"Backup\cgd3d9.dll", slnz + @"\cgd3d9.dll", true);
+                        File.Copy(@"Backup\cggl.dll", slnz + @"\cggl.dll", true);
+                        File.Copy(@"Backup\tbb.dll", slnz + @"\tbb.dll", true);
 
 
-                        File.Copy(@"Backup\cg.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cg.dll", true);
-                        File.Copy(@"Backup\cgd3d9.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cgd3d9.dll", true);
-                        File.Copy(@"Backup\cggl.dll", @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy\cggl.dll", true);
+                        File.Copy(@"Backup\cg.dll", launchz + @"\cg.dll", true);
+                        File.Copy(@"Backup\cgd3d9.dll", launchz + @"\\cgd3d9.dll", true);
+                        File.Copy(@"Backup\cggl.dll", launchz + @"\\cggl.dll", true);
 
-                        File.Copy(@"Backup\NPSWF32.dll", @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", true);
+                        File.Copy(@"Backup\NPSWF32.dll", airz + @"\Adobe AIR\Versions\1.0\Resources\NPSWF32.dll", true);
 
-                        File.Copy(@"Backup\Adobe Air.dll", @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0\Adobe Air.dll", true);
+                        File.Copy(@"Backup\Adobe Air.dll", airz + @"\Adobe AIR\Versions\1.0\Adobe Air.dll", true);
                         if (File.Exists(@"Backup\game.cfg"))
                         {
                             File.Copy(@"Backup\game.cfg", @"Config\game.cfg", true);
@@ -548,9 +553,6 @@ process3.WaitForExit();
                 CloseServiceHandle(scManagerHandle);
             }
         }
-
-
-
 
     }
 
