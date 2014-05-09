@@ -3,11 +3,11 @@ Releases
 ![alt text](http://i.imgur.com/5IPNffp.png)
 =======
 
-[Download Releases](https://github.com/Loggan08/LoLUpdater/releases) [Or compile from Source with Visual Studio](https://github.com/Loggan08/LoLUpdater/archive/master.zip)
+[Download releases](https://github.com/Loggan08/LoLUpdater/releases) or [compile from Source with Visual Studio](https://github.com/Loggan08/LoLUpdater/archive/master.zip)
 
-[Requirement: Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
+[Requirement: download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
 
-[Requirement: Download .Net4.5.2](http://www.microsoft.com/en-us/download/confirmation.aspx?id=42643)
+[Requirement: download .Net4.5.2](http://www.microsoft.com/en-us/download/confirmation.aspx?id=42643)
 
 I if you have installed old versions of LoLupdater i suggest you reinstall LoL.
 
