@@ -3,9 +3,7 @@ Releases
 ![alt text](http://i.imgur.com/5IPNffp.png)
 =======
 
-[Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
-
-[Or compile from Source with Visual Studio](https://github.com/Loggan08/LoLUpdater/archive/master.zip)
+[Download Releases](https://github.com/Loggan08/LoLUpdater/releases) [Or compile from Source with Visual Studio](https://github.com/Loggan08/LoLUpdater/archive/master.zip)
 
 [Requirement: Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
 
