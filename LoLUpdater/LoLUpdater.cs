@@ -23,6 +23,9 @@ using System.Runtime.InteropServices;
 using System.Management;
 namespace LoLUpdater
 {
+
+
+
     public partial class Menu : Form
     {
         public Menu()
@@ -31,8 +34,22 @@ namespace LoLUpdater
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            if (AtLeastVista())
+                SetButtonShield(ElevateButton, true);
         }
+        public static bool AtLeastVista()
+        {
+            return (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major >= 6);
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        public static extern IntPtr SendMessage(HandleRef hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+
+        public static void SetButtonShield(Button btn, bool showShield)
+        {
+            SendMessage(new HandleRef(btn, btn.Handle), 0x160C, IntPtr.Zero, showShield ? new IntPtr(1) : IntPtr.Zero);
+        }
+
 
         private void ChangeEnabled(bool enabled)
         {
@@ -457,6 +474,8 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
         // Self-Eleveation button used to do admin tasks
         private void button2_Click(object sender, EventArgs e)
         {
+
+
             if (!IsRunAsAdmin())
             {
                 Elevate();

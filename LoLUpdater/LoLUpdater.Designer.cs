@@ -214,6 +214,7 @@ namespace LoLUpdater
             // 
             // ElevateButton
             // 
+            this.ElevateButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ElevateButton.Location = new System.Drawing.Point(187, 120);
             this.ElevateButton.Name = "ElevateButton";
             this.ElevateButton.Size = new System.Drawing.Size(173, 20);
