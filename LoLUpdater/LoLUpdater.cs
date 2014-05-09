@@ -8,10 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+// used for registry
 using Microsoft.Win32;
 using System.Diagnostics;
+// used for stopping and starting services
 using System.ServiceProcess;
+// used for windows update
 using WUApiLib;
+// used for the self-elevate portion of the program
 using System.Security.Principal;
 using System.Runtime.InteropServices;
 using System.Management;
@@ -114,7 +118,7 @@ namespace LoLUpdater
             RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
             var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
 
-            // starts Cleanmanager if the checkbox is selected and OK is presssed
+            // starts Cleanmanager as admin if the checkbox is selected and OK is presssed
             if (Cleantemp.Checked)
             {
                 var cm = new ProcessStartInfo();
@@ -215,7 +219,7 @@ namespace LoLUpdater
                 defrag.WaitForExit();
             }
 
-            // Starts a Windows update sessions byu using the wuapilib.dll extension.
+            // Starts a Windows update sessions by using the wuapilib.dll extension.
             if (WindowsUpdate.Checked)
             {
                 UpdateSessionClass uSession = new UpdateSessionClass();
@@ -407,6 +411,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                     System.Windows.Forms.MessageBox.Show("Finished!");
                 }
 
+                  //the "only checkbioxes radio button"
                 else if (onlycheckboxes.Checked)
                 {
                     System.Windows.Forms.MessageBox.Show("Finished!");
@@ -424,14 +429,14 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
             }
         }
 
-        // function for the button above
+        // function for the button above, checks if app is running as admin
         internal static bool IsRunAsAdmin()
         {
             var Principle = new WindowsPrincipal(WindowsIdentity.GetCurrent());
             return Principle.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        // function for the button above
+        // function for the button above, elevates the process by using runas and exiting the app
         private static bool Elevate()
         {
             var SelfProc = new ProcessStartInfo
