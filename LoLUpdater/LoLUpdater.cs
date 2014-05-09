@@ -130,26 +130,7 @@ namespace LoLUpdater
                 process.Start();
                 process.WaitForExit();
             }
-            // Stops Windows update service and delete update cache (errors atm due to read only files)
-            if (Cleanupdatecache.Checked)
-            {
-                ServiceController updateservice = new ServiceController("wuauserv");
-                switch (updateservice.Status)
-                {
-                    case ServiceControllerStatus.Running:
-                        updateservice.Stop();
-                        updateservice.WaitForStatus(ServiceControllerStatus.Stopped);
-                        Directory.Delete(windir + @"\SoftwareDistribution", true);
-                        updateservice.Start();
-                        updateservice.WaitForStatus(ServiceControllerStatus.Running);
-                        break;
-                    case ServiceControllerStatus.Stopped:
-                        Directory.Delete(windir + @"\SoftwareDistribution", true);
-                        updateservice.Start();
-                        updateservice.WaitForStatus(ServiceControllerStatus.Running);
-                        break;
-                }
-            }
+
 
             // Option for uninstalling Pando Media Booster (malware)
             if (UninstallPMB.Checked)
@@ -252,6 +233,27 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                         if (fi.LastAccessTime < DateTime.Now.AddDays(-7))
                             fi.Delete();
                     }
+                }
+            }
+
+            // Stops Windows update service and delete update cache (errors atm due to read only files)
+            if (Cleanupdatecache.Checked)
+            {
+                ServiceController updateservice = new ServiceController("wuauserv");
+                switch (updateservice.Status)
+                {
+                    case ServiceControllerStatus.Running:
+                        updateservice.Stop();
+                        updateservice.WaitForStatus(ServiceControllerStatus.Stopped);
+                        Directory.Delete(windir + @"\SoftwareDistribution", true);
+                        updateservice.Start();
+                        updateservice.WaitForStatus(ServiceControllerStatus.Running);
+                        break;
+                    case ServiceControllerStatus.Stopped:
+                        Directory.Delete(windir + @"\SoftwareDistribution", true);
+                        updateservice.Start();
+                        updateservice.WaitForStatus(ServiceControllerStatus.Running);
+                        break;
                 }
             }
 
@@ -516,6 +518,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 CloseServiceHandle(scManagerHandle);
             }
         }
+
 
     }
 }

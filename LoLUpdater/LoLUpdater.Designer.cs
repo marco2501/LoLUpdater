@@ -158,7 +158,7 @@ namespace LoLUpdater
             // Mousepollingrate
             // 
             this.Mousepollingrate.AutoSize = true;
-            this.Mousepollingrate.Location = new System.Drawing.Point(6, 85);
+            this.Mousepollingrate.Location = new System.Drawing.Point(6, 18);
             this.Mousepollingrate.Name = "Mousepollingrate";
             this.Mousepollingrate.Size = new System.Drawing.Size(112, 17);
             this.Mousepollingrate.TabIndex = 8;
@@ -180,7 +180,7 @@ namespace LoLUpdater
             // Cleanupdatecache
             // 
             this.Cleanupdatecache.AutoSize = true;
-            this.Cleanupdatecache.Location = new System.Drawing.Point(6, 18);
+            this.Cleanupdatecache.Location = new System.Drawing.Point(6, 85);
             this.Cleanupdatecache.Name = "Cleanupdatecache";
             this.Cleanupdatecache.Size = new System.Drawing.Size(122, 17);
             this.Cleanupdatecache.TabIndex = 1;
@@ -221,9 +221,9 @@ namespace LoLUpdater
             // 
             // AdminOptions
             // 
+            this.AdminOptions.Controls.Add(this.Cleanupdatecache);
             this.AdminOptions.Controls.Add(this.Mousepollingrate);
             this.AdminOptions.Controls.Add(this.WindowsServices);
-            this.AdminOptions.Controls.Add(this.Cleanupdatecache);
             this.AdminOptions.Controls.Add(this.WindowsUpdate);
             this.AdminOptions.Location = new System.Drawing.Point(122, 0);
             this.AdminOptions.Name = "AdminOptions";
@@ -236,7 +236,7 @@ namespace LoLUpdater
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 155);
+            this.ClientSize = new System.Drawing.Size(390, 146);
             this.Controls.Add(this.Options);
             this.Controls.Add(this.ElevateButton);
             this.Controls.Add(this.Combininggroupbox);
