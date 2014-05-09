@@ -1,15 +1,15 @@
 Releases
-================
+========
 
-https://www.youtube.com/watch?v=R1PSgUoQtJ4
+	https://www.youtube.com/watch?v=R1PSgUoQtJ4
 
-[Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
+	[Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
 
-[Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
+	[Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
 
-[Download .Net4.5.2](http://www.microsoft.com/en-us/download/confirmation.aspx?id=42643)
+	[Download .Net4.5.2](http://www.microsoft.com/en-us/download/confirmation.aspx?id=42643)
 
-I if you have installed previous versions of lolupdater i suggest you reinstall LoL.
+	I if you have installed old versions of lolupdater i suggest you reinstall LoL.
 
 
 
@@ -29,43 +29,27 @@ Put files in right location
 
 What does it do?
 ================
-What does LoLUpdater do? (LoLTweaker and WindowsTweaker)
+	Replaces RIOTs "tbb.dll", "Adobe AIR.dll" and "NPSWF32.dll" with newer versions available on the internet (Backs up the DLLs first)
 
-Option to uninstall Pando Media Booster
+	Option to use Windows "Cleanmanager" to clean up your harddrive
 
-Updates Adobe Air.dll (Takes care of the PVP Client) to the latest stable version
+	Option to Uninstall "Pando Media Booster" that comes with LoL which is considered an unsafe application nowadays.
 
-Updates NPSWF32.dll (Takes care of the flash animations in the launcher) to the latest stable version
+	Option to delete RIOT logs older than 7 days.
 
-Updates msvcp120 and msvcr120 (League dependencies) to the latest stable version.
+	Option to open the Defrag GUI to do SSD Trimming or a HDD defrag.
 
-Updates tbb.dll (Game DLL) to the latest stable version
+	Option for Windows 8+ to set the Mouse Hz to 500Hz
 
-Sets DefaultParticleMultithreading=1 if you have more than or equal to 2 CPU cores (game config tweak)
+	Option to do a Windows Update
 
-option to Clear Windows Update Cache so that some failed updates might be reinstalled
+	Option to set some Windows services to manual startupmode
 
-option to apply a Mouse Polling Rate Fix for Windows 8+ that sets the Mouse Hz to 500Hz
+	Option to Clean up Windows Update cache for the purpose of reinstalling failed updates.
 
-option to Clear Temp and Prefetch
+	An "OK" button to confirm your selection(s) and a "Self-Elevate" button to do Administartor tasks.
 
-Backs up all files before "patching"
 
-Option to delete logs older than 7 days
-
-Option to defrag (with SSD detection to stop defrag from happening on SSDs)
-
-Auto-Trimming the Windows drive
-
-Option to run windows disc clean
-
-Option to install .net 4.5.1 and do a Windows Update
-
-Sets some services to manual (safe to do)
-
-Option to restore backups
-
-Works for Garena too
-
-Update CG files to the latest stable version (in game overlay)
-
+Licence
+================
+	[GPL-v3](http://www.gnu.org/licenses/gpl-3.0.html)

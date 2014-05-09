@@ -31,18 +31,18 @@ namespace LoLUpdater
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
-        private void ChangeEnabled( bool enabled )
+        private void ChangeEnabled(bool enabled)
         {
-            foreach ( Control c in this.Controls )
+            foreach (Control c in this.Controls)
             {
-                c.Enabled = enabled;    
+                c.Enabled = enabled;
             }
         }
 
-        private void finished() 
+        private void finished()
         {
             OKButton.Text = "OK";
             ChangeEnabled(true);
@@ -305,9 +305,9 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
 
                         if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg"))
                         { File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", Environment.NewLine + "DefaultParticleMultithreading=1"); }
-                        
 
-                        
+
+
 
 
                     }
@@ -363,7 +363,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 }
                 finished();
             }
-                // if restore backup radiobutton checked then do this (duplicate code from before)
+            // if restore backup radiobutton checked then do this (duplicate code from before)
             else if (Restorebackups.Checked)
             {
                 if (Directory.Exists("Rads"))
