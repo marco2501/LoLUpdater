@@ -236,7 +236,7 @@ namespace LoLUpdater
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 146);
+            this.ClientSize = new System.Drawing.Size(386, 146);
             this.Controls.Add(this.Options);
             this.Controls.Add(this.ElevateButton);
             this.Controls.Add(this.Combininggroupbox);
