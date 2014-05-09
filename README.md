@@ -1,8 +1,6 @@
 Releases
 ========
 
-https://www.youtube.com/watch?v=R1PSgUoQtJ4
-
 [Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
 
 [Or compile from Source with Visual Studio](https://github.com/Loggan08/LoLUpdater/archive/master.zip)
