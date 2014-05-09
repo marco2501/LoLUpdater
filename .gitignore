@@ -1,0 +1,9 @@
+*.dll
+*.exe
+*.config
+*.pdb
+*.manifest
+*.cache
+*.resources
+*.txt
+*.cs
