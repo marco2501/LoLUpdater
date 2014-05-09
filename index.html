@@ -1,33 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
     <title>Lolupdater by Loggan08</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Lolupdater</h1>
+        <p class="header"></p>
 
-    <header>
-      <div class="container">
-        <h1>Lolupdater</h1>
-        <h2></h2>
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/Loggan08/LoLUpdater/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/Loggan08/LoLUpdater/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/Loggan08/LoLUpdater">View On GitHub</a></li>
+        </ul>
 
-        <section id="downloads">
-          <a href="https://github.com/Loggan08/LoLUpdater/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/Loggan08/LoLUpdater/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/Loggan08/LoLUpdater" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/Loggan08">Loggan08</a></p>
 
-    <div class="container">
-      <section id="main_content">
+
+      </header>
+      <section>
         <h1>
 <a name="releases" class="anchor" href="#releases"><span class="octicon octicon-link"></span></a>Releases</h1>
 
@@ -35,7 +37,7 @@
 <a name="" class="anchor" href="#"><span class="octicon octicon-link"></span></a><img src="http://i.imgur.com/5IPNffp.png" alt="alt text">
 </h1>
 
-<p><a href="https://github.com/Loggan08/LoLUpdater/releases">Download releases</a> or <a href="https://github.com/Loggan08/LoLUpdater/archive/master.zip">compile from Source with Visual Studio</a></p>
+<p><a href="https://github.com/Loggan08/LoLUpdater/releases">Download releases</a> or <a href="https://github.com/Loggan08/LoLUpdater/archive/master.zip">compile from Source</a></p>
 
 <p><a href="http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe">Requirement: download CG</a></p>
 
@@ -46,14 +48,14 @@
 <h1>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
 
-<p>All files go to LoL folder (example: "League of legends" folder for regular LoL, or the "LoL" folder for Garena.</p>
+<p>All files go to the LoL folder (example: "League of legends" folder for regular LoL, or the "LoL" folder for Garena.</p>
 
 <p>Run LoLUpdater.exe</p>
 
 <h1>
 <a name="what-does-it-do" class="anchor" href="#what-does-it-do"><span class="octicon octicon-link"></span></a>What does it do?</h1>
 
-<p>Replaces RIOTs "tbb.dll", "Adobe AIR.dll" and "NPSWF32.dll" with newer versions available on the internet (Backs up the DLLs first with an option to restore them later)</p>
+<p>Replaces RIOTs "tbb.dll", "Adobe AIR.dll" and "NPSWF32.dll" (Also CG.dll, CGGL.dll and CGD3D9.dll if you have Nvidia CG installed) with newer versions available on the internet (Backs up the DLLs first with an option to restore them later)</p>
 
 <p>Option to use Windows "Cleanmanager" to clean up your harddrive</p>
 
@@ -73,16 +75,28 @@
 
 <p>An "OK" button to confirm your selection(s) and a "Self-Elevate" button to do Administartor tasks.</p>
 
-<p>Works for Regular LoL, PBE client and both servers on Garena.</p>
+<p>Works for Regular LoL, the PBE client and both servers on Garena.</p>
+
+<h1>
+<a name="what-are-the-effects" class="anchor" href="#what-are-the-effects"><span class="octicon octicon-link"></span></a>What are the effects?</h1>
+
+<p>More responsive PVP client</p>
+
+<p>More FPS ingame without affecting graphics</p>
+
+<p>Ingame shop opens instantly</p>
 
 <h1>
 <a name="licence" class="anchor" href="#licence"><span class="octicon octicon-link"></span></a>Licence</h1>
 
 <p><a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL-v3</a></p>
       </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
     </div>
-
-              <script type="text/javascript">
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		          <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
