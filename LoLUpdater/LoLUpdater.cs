@@ -46,7 +46,7 @@ namespace LoLUpdater
         {
             OKButton.Text = "OK";
             ChangeEnabled(true);
-            MessageBox.show("Finished!");
+            MessageBox.Show("Finished!");
         }
 
         // The directories where the version folders are saved as strings
