@@ -25,6 +25,8 @@ What does it do?
 ================
 Replaces RIOTs "tbb.dll", "Adobe AIR.dll" and "NPSWF32.dll" (Also CG.dll, CGGL.dll and CGD3D9.dll if you have Nvidia CG installed) with newer versions available on the internet (Backs up the DLLs first with an option to restore them later)
 
+Applies a game config tweak for computers with 2 or more cores
+
 Option to use Windows "Cleanmanager" to clean up your harddrive
 
 Option to Uninstall "Pando Media Booster" that comes with LoL which is considered an unsafe application nowadays.
