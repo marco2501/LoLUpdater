@@ -55,6 +55,12 @@ More FPS ingame without affecting graphics
 
 Ingame shop opens instantly
 
+
+Is it legal?
+============
+[RIOTs stance on 3rd party applications](http://forums.euw.leagueoflegends.com/board/showthread.php?t=1710481)
+
+
 Licence
 ================
 [GPL-v3](http://www.gnu.org/licenses/gpl-3.0.html)
