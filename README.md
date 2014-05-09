@@ -5,24 +5,20 @@ Releases
 
 	[Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
 
-	[Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
+	[Or compile from Source with Visual Studio](https://github.com/Loggan08/LoLUpdater/archive/master.zip)
 
-	[Download .Net4.5.2](http://www.microsoft.com/en-us/download/confirmation.aspx?id=42643)
+	[Requirement: Download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
 
-	I if you have installed old versions of lolupdater i suggest you reinstall LoL.
+	[Requirement: Download .Net4.5.2](http://www.microsoft.com/en-us/download/confirmation.aspx?id=42643)
+
+	I if you have installed old versions of LoLupdater i suggest you reinstall LoL.
 
 
 
 Installation
 ============
-Put files in right location
 
-
-	League must be installed on “X:\Riot Games\League of Legends” (X = any drive letter)
-
-	For Garena you need to put all files in the: GarenaLoL\GameData\Apps\LoL folder
-
-	All files go to LoL folder
+	All files go to LoL folder (example: "League of legends" folder for regular LoL, or the "LoL" folder for Garena.
 
 	Run LoLUpdater.exe
 
@@ -48,6 +44,8 @@ What does it do?
 	Option to Clean up Windows Update cache for the purpose of reinstalling failed updates.
 
 	An "OK" button to confirm your selection(s) and a "Self-Elevate" button to do Administartor tasks.
+
+	Works for Regular LoL, PBE client and both servers on Garena.
 
 
 Licence
