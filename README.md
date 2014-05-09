@@ -3,7 +3,7 @@ Releases
 ![alt text](http://i.imgur.com/5IPNffp.png)
 =======
 
-[Download releases](https://github.com/Loggan08/LoLUpdater/releases) or [compile from Source with Visual Studio](https://github.com/Loggan08/LoLUpdater/archive/master.zip)
+[Download releases](https://github.com/Loggan08/LoLUpdater/releases) or [compile from Source](https://github.com/Loggan08/LoLUpdater/archive/master.zip)
 
 [Requirement: download CG](http://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_Setup.exe)
 
@@ -16,14 +16,14 @@ I if you have installed old versions of LoLupdater i suggest you reinstall LoL.
 Installation
 ============
 
-All files go to LoL folder (example: "League of legends" folder for regular LoL, or the "LoL" folder for Garena.
+All files go to the LoL folder (example: "League of legends" folder for regular LoL, or the "LoL" folder for Garena.
 
 Run LoLUpdater.exe
 
 
 What does it do?
 ================
-Replaces RIOTs "tbb.dll", "Adobe AIR.dll" and "NPSWF32.dll" with newer versions available on the internet (Backs up the DLLs first with an option to restore them later)
+Replaces RIOTs "tbb.dll", "Adobe AIR.dll" and "NPSWF32.dll" (Also CG.dll, CGGL.dll and CGD3D9.dll if you have Nvidia CG installed) with newer versions available on the internet (Backs up the DLLs first with an option to restore them later)
 
 Option to use Windows "Cleanmanager" to clean up your harddrive
 
@@ -43,8 +43,17 @@ Option to Clean up Windows Update cache for the purpose of reinstalling failed u
 
 An "OK" button to confirm your selection(s) and a "Self-Elevate" button to do Administartor tasks.
 
-Works for Regular LoL, PBE client and both servers on Garena.
+Works for Regular LoL, the PBE client and both servers on Garena.
 
+
+What are the effects?
+=====================
+
+More responsive PVP client
+
+More FPS ingame without affecting graphics
+
+Ingame shop opens instantly
 
 Licence
 ================
