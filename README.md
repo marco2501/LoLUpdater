@@ -1,6 +1,6 @@
 Releases
 ========
-![alt text](http://i.imgur.com/xG3rkfj.png)
+![alt text](http://i.imgur.com/5IPNffp.png)
 =======
 
 [Download Releases](https://github.com/Loggan08/LoLUpdater/releases)

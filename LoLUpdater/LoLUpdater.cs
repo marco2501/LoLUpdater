@@ -66,6 +66,8 @@ namespace LoLUpdater
             MessageBox.Show("Finished!");
         }
 
+  
+
         // The directories where the version folders are saved as strings
         string airr = @"RADS\projects\lol_air_client\releases";
         string slnr = @"RADS\solutions\lol_game_client_sln\releases";
