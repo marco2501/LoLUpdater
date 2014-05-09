@@ -31,8 +31,24 @@ namespace LoLUpdater
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
+
+        private void ChangeEnabled(bool enabled)
+        {
+            foreach (Control c in this.Controls)
+            {
+                c.Enabled = enabled;
+            }
+        }
+
+        private void finished()
+        {
+            OKButton.Text = "OK";
+            ChangeEnabled(true);
+            MessageBox.Show("Finished!");
+        }
+
         // The directories where the version folders are saved as strings
         string airr = @"RADS\projects\lol_air_client\releases";
         string slnr = @"RADS\solutions\lol_game_client_sln\releases";
@@ -40,6 +56,9 @@ namespace LoLUpdater
         string gamer = @"RADS\projects\lol_game_client\releases";
         private void button1_Click(object sender, EventArgs e)
         {
+            OKButton.Text = "Working…";
+            ChangeEnabled(false);
+
             // if backup folder exists then ignor backing up
             if (!Directory.Exists("Backup"))
             {
@@ -286,9 +305,9 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
 
                         if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg"))
                         { File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", Environment.NewLine + "DefaultParticleMultithreading=1"); }
-                        
 
-                        
+
+
 
 
                     }
@@ -342,9 +361,9 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                     System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
                     System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
                 }
-                System.Windows.Forms.MessageBox.Show("Finished!");
+                finished();
             }
-                // if restore backup radiobutton checked then do this (duplicate code from before)
+            // if restore backup radiobutton checked then do this (duplicate code from before)
             else if (Restorebackups.Checked)
             {
                 if (Directory.Exists("Rads"))
@@ -412,13 +431,13 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
 
                         }
                     }
-                    System.Windows.Forms.MessageBox.Show("Finished!");
+                    finished();
                 }
 
                   //the "only checkbioxes radio button"
                 else if (onlycheckboxes.Checked)
                 {
-                    System.Windows.Forms.MessageBox.Show("Finished!");
+                    finished();
 
                 }
             }
