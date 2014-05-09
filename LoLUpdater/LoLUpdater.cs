@@ -1,3 +1,5 @@
+// LoLUpdater for Windows replaces some DLL files that come with the game (embedded as rousources here in the project) to increase the overall performance of the game
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
