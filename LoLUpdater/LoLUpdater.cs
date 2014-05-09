@@ -27,18 +27,21 @@ namespace LoLUpdater
         {
             
         }
+        // The directories where the version folders are saved as strings
         string airr = @"RADS\projects\lol_air_client\releases";
         string slnr = @"RADS\solutions\lol_game_client_sln\releases";
         string launchr = @"RADS\projects\lol_launcher\releases";
         string gamer = @"RADS\projects\lol_game_client\releases";
         private void button1_Click(object sender, EventArgs e)
         {
-
+            // if backup folder exists then ignor backing up
             if (!Directory.Exists("Backup"))
             {
                 Directory.CreateDirectory("Backup");
                 if (Directory.Exists("Rads"))
                 {
+
+                    // finds the most recent folder in the directories that are saved as strings above (required for proper patching)
                     DirectoryInfo airinfo = new DirectoryInfo(airr);
                     DirectoryInfo air = airinfo.GetDirectories()
                     .OrderByDescending(d => d.CreationTime)
@@ -55,6 +58,8 @@ namespace LoLUpdater
                     DirectoryInfo game = gameinfo.GetDirectories()
                     .OrderByDescending(d => d.CreationTime)
                     .FirstOrDefault();
+
+                    // again; directories saved as strings
                     string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
                     string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
 
@@ -71,6 +76,8 @@ namespace LoLUpdater
                 }
                 else if (Directory.Exists("Game"))
                 {
+
+                    // same as above but for Garena
                     Directory.CreateDirectory("Backup");
                     File.Copy(@"game\cg.dll", @"Backup\cg.dll", true);
                     File.Copy(@"game\cgd3d9.dll", @"Backup\cgd3d9.dll", true);
@@ -97,11 +104,17 @@ namespace LoLUpdater
                 }
             }
 
+            // windir variable for later use
             var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+            // windrive variable for later use
             string root = System.IO.Path.GetPathRoot(Environment.SystemDirectory);
+
+            // variable for the Nvidia CG Toolkit 3.1 installation
             RegistryKey keycg = Registry.LocalMachine;
             RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
             var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
+
+            // starts Cleanmanager if the checkbox is selected and OK is presssed
             if (Cleantemp.Checked)
             {
                 var cm = new ProcessStartInfo();
@@ -113,6 +126,7 @@ namespace LoLUpdater
                 process.Start();
                 process.WaitForExit();
             }
+            // Stops Windows update service and delete update cache (errors atm due to read only files)
             if (Cleanupdatecache.Checked)
             {
                 ServiceController updateservice = new ServiceController("wuauserv");
@@ -132,6 +146,8 @@ namespace LoLUpdater
                         break;
                 }
             }
+
+            // Option for uninstalling Pando Media Booster (malware)
             if (UninstallPMB.Checked)
             {
                 using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB"))
@@ -152,6 +168,8 @@ namespace LoLUpdater
                     {
                         MessageBox.Show("Pando Media Booster is already Uninstalled");
                     }
+
+                // Sets all the services below to "Manual" depending on what NT version you are on
             }
             var allServices = new Dictionary<string, string[]>
 {
@@ -166,6 +184,8 @@ namespace LoLUpdater
             {
                 services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
             }
+
+            // Sets Mouse Hz to 500Hz on windows 8 + machines
             if (Mousepollingrate.Checked)
             {
                 Microsoft.Win32.Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers");
@@ -181,6 +201,8 @@ namespace LoLUpdater
                 applymouseHz.Start();
                 applymouseHz.WaitForExit();
             }
+
+            // Starts defrag GUI, had problems with starting the regular defrag.exe
             if (Defrag.Checked)
             {
                 System.Diagnostics.Process defrag = new System.Diagnostics.Process();
@@ -192,6 +214,8 @@ namespace LoLUpdater
                 defrag.Start();
                 defrag.WaitForExit();
             }
+
+            // Starts a Windows update sessions byu using the wuapilib.dll extension.
             if (WindowsUpdate.Checked)
             {
                 UpdateSessionClass uSession = new UpdateSessionClass();
@@ -211,6 +235,8 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 installer.Updates = updatesToInstall;
                 IInstallationResult installationRes = installer.Install();
             }
+
+            // Deletes game logs older than 7 days
             if (Deleteoldlogs.Checked)
             {
                 if (Directory.Exists("Logs"))
@@ -224,8 +250,12 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                     }
                 }
             }
+
+            // Radiobutton "patcher"
             if (Patcher.Checked)
             {
+
+                //if there are 2 cpu cores or more then it applies a multithreading config tweak.
                 int coreCount = 0;
                 foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
                 {
@@ -257,6 +287,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
 
 
                 }
+                // same as backup but patches instead
                 if (Directory.Exists("Rads"))
                 {
                     DirectoryInfo airinfo = new DirectoryInfo(airr);
@@ -279,6 +310,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                     string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
                     string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
                     string launchz = @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy";
+                    // Copies the embedded file to the proper location
                     System.IO.File.WriteAllBytes(gamez + @"\tbb.dll", LoLUpdater.Properties.Resources.tbb);
                     File.Copy(CG + @"\cg.dll", gamez + @"\cg.dll", true);
                     File.Copy(CG + @"\cgd3d9.dll", gamez + @"\cgd3d9.dll", true);
@@ -304,6 +336,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 }
                 System.Windows.Forms.MessageBox.Show("Finished!");
             }
+                // if restore backup radiobutton checked then do this (duplicate code from before)
             else if (Restorebackups.Checked)
             {
                 if (Directory.Exists("Rads"))
@@ -381,6 +414,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 }
             }
         }
+        // Self-Eleveation button used to do admin tasks
         private void button2_Click(object sender, EventArgs e)
         {
             if (!IsRunAsAdmin())
@@ -389,11 +423,15 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 Application.Exit();
             }
         }
+
+        // function for the button above
         internal static bool IsRunAsAdmin()
         {
             var Principle = new WindowsPrincipal(WindowsIdentity.GetCurrent());
             return Principle.IsInRole(WindowsBuiltInRole.Administrator);
         }
+
+        // function for the button above
         private static bool Elevate()
         {
             var SelfProc = new ProcessStartInfo
@@ -406,6 +444,8 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
             Process.Start(SelfProc);
             return true;
         }
+
+        // function for setting service startup type, used earlier in the script.
         public static class ServiceHelper
         {
             [DllImport("advapi32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
