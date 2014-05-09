@@ -56,6 +56,13 @@ namespace LoLUpdater
         string gamer = @"RADS\projects\lol_game_client\releases";
         private void button1_Click(object sender, EventArgs e)
         {
+
+            if (Exit.Checked)
+            {
+                Application.Exit();
+
+            }
+
             OKButton.Text = "Working…";
             ChangeEnabled(false);
 
@@ -278,8 +285,10 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 }
             }
 
+
+
             // Radiobutton "patcher"
-            if (Patcher.Checked)
+           else if (Patcher.Checked)
             {
 
                 //if there are 2 cpu cores or more then it applies a multithreading config tweak.
@@ -431,16 +440,19 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
 
                         }
                     }
-                    finished();
-                }
-
+                   
+             
+            }
+                 finished();
+            }
                   //the "only checkbioxes radio button"
                 else if (onlycheckboxes.Checked)
                 {
                     finished();
 
                 }
-            }
+
+           
         }
         // Self-Eleveation button used to do admin tasks
         private void button2_Click(object sender, EventArgs e)
@@ -539,6 +551,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 CloseServiceHandle(scManagerHandle);
             }
         }
+
 
 
     }

@@ -23,6 +23,7 @@ namespace LoLUpdater
             this.UninstallPMB = new System.Windows.Forms.CheckBox();
             this.Patcher = new System.Windows.Forms.RadioButton();
             this.MainFunction = new System.Windows.Forms.GroupBox();
+            this.Exit = new System.Windows.Forms.RadioButton();
             this.onlycheckboxes = new System.Windows.Forms.RadioButton();
             this.Restorebackups = new System.Windows.Forms.RadioButton();
             this.OKButton = new System.Windows.Forms.Button();
@@ -46,9 +47,9 @@ namespace LoLUpdater
             this.Options.Controls.Add(this.Deleteoldlogs);
             this.Options.Controls.Add(this.Cleantemp);
             this.Options.Controls.Add(this.UninstallPMB);
-            this.Options.Location = new System.Drawing.Point(131, 12);
+            this.Options.Location = new System.Drawing.Point(1, 0);
             this.Options.Name = "Options";
-            this.Options.Size = new System.Drawing.Size(116, 108);
+            this.Options.Size = new System.Drawing.Size(104, 108);
             this.Options.TabIndex = 1;
             this.Options.TabStop = false;
             this.Options.Text = "Options";
@@ -78,7 +79,7 @@ namespace LoLUpdater
             // Cleantemp
             // 
             this.Cleantemp.AutoSize = true;
-            this.Cleantemp.Location = new System.Drawing.Point(6, 20);
+            this.Cleantemp.Location = new System.Drawing.Point(6, 16);
             this.Cleantemp.Name = "Cleantemp";
             this.Cleantemp.Size = new System.Drawing.Size(79, 17);
             this.Cleantemp.TabIndex = 0;
@@ -89,7 +90,7 @@ namespace LoLUpdater
             // UninstallPMB
             // 
             this.UninstallPMB.AutoSize = true;
-            this.UninstallPMB.Location = new System.Drawing.Point(6, 42);
+            this.UninstallPMB.Location = new System.Drawing.Point(6, 39);
             this.UninstallPMB.Name = "UninstallPMB";
             this.UninstallPMB.Size = new System.Drawing.Size(92, 17);
             this.UninstallPMB.TabIndex = 2;
@@ -112,20 +113,32 @@ namespace LoLUpdater
             // 
             // MainFunction
             // 
+            this.MainFunction.Controls.Add(this.Exit);
             this.MainFunction.Controls.Add(this.onlycheckboxes);
             this.MainFunction.Controls.Add(this.Patcher);
             this.MainFunction.Controls.Add(this.Restorebackups);
-            this.MainFunction.Location = new System.Drawing.Point(12, 12);
+            this.MainFunction.Location = new System.Drawing.Point(7, 6);
             this.MainFunction.Name = "MainFunction";
             this.MainFunction.Size = new System.Drawing.Size(118, 108);
             this.MainFunction.TabIndex = 3;
             this.MainFunction.TabStop = false;
             this.MainFunction.Text = "Main function";
             // 
+            // Exit
+            // 
+            this.Exit.AutoSize = true;
+            this.Exit.Location = new System.Drawing.Point(6, 85);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(42, 17);
+            this.Exit.TabIndex = 5;
+            this.Exit.Text = "Exit";
+            this.toolTip1.SetToolTip(this.Exit, "Select this to exit");
+            this.Exit.UseVisualStyleBackColor = true;
+            // 
             // onlycheckboxes
             // 
             this.onlycheckboxes.AutoSize = true;
-            this.onlycheckboxes.Location = new System.Drawing.Point(6, 65);
+            this.onlycheckboxes.Location = new System.Drawing.Point(6, 62);
             this.onlycheckboxes.Name = "onlycheckboxes";
             this.onlycheckboxes.Size = new System.Drawing.Size(107, 17);
             this.onlycheckboxes.TabIndex = 4;
@@ -136,7 +149,7 @@ namespace LoLUpdater
             // Restorebackups
             // 
             this.Restorebackups.AutoSize = true;
-            this.Restorebackups.Location = new System.Drawing.Point(6, 42);
+            this.Restorebackups.Location = new System.Drawing.Point(6, 39);
             this.Restorebackups.Name = "Restorebackups";
             this.Restorebackups.Size = new System.Drawing.Size(106, 17);
             this.Restorebackups.TabIndex = 3;
@@ -146,9 +159,9 @@ namespace LoLUpdater
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(12, 126);
+            this.OKButton.Location = new System.Drawing.Point(7, 120);
             this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(182, 20);
+            this.OKButton.Size = new System.Drawing.Size(174, 20);
             this.OKButton.TabIndex = 4;
             this.OKButton.Text = "OK";
             this.toolTip1.SetToolTip(this.OKButton, "Confirm");
@@ -158,7 +171,7 @@ namespace LoLUpdater
             // Mousepollingrate
             // 
             this.Mousepollingrate.AutoSize = true;
-            this.Mousepollingrate.Location = new System.Drawing.Point(6, 18);
+            this.Mousepollingrate.Location = new System.Drawing.Point(6, 19);
             this.Mousepollingrate.Name = "Mousepollingrate";
             this.Mousepollingrate.Size = new System.Drawing.Size(112, 17);
             this.Mousepollingrate.TabIndex = 8;
@@ -169,7 +182,7 @@ namespace LoLUpdater
             // WindowsServices
             // 
             this.WindowsServices.AutoSize = true;
-            this.WindowsServices.Location = new System.Drawing.Point(6, 64);
+            this.WindowsServices.Location = new System.Drawing.Point(6, 62);
             this.WindowsServices.Name = "WindowsServices";
             this.WindowsServices.Size = new System.Drawing.Size(112, 17);
             this.WindowsServices.TabIndex = 7;
@@ -191,7 +204,7 @@ namespace LoLUpdater
             // WindowsUpdate
             // 
             this.WindowsUpdate.AutoSize = true;
-            this.WindowsUpdate.Location = new System.Drawing.Point(6, 41);
+            this.WindowsUpdate.Location = new System.Drawing.Point(6, 42);
             this.WindowsUpdate.Name = "WindowsUpdate";
             this.WindowsUpdate.Size = new System.Drawing.Size(106, 17);
             this.WindowsUpdate.TabIndex = 6;
@@ -201,9 +214,9 @@ namespace LoLUpdater
             // 
             // ElevateButton
             // 
-            this.ElevateButton.Location = new System.Drawing.Point(198, 126);
+            this.ElevateButton.Location = new System.Drawing.Point(187, 120);
             this.ElevateButton.Name = "ElevateButton";
-            this.ElevateButton.Size = new System.Drawing.Size(185, 20);
+            this.ElevateButton.Size = new System.Drawing.Size(173, 20);
             this.ElevateButton.TabIndex = 7;
             this.ElevateButton.Text = "Self-Elevate";
             this.toolTip1.SetToolTip(this.ElevateButton, "Select this if you want to run the program as admin");
@@ -212,10 +225,11 @@ namespace LoLUpdater
             // 
             // Combininggroupbox
             // 
+            this.Combininggroupbox.Controls.Add(this.Options);
             this.Combininggroupbox.Controls.Add(this.AdminOptions);
-            this.Combininggroupbox.Location = new System.Drawing.Point(131, 12);
+            this.Combininggroupbox.Location = new System.Drawing.Point(125, 6);
             this.Combininggroupbox.Name = "Combininggroupbox";
-            this.Combininggroupbox.Size = new System.Drawing.Size(252, 108);
+            this.Combininggroupbox.Size = new System.Drawing.Size(235, 108);
             this.Combininggroupbox.TabIndex = 6;
             this.Combininggroupbox.TabStop = false;
             // 
@@ -225,9 +239,9 @@ namespace LoLUpdater
             this.AdminOptions.Controls.Add(this.Mousepollingrate);
             this.AdminOptions.Controls.Add(this.WindowsServices);
             this.AdminOptions.Controls.Add(this.WindowsUpdate);
-            this.AdminOptions.Location = new System.Drawing.Point(122, 0);
+            this.AdminOptions.Location = new System.Drawing.Point(105, 0);
             this.AdminOptions.Name = "AdminOptions";
-            this.AdminOptions.Size = new System.Drawing.Size(130, 108);
+            this.AdminOptions.Size = new System.Drawing.Size(130, 102);
             this.AdminOptions.TabIndex = 5;
             this.AdminOptions.TabStop = false;
             this.AdminOptions.Text = "Admin Options";
@@ -236,8 +250,7 @@ namespace LoLUpdater
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(386, 146);
-            this.Controls.Add(this.Options);
+            this.ClientSize = new System.Drawing.Size(366, 147);
             this.Controls.Add(this.ElevateButton);
             this.Controls.Add(this.Combininggroupbox);
             this.Controls.Add(this.OKButton);
@@ -277,5 +290,6 @@ namespace LoLUpdater
         private System.Windows.Forms.CheckBox Mousepollingrate;
         private System.Windows.Forms.GroupBox AdminOptions;
         private System.Windows.Forms.CheckBox Defrag;
+        private System.Windows.Forms.RadioButton Exit;
     }
 }
