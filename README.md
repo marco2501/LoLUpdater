@@ -23,7 +23,7 @@ Run LoLUpdater.exe
 
 What does it do?
 ================
-Replaces RIOTs "tbb.dll", "Adobe AIR.dll" and "NPSWF32.dll" with newer versions available on the internet (Backs up the DLLs first)
+Replaces RIOTs "tbb.dll", "Adobe AIR.dll" and "NPSWF32.dll" with newer versions available on the internet (Backs up the DLLs first with an option to restore them later)
 
 Option to use Windows "Cleanmanager" to clean up your harddrive
 
