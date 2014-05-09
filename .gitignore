@@ -41,3 +41,4 @@ LoLUpdater/obj/Debug/LoLUpdater.csprojResolveAssemblyReference.cache
 LoLUpdater/obj/Debug/LoLUpdater.exe
 LoLUpdater/obj/Debug/LoLUpdater.pdb
 LoLUpdater/obj/Release/LoLUpdater.Menu.resources
+*.db
