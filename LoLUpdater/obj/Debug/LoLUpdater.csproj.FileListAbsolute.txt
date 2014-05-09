@@ -1,0 +1,3 @@
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\bin\Debug\LoLUpdater.exe.config
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Debug\Interop.WUApiLib.dll
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Debug\LoLUpdater.csproj.ResolveComReference.cache

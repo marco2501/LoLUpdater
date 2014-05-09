@@ -61,7 +61,7 @@ namespace LoLUpdater
             this.Defrag.Size = new System.Drawing.Size(85, 17);
             this.Defrag.TabIndex = 5;
             this.Defrag.Text = "Defrag HDD";
-            this.toolTip1.SetToolTip(this.Defrag, "Deletes RIOT logs older than 7 days");
+            this.toolTip1.SetToolTip(this.Defrag, "Defrags HDD");
             this.Defrag.UseVisualStyleBackColor = true;
             // 
             // Deleteoldlogs

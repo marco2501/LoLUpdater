@@ -109,7 +109,8 @@
     <ManifestTimestampUrl>http://timestamp.comodoca.com/rfc3161</ManifestTimestampUrl>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>LoLUpdater.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>Custom</TargetZone>
@@ -156,7 +157,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="LoLUpdater.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -193,8 +193,6 @@
   <ItemGroup>
     <Content Include="LoLUpdater.ico" />
     <None Include="Resources\NPSWF32.dll" />
-    <None Include="Resources\msvcr120.dll" />
-    <None Include="Resources\msvcp120.dll" />
     <None Include="Resources\Adobe AIR.dll" />
   </ItemGroup>
   <ItemGroup>
