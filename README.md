@@ -1,6 +1,8 @@
 Releases
 ========
 ![alt text](http://i.imgur.com/xG3rkfj.png)
+=======
+
 [Download Releases](https://github.com/Loggan08/LoLUpdater/releases)
 
 [Or compile from Source with Visual Studio](https://github.com/Loggan08/LoLUpdater/archive/master.zip)
