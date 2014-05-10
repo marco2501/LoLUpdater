@@ -51,9 +51,10 @@ namespace WindowsFormsApplication1
             {
                 string folder = dlg.SelectedPath;
 
-                System.IO.File.WriteAllBytes(folder + @"\Interop WUApiLib.dll", WindowsFormsApplication1.Properties.Resources.Interop_WUApiLib);
-                System.IO.File.WriteAllBytes(folder + @"\Interop LoLupdater.exe", WindowsFormsApplication1.Properties.Resources.LoLUpdater);
-                Process.Start(folder + @"\Interop LoLupdater.exe");
+                System.IO.File.WriteAllBytes(folder + @"\Interop WUApiLib.dll", LoLUpdater.Properties.Resources.Interop_WUApiLib);
+                System.IO.File.WriteAllBytes(folder + @"\LoLupdater.exe", LoLUpdater.Properties.Resources.LoLUpdater);
+                Process.Start(folder + @"\LoLupdater.exe");
+                Application.Exit();
             }
             else
             {
