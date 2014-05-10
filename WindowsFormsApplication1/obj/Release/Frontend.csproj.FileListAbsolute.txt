@@ -6,3 +6,4 @@ C:\Users\Ilja\Documents\GitHub\LoLUpdater\WindowsFormsApplication1\obj\Release\W
 C:\Users\Ilja\Documents\GitHub\LoLUpdater\WindowsFormsApplication1\obj\Release\Frontend.csproj.GenerateResource.Cache
 C:\Users\Ilja\Documents\GitHub\LoLUpdater\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.exe
 C:\Users\Ilja\Documents\GitHub\LoLUpdater\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.pdb
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\WindowsFormsApplication1\bin\Release\FrontEnd.exe.config
