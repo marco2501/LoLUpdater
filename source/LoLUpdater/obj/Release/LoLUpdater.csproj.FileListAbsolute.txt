@@ -1,0 +1,12 @@
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\bin\Release\LoLUpdater.exe.config
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Release\Interop.WUApiLib.dll
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Release\LoLUpdater.csproj.ResolveComReference.cache
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\bin\Release\LoLUpdater.exe
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\bin\Release\LoLUpdater.pdb
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\bin\Release\Interop.WUApiLib.dll
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Release\LoLUpdater.Menu.resources
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Release\LoLUpdater.Properties.Resources.resources
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Release\LoLUpdater.csproj.GenerateResource.Cache
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Release\LoLUpdater.exe
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Release\LoLUpdater.pdb
+C:\Users\Ilja\Documents\GitHub\LoLUpdater\LoLUpdater\obj\Release\LoLUpdater.csprojResolveAssemblyReference.cache
