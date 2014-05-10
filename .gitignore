@@ -38,3 +38,5 @@ Backend/bin/Release/LoLUpdater.exe
 Backend/bin/Release/Interop.WUApiLib.dll
 WindowsFormsApplication1/obj/Release/DesignTimeResolveAssemblyReferences.cache
 WindowsFormsApplication1/obj/Release/TempPE/Properties.Resources.Designer.cs.dll
+Thumbs.db
+Backend/Thumbs.db
