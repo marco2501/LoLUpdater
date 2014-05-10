@@ -18,8 +18,6 @@ using System.Management;
 namespace LoLUpdater
 {
 
-
-
     public partial class Menu : Form
     {
         public Menu()
