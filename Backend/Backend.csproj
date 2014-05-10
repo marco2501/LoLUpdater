@@ -143,7 +143,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DisableMousefix.cs" />
     <Compile Include="LoLUpdater.cs">
       <SubType>Form</SubType>
     </Compile>
