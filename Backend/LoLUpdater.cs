@@ -30,23 +30,23 @@ namespace LoLUpdater0
 
 
 
-RegistryKey rkSubKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1", false);
-if (rkSubKey == null)
-{
-    System.IO.File.WriteAllBytes("Cg-3.1 April2012 Setup.exe", LoLUpdater0.Properties.Resources.CG);
+            RegistryKey rkSubKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1", false);
+            if (rkSubKey == null)
+            {
+                System.IO.File.WriteAllBytes("Cg-3.1 April2012 Setup.exe", LoLUpdater0.Properties.Resources.CG);
 
-    System.Diagnostics.Process cg = new System.Diagnostics.Process();
-    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-    startInfo.FileName = "Cg-3.1 April2012 Setup.exe";
-    startInfo.Arguments = @"/silent";
-    cg.StartInfo = startInfo;
-    cg.Start();
-    cg.WaitForExit();
-    File.Delete("Cg-3.1 April2012 Setup.exe");
-}
+                System.Diagnostics.Process cg = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                startInfo.FileName = "Cg-3.1 April2012 Setup.exe";
+                startInfo.Arguments = @"/silent";
+                cg.StartInfo = startInfo;
+                cg.Start();
+                cg.WaitForExit();
+                File.Delete("Cg-3.1 April2012 Setup.exe");
+            }
 
-EnableMousefix.Visible = false;
-DisableMousefix.Visible = false;
+            EnableMousefix.Visible = false;
+            DisableMousefix.Visible = false;
 
             if (Environment.OSVersion.Version.Major <= 6)
             {
@@ -55,14 +55,13 @@ DisableMousefix.Visible = false;
 
             if (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major <= 6.2)
             {
-            EnableMousefix.Visible = true;
-            DisableMousefix.Visible = true;
+                EnableMousefix.Visible = true;
+                DisableMousefix.Visible = true;
             }
-            
+
 
 
         }
-        
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr SendMessage(HandleRef hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
@@ -88,7 +87,7 @@ DisableMousefix.Visible = false;
             MessageBox.Show("Finished!");
         }
 
-  
+
 
         string airr = @"RADS\projects\lol_air_client\releases";
         string slnr = @"RADS\solutions\lol_game_client_sln\releases";
@@ -102,7 +101,6 @@ DisableMousefix.Visible = false;
                 Application.Exit();
 
             }
-
             OKButton.Text = "Working…";
             ChangeEnabled(false);
 
@@ -240,13 +238,13 @@ DisableMousefix.Visible = false;
                 startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
                 startInfo.FileName = "cmd.exe";
                 startInfo.Verb = "runas";
-                startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
+                startInfo.Arguments = @"/c Rundll32 apphelp.dll , ShimFlushCache";
                 applymouseHz.StartInfo = startInfo;
                 applymouseHz.Start();
                 applymouseHz.WaitForExit();
             }
 
-            else if (EnableMousefix.Checked)
+            else if (DisableMousefix.Checked)
             {
                 RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
                 mousehz.DeleteValue("C:\\Windows\\Explorer.exe");
@@ -255,27 +253,13 @@ DisableMousefix.Visible = false;
                 startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
                 startInfo.FileName = "cmd.exe";
                 startInfo.Verb = "runas";
-                startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
+                startInfo.Arguments = @"/c Rundll32 apphelp.dll , ShimFlushCache";
                 applymouseHz.StartInfo = startInfo;
                 applymouseHz.Start();
                 applymouseHz.WaitForExit();
             }
 
-            if (DisableMousefix.Checked)
-            {
-                Microsoft.Win32.Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers");
-                RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
-                mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
-                System.Diagnostics.Process applymouseHz = new System.Diagnostics.Process();
-                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                startInfo.FileName = "cmd.exe";
-                startInfo.Verb = "runas";
-                startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
-                applymouseHz.StartInfo = startInfo;
-                applymouseHz.Start();
-                applymouseHz.WaitForExit();
-            }
+
 
             if (Defrag.Checked)
             {
@@ -288,6 +272,7 @@ DisableMousefix.Visible = false;
                 defrag.Start();
                 defrag.WaitForExit();
             }
+
 
             if (WindowsUpdate.Checked)
             {
@@ -309,25 +294,8 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 IInstallationResult installationRes = installer.Install();
             }
 
-            if (Deleteoldlogs.Checked)
-            {
-                if (Directory.Exists("Logs"))
-                {
-                    string[] files = Directory.GetFiles("Logs");
-                    foreach (string file in files)
-                    {
-                        FileInfo fi = new FileInfo(file);
-                        if (fi.LastAccessTime < DateTime.Now.AddDays(-7))
-                            fi.Delete();
-                    }
-                }
-            }
 
-
-
-
-
-           else if (Patcher.Checked)
+            else if (Patcher.Checked)
             {
 
                 int coreCount = 0;
@@ -363,6 +331,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 }
                 if (Directory.Exists("Rads"))
                 {
+
                     DirectoryInfo airinfo = new DirectoryInfo(airr);
                     DirectoryInfo air = airinfo.GetDirectories()
                     .OrderByDescending(d => d.CreationTime)
@@ -399,6 +368,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 }
                 else if (Directory.Exists("Game"))
                 {
+
                     System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater0.Properties.Resources.tbb);
                     File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
                     File.Copy(CG + @"\cgd3d9.dll", @"game\cgd3d9.dll", true);
@@ -475,18 +445,18 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
 
                         }
                     }
-                   
-             
-            }
-                 finished();
-            }
-                else if (onlycheckboxes.Checked)
-                {
-                    finished();
+
 
                 }
+                finished();
+            }
+            else if (onlycheckboxes.Checked)
+            {
+                finished();
 
-           
+            }
+
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -582,6 +552,11 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 CloseServiceHandle(serviceHandle);
                 CloseServiceHandle(scManagerHandle);
             }
+        }
+
+        private void DisableMousefix_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
 

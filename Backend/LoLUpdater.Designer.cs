@@ -18,23 +18,22 @@ namespace LoLUpdater0
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.Options = new System.Windows.Forms.GroupBox();
             this.Defrag = new System.Windows.Forms.CheckBox();
-            this.Deleteoldlogs = new System.Windows.Forms.CheckBox();
+            this.WindowsUpdate = new System.Windows.Forms.CheckBox();
             this.Cleantemp = new System.Windows.Forms.CheckBox();
             this.UninstallPMB = new System.Windows.Forms.CheckBox();
             this.Patcher = new System.Windows.Forms.RadioButton();
             this.MainFunction = new System.Windows.Forms.GroupBox();
+            this.Exit = new System.Windows.Forms.RadioButton();
             this.onlycheckboxes = new System.Windows.Forms.RadioButton();
             this.Restorebackups = new System.Windows.Forms.RadioButton();
             this.OKButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.WindowsServices = new System.Windows.Forms.CheckBox();
-            this.WindowsUpdate = new System.Windows.Forms.CheckBox();
             this.ElevateButton = new System.Windows.Forms.Button();
             this.EnableMousefix = new System.Windows.Forms.RadioButton();
             this.DisableMousefix = new System.Windows.Forms.RadioButton();
             this.Combininggroupbox = new System.Windows.Forms.GroupBox();
             this.AdminOptions = new System.Windows.Forms.GroupBox();
-            this.Exit = new System.Windows.Forms.RadioButton();
             this.Options.SuspendLayout();
             this.MainFunction.SuspendLayout();
             this.Combininggroupbox.SuspendLayout();
@@ -44,7 +43,6 @@ namespace LoLUpdater0
             // Options
             // 
             this.Options.Controls.Add(this.Defrag);
-            this.Options.Controls.Add(this.Deleteoldlogs);
             this.Options.Controls.Add(this.Cleantemp);
             this.Options.Controls.Add(this.UninstallPMB);
             this.Options.Location = new System.Drawing.Point(1, 0);
@@ -57,7 +55,7 @@ namespace LoLUpdater0
             // Defrag
             // 
             this.Defrag.AutoSize = true;
-            this.Defrag.Location = new System.Drawing.Point(6, 85);
+            this.Defrag.Location = new System.Drawing.Point(6, 62);
             this.Defrag.Name = "Defrag";
             this.Defrag.Size = new System.Drawing.Size(85, 17);
             this.Defrag.TabIndex = 5;
@@ -65,16 +63,16 @@ namespace LoLUpdater0
             this.toolTip1.SetToolTip(this.Defrag, "Defrags HDD");
             this.Defrag.UseVisualStyleBackColor = true;
             // 
-            // Deleteoldlogs
+            // WindowsUpdate
             // 
-            this.Deleteoldlogs.AutoSize = true;
-            this.Deleteoldlogs.Location = new System.Drawing.Point(6, 62);
-            this.Deleteoldlogs.Name = "Deleteoldlogs";
-            this.Deleteoldlogs.Size = new System.Drawing.Size(96, 17);
-            this.Deleteoldlogs.TabIndex = 4;
-            this.Deleteoldlogs.Text = "Delete old logs";
-            this.toolTip1.SetToolTip(this.Deleteoldlogs, "Deletes RIOT logs older than 7 days");
-            this.Deleteoldlogs.UseVisualStyleBackColor = true;
+            this.WindowsUpdate.AutoSize = true;
+            this.WindowsUpdate.Location = new System.Drawing.Point(6, 40);
+            this.WindowsUpdate.Name = "WindowsUpdate";
+            this.WindowsUpdate.Size = new System.Drawing.Size(106, 17);
+            this.WindowsUpdate.TabIndex = 6;
+            this.WindowsUpdate.Text = "Windows update";
+            this.toolTip1.SetToolTip(this.WindowsUpdate, "Does a WIndows update");
+            this.WindowsUpdate.UseVisualStyleBackColor = true;
             // 
             // Cleantemp
             // 
@@ -124,6 +122,17 @@ namespace LoLUpdater0
             this.MainFunction.TabStop = false;
             this.MainFunction.Text = "Main function";
             // 
+            // Exit
+            // 
+            this.Exit.AutoSize = true;
+            this.Exit.Location = new System.Drawing.Point(6, 85);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(42, 17);
+            this.Exit.TabIndex = 5;
+            this.Exit.Text = "Exit";
+            this.toolTip1.SetToolTip(this.Exit, "Select this to exit");
+            this.Exit.UseVisualStyleBackColor = true;
+            // 
             // onlycheckboxes
             // 
             this.onlycheckboxes.AutoSize = true;
@@ -160,24 +169,13 @@ namespace LoLUpdater0
             // WindowsServices
             // 
             this.WindowsServices.AutoSize = true;
-            this.WindowsServices.Location = new System.Drawing.Point(6, 42);
+            this.WindowsServices.Location = new System.Drawing.Point(6, 20);
             this.WindowsServices.Name = "WindowsServices";
             this.WindowsServices.Size = new System.Drawing.Size(112, 17);
             this.WindowsServices.TabIndex = 7;
             this.WindowsServices.Text = "Windows services";
             this.toolTip1.SetToolTip(this.WindowsServices, "Sets some services to startuptype manual");
             this.WindowsServices.UseVisualStyleBackColor = true;
-            // 
-            // WindowsUpdate
-            // 
-            this.WindowsUpdate.AutoSize = true;
-            this.WindowsUpdate.Location = new System.Drawing.Point(6, 19);
-            this.WindowsUpdate.Name = "WindowsUpdate";
-            this.WindowsUpdate.Size = new System.Drawing.Size(106, 17);
-            this.WindowsUpdate.TabIndex = 6;
-            this.WindowsUpdate.Text = "Windows update";
-            this.toolTip1.SetToolTip(this.WindowsUpdate, "Does a WIndows update");
-            this.WindowsUpdate.UseVisualStyleBackColor = true;
             // 
             // ElevateButton
             // 
@@ -194,24 +192,25 @@ namespace LoLUpdater0
             // EnableMousefix
             // 
             this.EnableMousefix.AutoSize = true;
-            this.EnableMousefix.Location = new System.Drawing.Point(6, 65);
+            this.EnableMousefix.Location = new System.Drawing.Point(6, 61);
             this.EnableMousefix.Name = "EnableMousefix";
             this.EnableMousefix.Size = new System.Drawing.Size(103, 17);
             this.EnableMousefix.TabIndex = 6;
             this.EnableMousefix.Text = "Enable Mousefix";
-            this.toolTip1.SetToolTip(this.EnableMousefix, "Select this to exit");
+            this.toolTip1.SetToolTip(this.EnableMousefix, "Sets mouse hz to 500hz");
             this.EnableMousefix.UseVisualStyleBackColor = true;
             // 
             // DisableMousefix
             // 
             this.DisableMousefix.AutoSize = true;
-            this.DisableMousefix.Location = new System.Drawing.Point(6, 85);
+            this.DisableMousefix.Location = new System.Drawing.Point(6, 84);
             this.DisableMousefix.Name = "DisableMousefix";
             this.DisableMousefix.Size = new System.Drawing.Size(105, 17);
             this.DisableMousefix.TabIndex = 8;
             this.DisableMousefix.Text = "Disable Mousefix";
-            this.toolTip1.SetToolTip(this.DisableMousefix, "Select this to exit");
+            this.toolTip1.SetToolTip(this.DisableMousefix, "Removes Mousefix");
             this.DisableMousefix.UseVisualStyleBackColor = true;
+            this.DisableMousefix.CheckedChanged += new System.EventHandler(this.DisableMousefix_CheckedChanged);
             // 
             // Combininggroupbox
             // 
@@ -236,22 +235,11 @@ namespace LoLUpdater0
             this.AdminOptions.TabStop = false;
             this.AdminOptions.Text = "Admin Options";
             // 
-            // Exit
-            // 
-            this.Exit.AutoSize = true;
-            this.Exit.Location = new System.Drawing.Point(6, 85);
-            this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(42, 17);
-            this.Exit.TabIndex = 5;
-            this.Exit.Text = "Exit";
-            this.toolTip1.SetToolTip(this.Exit, "Select this to exit");
-            this.Exit.UseVisualStyleBackColor = true;
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 149);
+            this.ClientSize = new System.Drawing.Size(357, 141);
             this.Controls.Add(this.ElevateButton);
             this.Controls.Add(this.Combininggroupbox);
             this.Controls.Add(this.OKButton);
@@ -284,7 +272,6 @@ namespace LoLUpdater0
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox Combininggroupbox;
         private System.Windows.Forms.Button ElevateButton;
-        private System.Windows.Forms.CheckBox Deleteoldlogs;
         private System.Windows.Forms.CheckBox WindowsUpdate;
         private System.Windows.Forms.CheckBox WindowsServices;
         private System.Windows.Forms.GroupBox AdminOptions;
