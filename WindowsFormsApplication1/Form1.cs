@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-
+using System.Runtime.InteropServices;
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
@@ -18,36 +18,33 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
+     if (IntPtr.Size == 8)
+     { 
+     this.richTextBox3.SelectionStart = 90;
+     this.richTextBox3.SelectionLength = 108;
+     this.richTextBox3.SelectedText = "";
+
+     
+     
+     }
+     else {
+
+     this.richTextBox3.SelectionStart = 198;
+     this.richTextBox3.SelectionLength = 94;
+     this.richTextBox3.SelectedText = "";
+     }
+
 
         }
 
-        private void richTextBox1_TextChanged_1(object sender, EventArgs e)
-        {
 
-        }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://loggan08.github.io/LoLUpdater/");
-            
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.nvidia.com/Download/Scan.aspx?lang=undefined");
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://intel-drv-ws.systemrequirementslab.com/iDUU/download/multi?lang=en");
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.FolderBrowserDialog dlg = new System.Windows.Forms.FolderBrowserDialog();
-            // This is what will execute if the user selects a folder and hits OK (File if you change to FileBrowserDialog)
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string folder = dlg.SelectedPath;
@@ -58,8 +55,9 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                // This prevents a crash when you close out of the window with nothing
             }
         }
+
+
     }
 }

@@ -19,3 +19,5 @@ WindowsFormsApplication1/obj/Release/WindowsFormsApplication1.pdb
 WindowsFormsApplication1/Properties/Settings.settings
 WindowsFormsApplication1/Properties/Settings.Designer.cs
 images/Thumbs.db
+WindowsFormsApplication1/obj/Release/Frontend.csproj.GenerateResource.Cache
+WindowsFormsApplication1/obj/Release/Frontend.csproj.FileListAbsolute.txt
