@@ -37,7 +37,6 @@ if (rkSubKey == null)
 
     System.Diagnostics.Process cg = new System.Diagnostics.Process();
     System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
     startInfo.FileName = "Cg-3.1 April2012 Setup.exe";
     startInfo.Arguments = @"/silent";
     cg.StartInfo = startInfo;
