@@ -54,7 +54,7 @@ if (rkSubKey == null)
                 SetButtonShield(ElevateButton, true);
             }
 
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major >= 6.1)
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major <= 6.1)
             {
             EnableMousefix.Visible = false;
             DisableMousefix.Visible = false;
