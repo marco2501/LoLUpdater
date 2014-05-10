@@ -20,22 +20,23 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-     if (IntPtr.Size == 8)
-     {
-         this.richTextBox3.SelectionStart = 198;
-         this.richTextBox3.SelectionLength = 94;
-         this.richTextBox3.SelectedText = "";
+            if (IntPtr.Size == 8)
+            {
+                this.richTextBox3.SelectionStart = 198;
+                this.richTextBox3.SelectionLength = 94;
+                this.richTextBox3.SelectedText = "";
 
 
-     
-     
-     }
-     else {
-         this.richTextBox3.SelectionStart = 90;
-         this.richTextBox3.SelectionLength = 108;
-         this.richTextBox3.SelectedText = "";
 
-     }
+
+            }
+            else
+            {
+                this.richTextBox3.SelectionStart = 90;
+                this.richTextBox3.SelectionLength = 108;
+                this.richTextBox3.SelectedText = "";
+
+            }
 
 
         }
@@ -58,6 +59,7 @@ namespace WindowsFormsApplication1
             {
             }
         }
+
 
 
     }
