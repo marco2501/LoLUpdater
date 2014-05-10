@@ -71,3 +71,13 @@ Backend/bin/Release/LoLUpdater.vshost.exe.manifest
 Backend/bin/Release/LoLUpdater.vshost.exe.config
 Backend/bin/Release/LoLUpdater.vshost.exe
 Backend/bin/Release/LoLUpdater.exe.config
+WindowsFormsApplication1/obj/Debug/LoLupdater2.csproj.FileListAbsolute.txt
+WindowsFormsApplication1/obj/Debug/Frontend.csproj.FileListAbsolute.txt
+WindowsFormsApplication1/bin/Debug/LoLUpdater.vshost.exe.manifest
+Backend/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+Backend/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+Backend/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+Backend/obj/Debug/LoLUpdater.csproj.ResolveComReference.cache
+Backend/obj/Debug/Interop.WUApiLib.dll
+Backend/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+Backend/obj/Debug/Backend.csproj.ResolveComReference.cache
