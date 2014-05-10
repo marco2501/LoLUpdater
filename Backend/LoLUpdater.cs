@@ -45,19 +45,18 @@ if (rkSubKey == null)
     File.Delete("Cg-3.1 April2012 Setup.exe");
 }
 
-
-            EnableMousefix.Visible = true;
-            DisableMousefix.Visible = true;
+EnableMousefix.Visible = false;
+DisableMousefix.Visible = false;
 
             if (Environment.OSVersion.Version.Major <= 6)
             {
                 SetButtonShield(ElevateButton, true);
             }
 
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major >= 6.1)
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major <= 6.2)
             {
-            EnableMousefix.Visible = false;
-            DisableMousefix.Visible = false;
+            EnableMousefix.Visible = true;
+            DisableMousefix.Visible = true;
             }
             
 
