@@ -1,3 +1,0 @@
-C:\Users\Ilja\Documents\GitHub\LoLUpdater\WindowsFormsApplication1\obj\Release\LoLUpdater.LoLUpdater.resources
-C:\Users\Ilja\Documents\GitHub\LoLUpdater\WindowsFormsApplication1\obj\Release\LoLUpdater.Properties.Resources.resources
-C:\Users\Ilja\Documents\GitHub\LoLUpdater\WindowsFormsApplication1\obj\Release\LoLUpdater.csproj.GenerateResource.Cache

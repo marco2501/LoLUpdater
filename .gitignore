@@ -37,3 +37,5 @@ WindowsFormsApplication1/obj/Release/LoLUpdater.exe
 WindowsFormsApplication1/obj/Release/LoLUpdater.pdb
 Backend/bin/Release/signtool.exe
 Backend/bin/Release/LoLUpdater.exe
+Backend/obj/Release/Backend.exe
+Backend/obj/Release/Backend.pdb
