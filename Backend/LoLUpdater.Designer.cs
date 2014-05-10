@@ -18,9 +18,9 @@ namespace LoLUpdater0
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.Options = new System.Windows.Forms.GroupBox();
             this.Defrag = new System.Windows.Forms.CheckBox();
-            this.WindowsUpdate = new System.Windows.Forms.CheckBox();
             this.Cleantemp = new System.Windows.Forms.CheckBox();
             this.UninstallPMB = new System.Windows.Forms.CheckBox();
+            this.WindowsUpdate = new System.Windows.Forms.CheckBox();
             this.Patcher = new System.Windows.Forms.RadioButton();
             this.MainFunction = new System.Windows.Forms.GroupBox();
             this.Exit = new System.Windows.Forms.RadioButton();
@@ -55,13 +55,35 @@ namespace LoLUpdater0
             // Defrag
             // 
             this.Defrag.AutoSize = true;
-            this.Defrag.Location = new System.Drawing.Point(6, 62);
+            this.Defrag.Location = new System.Drawing.Point(5, 39);
             this.Defrag.Name = "Defrag";
             this.Defrag.Size = new System.Drawing.Size(85, 17);
             this.Defrag.TabIndex = 5;
             this.Defrag.Text = "Defrag HDD";
             this.toolTip1.SetToolTip(this.Defrag, "Defrags HDD");
             this.Defrag.UseVisualStyleBackColor = true;
+            // 
+            // Cleantemp
+            // 
+            this.Cleantemp.AutoSize = true;
+            this.Cleantemp.Location = new System.Drawing.Point(5, 16);
+            this.Cleantemp.Name = "Cleantemp";
+            this.Cleantemp.Size = new System.Drawing.Size(79, 17);
+            this.Cleantemp.TabIndex = 0;
+            this.Cleantemp.Text = "Clean temp";
+            this.toolTip1.SetToolTip(this.Cleantemp, "Cleans hardrive with cleanmanager");
+            this.Cleantemp.UseVisualStyleBackColor = true;
+            // 
+            // UninstallPMB
+            // 
+            this.UninstallPMB.AutoSize = true;
+            this.UninstallPMB.Location = new System.Drawing.Point(5, 61);
+            this.UninstallPMB.Name = "UninstallPMB";
+            this.UninstallPMB.Size = new System.Drawing.Size(92, 17);
+            this.UninstallPMB.TabIndex = 2;
+            this.UninstallPMB.Text = "Uninstall PMB";
+            this.toolTip1.SetToolTip(this.UninstallPMB, "Uninstalls Pando Media Booster");
+            this.UninstallPMB.UseVisualStyleBackColor = true;
             // 
             // WindowsUpdate
             // 
@@ -73,28 +95,6 @@ namespace LoLUpdater0
             this.WindowsUpdate.Text = "Windows update";
             this.toolTip1.SetToolTip(this.WindowsUpdate, "Does a WIndows update");
             this.WindowsUpdate.UseVisualStyleBackColor = true;
-            // 
-            // Cleantemp
-            // 
-            this.Cleantemp.AutoSize = true;
-            this.Cleantemp.Location = new System.Drawing.Point(6, 16);
-            this.Cleantemp.Name = "Cleantemp";
-            this.Cleantemp.Size = new System.Drawing.Size(79, 17);
-            this.Cleantemp.TabIndex = 0;
-            this.Cleantemp.Text = "Clean temp";
-            this.toolTip1.SetToolTip(this.Cleantemp, "Cleans hardrive with cleanmanager");
-            this.Cleantemp.UseVisualStyleBackColor = true;
-            // 
-            // UninstallPMB
-            // 
-            this.UninstallPMB.AutoSize = true;
-            this.UninstallPMB.Location = new System.Drawing.Point(6, 39);
-            this.UninstallPMB.Name = "UninstallPMB";
-            this.UninstallPMB.Size = new System.Drawing.Size(92, 17);
-            this.UninstallPMB.TabIndex = 2;
-            this.UninstallPMB.Text = "Uninstall PMB";
-            this.toolTip1.SetToolTip(this.UninstallPMB, "Uninstalls Pando Media Booster");
-            this.UninstallPMB.UseVisualStyleBackColor = true;
             // 
             // Patcher
             // 
@@ -210,7 +210,6 @@ namespace LoLUpdater0
             this.DisableMousefix.Text = "Disable Mousefix";
             this.toolTip1.SetToolTip(this.DisableMousefix, "Removes Mousefix");
             this.DisableMousefix.UseVisualStyleBackColor = true;
-            this.DisableMousefix.CheckedChanged += new System.EventHandler(this.DisableMousefix_CheckedChanged);
             // 
             // Combininggroupbox
             // 

@@ -15,6 +15,7 @@ using System.Security.Principal;
 using System.Runtime.InteropServices;
 using System.Management;
 using WUApiLib;
+using System.UInt64;
 namespace LoLUpdater0
 {
 
@@ -28,7 +29,7 @@ namespace LoLUpdater0
         {
 
 
-
+            
 
             RegistryKey rkSubKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1", false);
             if (rkSubKey == null)
@@ -38,7 +39,7 @@ namespace LoLUpdater0
                 System.Diagnostics.Process cg = new System.Diagnostics.Process();
                 System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
                 startInfo.FileName = "Cg-3.1 April2012 Setup.exe";
-                startInfo.Arguments = @"/silent";
+                startInfo.Arguments = "/silent";
                 cg.StartInfo = startInfo;
                 cg.Start();
                 cg.WaitForExit();
@@ -48,20 +49,28 @@ namespace LoLUpdater0
             EnableMousefix.Visible = false;
             DisableMousefix.Visible = false;
 
-            if (Environment.OSVersion.Version.Major <= 6)
+            if (Environment.OSVersion.Version.Major + Environment.OSVersion.Version.Minor >= 6.0)
             {
                 SetButtonShield(ElevateButton, true);
             }
 
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major <= 6.2)
+            if (Environment.OSVersion.Version.Major + Environment.OSVersion.Version.Minor >= 6.2)
             {
                 EnableMousefix.Visible = true;
                 DisableMousefix.Visible = true;
             }
 
+            RegistryKey rkSubKey1 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB", false);
+                    if (rkSubKey1 == null)
+                    {
+
+                       UninstallPMB.Visible = false;
+            }
+
 
 
         }
+
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr SendMessage(HandleRef hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
@@ -93,6 +102,8 @@ namespace LoLUpdater0
         string slnr = @"RADS\solutions\lol_game_client_sln\releases";
         string launchr = @"RADS\projects\lol_launcher\releases";
         string gamer = @"RADS\projects\lol_game_client\releases";
+
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -244,6 +255,9 @@ namespace LoLUpdater0
                 applymouseHz.WaitForExit();
             }
 
+
+ 
+
             else if (DisableMousefix.Checked)
             {
                 RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
@@ -305,22 +319,52 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 }
                 if (coreCount >= 2)
                 {
-
                     if (File.Exists(@"Config\game.cfg"))
                     {
-                        File.AppendAllText(@"Config\game.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                    string contents = File.ReadAllText(@"Config\game.cfg");
+                    if (!contents.Contains("DefaultParticleMultithreading=1"))
+                    {
+                        
+                            File.AppendAllText(@"Config\game.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                        }
                     }
+                
 
                     else if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
                     {
-                        File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
-                        File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
-                        if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg"))
-                        { File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", Environment.NewLine + "DefaultParticleMultithreading=1"); }
 
-                        if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg"))
-                        { File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", Environment.NewLine + "DefaultParticleMultithreading=1"); }
+                        string contents1 = File.ReadAllText(@"Game\DATA\CFG\defaults\game.cfg");
+                           if (!contents1.Contains("DefaultParticleMultithreading=1"))
+                           {
 
+                               File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                           }
+
+                           if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent.cfg"))
+                           {
+                               string contents2 = File.ReadAllText(@"Game\DATA\CFG\defaults\GamePermanent.cfg");
+                               if (!contents2.Contains("DefaultParticleMultithreading=1"))
+                               {
+                                   File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                               }
+                           }
+
+
+                         if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg"))
+                         {
+                         string contents3 = File.ReadAllText(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg");
+                              if (!contents3.Contains("DefaultParticleMultithreading=1"))
+                              {
+                                   File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", Environment.NewLine + "DefaultParticleMultithreading=1"); }
+                              }
+
+                              if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg"))
+                              { 
+                              string contents4 = File.ReadAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg");
+                                  if (!contents4.Contains("DefaultParticleMultithreading=1"))
+                                  {
+                                      File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", Environment.NewLine + "DefaultParticleMultithreading=1"); }
+                                  }
 
 
 
@@ -554,12 +598,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
             }
         }
 
-        private void DisableMousefix_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
+ 
 
 
     }

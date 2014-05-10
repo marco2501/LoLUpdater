@@ -24,7 +24,7 @@ namespace LoLUpdater
             {
                 this.richTextBox3.SelectionStart = 198;
                 this.richTextBox3.SelectionLength = 94;
-                this.richTextBox3.SelectedText = "";
+                this.richTextBox3.SelectedText = string.Empty;
 
 
 
@@ -34,7 +34,7 @@ namespace LoLUpdater
             {
                 this.richTextBox3.SelectionStart = 90;
                 this.richTextBox3.SelectionLength = 108;
-                this.richTextBox3.SelectedText = "";
+                this.richTextBox3.SelectedText = string.Empty;
 
             }
 
