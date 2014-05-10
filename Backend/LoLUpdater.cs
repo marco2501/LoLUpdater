@@ -11,10 +11,10 @@ using System.IO;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.ServiceProcess;
-using WUApiLib;
 using System.Security.Principal;
 using System.Runtime.InteropServices;
 using System.Management;
+using WUApiLib;
 namespace LoLUpdater0
 {
 
@@ -27,17 +27,44 @@ namespace LoLUpdater0
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            if (AtLeastVista())
+
+
+
+RegistryKey rkSubKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1", false);
+if (rkSubKey == null)
+{
+    System.IO.File.WriteAllBytes("Cg-3.1 April2012 Setup.exe", LoLUpdater0.Properties.Resources.CG);
+
+    System.Diagnostics.Process cg = new System.Diagnostics.Process();
+    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+    startInfo.FileName = "Cg-3.1 April2012 Setup.exe";
+    startInfo.Arguments = @"/silent";
+    cg.StartInfo = startInfo;
+    cg.Start();
+    cg.WaitForExit();
+    File.Delete("Cg-3.1 April2012 Setup.exe");
+}
+
+
+            EnableMousefix.Visible = true;
+            DisableMousefix.Visible = true;
+
+            if (Environment.OSVersion.Version.Major <= 6)
             {
                 SetButtonShield(ElevateButton, true);
             }
-        }
+
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major >= 6.1)
+            {
+            EnableMousefix.Visible = false;
+            DisableMousefix.Visible = false;
+            }
+            
 
 
-        public static bool AtLeastVista()
-        {
-            return (Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major >= 6);
         }
+        
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr SendMessage(HandleRef hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
@@ -203,7 +230,40 @@ namespace LoLUpdater0
                 services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
             }
 
-            if (Mousepollingrate.Checked)
+
+
+            if (EnableMousefix.Checked)
+            {
+                Microsoft.Win32.Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers");
+                RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
+                mousehz.SetValue("C:\\Windows\\Explorer.exe", "NoDTToDITMouseBatch");
+                System.Diagnostics.Process applymouseHz = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                startInfo.FileName = "cmd.exe";
+                startInfo.Verb = "runas";
+                startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
+                applymouseHz.StartInfo = startInfo;
+                applymouseHz.Start();
+                applymouseHz.WaitForExit();
+            }
+
+            else if (EnableMousefix.Checked)
+            {
+                RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
+                mousehz.DeleteValue("C:\\Windows\\Explorer.exe");
+                System.Diagnostics.Process applymouseHz = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                startInfo.FileName = "cmd.exe";
+                startInfo.Verb = "runas";
+                startInfo.Arguments = @"/C Rundll32 apphelp.dll , ShimFlushCache";
+                applymouseHz.StartInfo = startInfo;
+                applymouseHz.Start();
+                applymouseHz.WaitForExit();
+            }
+
+            if (DisableMousefix.Checked)
             {
                 Microsoft.Win32.Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers");
                 RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
@@ -265,25 +325,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 }
             }
 
-            if (Cleanupdatecache.Checked)
-            {
-                ServiceController updateservice = new ServiceController("wuauserv");
-                switch (updateservice.Status)
-                {
-                    case ServiceControllerStatus.Running:
-                        updateservice.Stop();
-                        updateservice.WaitForStatus(ServiceControllerStatus.Stopped);
-                        Directory.Delete(windir + @"\SoftwareDistribution", true);
-                        updateservice.Start();
-                        updateservice.WaitForStatus(ServiceControllerStatus.Running);
-                        break;
-                    case ServiceControllerStatus.Stopped:
-                        Directory.Delete(windir + @"\SoftwareDistribution", true);
-                        updateservice.Start();
-                        updateservice.WaitForStatus(ServiceControllerStatus.Running);
-                        break;
-                }
-            }
+
 
 
 
@@ -543,6 +585,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 CloseServiceHandle(scManagerHandle);
             }
         }
+
 
 
 

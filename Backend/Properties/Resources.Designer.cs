@@ -73,6 +73,16 @@ namespace LoLUpdater0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] CG {
+            get {
+                object obj = ResourceManager.GetObject("CG", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] NPSWF32 {
             get {
                 object obj = ResourceManager.GetObject("NPSWF32", resourceCulture);

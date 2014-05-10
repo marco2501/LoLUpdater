@@ -143,6 +143,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DisableMousefix.cs" />
     <Compile Include="LoLUpdater.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LoLUpdater.ico" />
+    <None Include="Resources\CG.exe" />
     <None Include="Resources\NPSWF32.dll" />
     <None Include="Resources\Adobe AIR.dll" />
   </ItemGroup>

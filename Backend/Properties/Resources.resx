@@ -121,6 +121,9 @@
   <data name="Adobe_AIR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Adobe AIR.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="CG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CG.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="NPSWF32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NPSWF32.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
