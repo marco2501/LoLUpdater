@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoLUpdater0.Properties {
+namespace Backend.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

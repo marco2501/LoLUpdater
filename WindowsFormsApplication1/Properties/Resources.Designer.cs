@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoLUpdater.Properties {
+namespace Frontend.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace LoLUpdater.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LoLUpdater.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Frontend.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace LoLUpdater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Interop_WUApiLib {
+        internal static byte[] Backend {
             get {
-                object obj = ResourceManager.GetObject("Interop_WUApiLib", resourceCulture);
+                object obj = ResourceManager.GetObject("Backend", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace LoLUpdater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] LoLUpdater0 {
+        internal static byte[] Interop_WUApiLib {
             get {
-                object obj = ResourceManager.GetObject("LoLUpdater0", resourceCulture);
+                object obj = ResourceManager.GetObject("Interop_WUApiLib", resourceCulture);
                 return ((byte[])(obj));
             }
         }
