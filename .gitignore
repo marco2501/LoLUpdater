@@ -40,3 +40,12 @@ WindowsFormsApplication1/obj/Release/DesignTimeResolveAssemblyReferences.cache
 WindowsFormsApplication1/obj/Release/TempPE/Properties.Resources.Designer.cs.dll
 Thumbs.db
 Backend/Thumbs.db
+Backend/bin/Release/LoLUpdater0.exe
+Backend/bin/Release/LoLUpdater0.exe.config
+Backend/bin/Release/LoLUpdater0.exe.config
+Backend/bin/Release/LoLUpdater0.pdb
+Backend/obj/Release/LoLUpdater0.Menu.resources
+Backend/obj/Release/LoLUpdater0.exe
+Backend/obj/Release/LoLUpdater0.pdb
+WindowsFormsApplication1/Frontend.csproj.user
+WindowsFormsApplication1/obj/Release/LoLUpdater.Form1.resources

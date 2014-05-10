@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-namespace WindowsFormsApplication1
+namespace LoLUpdater
 {
     public partial class Form1 : Form
     {
@@ -52,7 +52,7 @@ namespace WindowsFormsApplication1
                 string folder = dlg.SelectedPath;
 
                 System.IO.File.WriteAllBytes(folder + @"\Interop.WUApiLib.dll", LoLUpdater.Properties.Resources.Interop_WUApiLib);
-                System.IO.File.WriteAllBytes(folder + @"\LoLupdater.exe", LoLUpdater.Properties.Resources.LoLUpdater);
+                System.IO.File.WriteAllBytes(folder + @"\LoLupdater.exe", LoLUpdater.Properties.Resources.LoLUpdater0);
                 Process.Start(folder + @"\LoLupdater.exe");
                 Application.Exit();
             }

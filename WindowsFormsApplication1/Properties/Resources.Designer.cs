@@ -73,9 +73,9 @@ namespace LoLUpdater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] LoLUpdater {
+        internal static byte[] LoLUpdater0 {
             get {
-                object obj = ResourceManager.GetObject("LoLUpdater", resourceCulture);
+                object obj = ResourceManager.GetObject("LoLUpdater0", resourceCulture);
                 return ((byte[])(obj));
             }
         }

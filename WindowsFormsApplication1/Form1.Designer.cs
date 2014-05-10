@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace LoLUpdater
 {
     partial class Form1
     {

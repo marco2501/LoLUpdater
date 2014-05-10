@@ -15,7 +15,7 @@ using WUApiLib;
 using System.Security.Principal;
 using System.Runtime.InteropServices;
 using System.Management;
-namespace LoLUpdater
+namespace LoLUpdater0
 {
 
     public partial class Menu : Form
@@ -343,28 +343,28 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                     string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
                     string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
                     string launchz = @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy";
-                    System.IO.File.WriteAllBytes(gamez + @"\tbb.dll", LoLUpdater.Properties.Resources.tbb);
+                    System.IO.File.WriteAllBytes(gamez + @"\tbb.dll", LoLUpdater0.Properties.Resources.tbb);
                     File.Copy(CG + @"\cg.dll", gamez + @"\cg.dll", true);
                     File.Copy(CG + @"\cgd3d9.dll", gamez + @"\cgd3d9.dll", true);
                     File.Copy(CG + @"\cggl.dll", gamez + @"\cggl.dll", true);
                     File.Copy(CG + @"\cg.dll", launchz + @"\cg.dll", true);
                     File.Copy(CG + @"\cgd3d9.dll", launchz + @"\cgd3d9.dll", true);
                     File.Copy(CG + @"\cggl.dll", launchz + @"\cggl.dll", true);
-                    System.IO.File.WriteAllBytes(slnz + @"\tbb.dll", LoLUpdater.Properties.Resources.tbb);
+                    System.IO.File.WriteAllBytes(slnz + @"\tbb.dll", LoLUpdater0.Properties.Resources.tbb);
                     File.Copy(CG + @"\cg.dll", slnz + @"\cg.dll", true);
                     File.Copy(CG + @"\cgd3d9.dll", slnz + @"\cgd3d9.dll", true);
                     File.Copy(CG + @"\cggl.dll", slnz + @"\cggl.dll", true);
-                    System.IO.File.WriteAllBytes(airz + @"\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
-                    System.IO.File.WriteAllBytes(airz + @"\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
+                    System.IO.File.WriteAllBytes(airz + @"\Resources\NPSWF32.dll", LoLUpdater0.Properties.Resources.NPSWF32);
+                    System.IO.File.WriteAllBytes(airz + @"\Adobe Air.dll", LoLUpdater0.Properties.Resources.Adobe_AIR);
                 }
                 else if (Directory.Exists("Game"))
                 {
-                    System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater.Properties.Resources.tbb);
+                    System.IO.File.WriteAllBytes(@"game\tbb.dll", LoLUpdater0.Properties.Resources.tbb);
                     File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
                     File.Copy(CG + @"\cgd3d9.dll", @"game\cgd3d9.dll", true);
                     File.Copy(CG + @"\cggl.dll", @"game\cggl.dll", true);
-                    System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater.Properties.Resources.NPSWF32);
-                    System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Adobe Air.dll", LoLUpdater.Properties.Resources.Adobe_AIR);
+                    System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Resources\NPSWF32.dll", LoLUpdater0.Properties.Resources.NPSWF32);
+                    System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Adobe Air.dll", LoLUpdater0.Properties.Resources.Adobe_AIR);
                 }
                 finished();
             }

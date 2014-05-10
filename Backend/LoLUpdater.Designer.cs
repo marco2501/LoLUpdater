@@ -1,4 +1,4 @@
-namespace LoLUpdater
+namespace LoLUpdater0
 {
     partial class Menu
     {
