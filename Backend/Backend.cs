@@ -44,7 +44,7 @@ namespace Backend
             {
                 SetButtonShield(ElevateButton, true);
             }
-            if (Environment.OSVersion.Version.Major + Environment.OSVersion.Version.Minor >= 6.2)
+            if (Environment.OSVersion.Version.Major + Environment.OSVersion.Version.Minor >= 6.1)
             {
                 EnableMousefix.Visible = true;
                 DisableMousefix.Visible = true;
