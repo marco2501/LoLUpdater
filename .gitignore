@@ -10,3 +10,6 @@
 *.db
 *.suo
 LoLUpdater/bin/Release/Release.rar
+*.force
+*.cer
+*.pvk
