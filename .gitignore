@@ -122,3 +122,8 @@ Signingtools/root.pvk
 Signingtools/tbb.dll
 WindowsFormsApplication1/Resources/LoLUpdater.exe
 Backend/Resources/tbb.dll
+Signingtools/LoLUpdaterx64.exe
+WindowsFormsApplication1/bin/x86/Release/LoLUpdaterx64.exe
+WindowsFormsApplication1/bin/x64/Release/LoLUpdaterx64.exe
+Signingtools/LoLUpdater.exe
+Backend/obj/x64/Release/build.force

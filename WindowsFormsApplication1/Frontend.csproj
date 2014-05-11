@@ -122,7 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LoLUpdater.ico" />
-    <None Include="Resources\LoLUpdater.exe" />
+    <None Include="Resources\LoLUpdater0.exe" />
     <None Include="Resources\Interop.WUApiLib.dll" />
   </ItemGroup>
   <ItemGroup>
