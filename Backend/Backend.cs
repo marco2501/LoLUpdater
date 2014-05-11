@@ -29,7 +29,6 @@ namespace Backend
             if (rkSubKey == null)
             {
                 System.IO.File.WriteAllBytes("Cg-3.1 April2012 Setup.exe", Backend.Properties.Resources.CG);
-
                 System.Diagnostics.Process cg = new System.Diagnostics.Process();
                 System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
                 startInfo.FileName = "Cg-3.1 April2012 Setup.exe";
