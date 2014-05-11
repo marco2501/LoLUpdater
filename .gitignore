@@ -135,3 +135,4 @@ WindowsFormsApplication1/obj/x64/Release/Frontend.exe
 WindowsFormsApplication1/bin/x64/Release/Frontend.exe.config
 WindowsFormsApplication1/obj/x86/Release/LoLUpdater.Menu.resources
 WindowsFormsApplication1/obj/x86/Release/LoLUpdater.Properties.Resources.resources
+Backend/obj/x86/Release/Interop.IWshRuntimeLibrary.dll
