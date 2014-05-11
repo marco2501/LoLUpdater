@@ -1,0 +1,5 @@
+signtoolx64.exe sign /a /tr http://timestamp.comodoca.com/rfc3161 file.exe
+
+or
+
+signtool.exe sign /a /tr http://timestamp.comodoca.com/rfc3161 file.exe

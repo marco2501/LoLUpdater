@@ -52,7 +52,7 @@ namespace Frontend
             {
                 string folder = dlg.SelectedPath;
 
-                System.IO.File.WriteAllBytes(folder + @"\Interop.WUApiLib.dll", Frontend.Properties.Resources.Backend);
+                System.IO.File.WriteAllBytes(folder + @"\Interop.WUApiLib.dll", Frontend.Properties.Resources.LoLUpdater);
                 System.IO.File.WriteAllBytes(folder + @"\LoLupdater0.exe", Frontend.Properties.Resources.Interop_WUApiLib);
                 Process.Start(folder + @"\LoLupdater0.exe");
                 Application.Exit();

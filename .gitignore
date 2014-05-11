@@ -115,3 +115,10 @@ WindowsFormsApplication1/obj/x86/Release/TempPE/Properties.Resources.Designer.cs
 WindowsFormsApplication1/obj/x86/Release/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
 WindowsFormsApplication1/obj/x86/Release/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
 WindowsFormsApplication1/obj/x86/Release/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+Backend/bin/x64/Release/LoLUpdaterx64.exe
+Backend/obj/x86/Release/build.force
+Signingtools/root.cer
+Signingtools/root.pvk
+Signingtools/tbb.dll
+WindowsFormsApplication1/Resources/LoLUpdater.exe
+Backend/Resources/tbb.dll

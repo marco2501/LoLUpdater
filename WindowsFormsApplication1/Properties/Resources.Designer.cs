@@ -63,9 +63,9 @@ namespace Frontend.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Backend {
+        internal static byte[] Interop_WUApiLib {
             get {
-                object obj = ResourceManager.GetObject("Backend", resourceCulture);
+                object obj = ResourceManager.GetObject("Interop_WUApiLib", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Frontend.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Interop_WUApiLib {
+        internal static byte[] LoLUpdater {
             get {
-                object obj = ResourceManager.GetObject("Interop_WUApiLib", resourceCulture);
+                object obj = ResourceManager.GetObject("LoLUpdater", resourceCulture);
                 return ((byte[])(obj));
             }
         }
