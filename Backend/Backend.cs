@@ -25,19 +25,40 @@ namespace Backend
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            RegistryKey rkSubKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1", false);
-            if (rkSubKey == null)
+            if (IntPtr.Size == 4)
             {
-                System.IO.File.WriteAllBytes("Cg-3.1 April2012 Setup.exe", Backend.Properties.Resources.CG);
-                System.Diagnostics.Process cg = new System.Diagnostics.Process();
-                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                startInfo.FileName = "Cg-3.1 April2012 Setup.exe";
-                startInfo.Arguments = "/silent";
-                cg.StartInfo = startInfo;
-                cg.Start();
-                cg.WaitForExit();
-                File.Delete("Cg-3.1 April2012 Setup.exe");
+                RegistryKey rkSubKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1", false);
+                if (rkSubKey == null)
+                {
+                    System.IO.File.WriteAllBytes("Cg-3.1 April2012 Setup.exe", Backend.Properties.Resources.CG);
+                    System.Diagnostics.Process cg = new System.Diagnostics.Process();
+                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                    startInfo.FileName = "Cg-3.1 April2012 Setup.exe";
+                    startInfo.Arguments = "/silent";
+                    cg.StartInfo = startInfo;
+                    cg.Start();
+                    cg.WaitForExit();
+                    File.Delete("Cg-3.1 April2012 Setup.exe");
+                }
             }
+            else if (IntPtr.Size == 8)
+            {
+                RegistryKey rkSubKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1", false);
+                if (rkSubKey == null)
+                {
+                    System.IO.File.WriteAllBytes("Cg-3.1 April2012 Setup.exe", Backend.Properties.Resources.CG);
+                    System.Diagnostics.Process cg = new System.Diagnostics.Process();
+                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                    startInfo.FileName = "Cg-3.1 April2012 Setup.exe";
+                    startInfo.Arguments = "/silent";
+                    cg.StartInfo = startInfo;
+                    cg.Start();
+                    cg.WaitForExit();
+                    File.Delete("Cg-3.1 April2012 Setup.exe");
+                }
+            }
+            
+          
             EnableMousefix.Visible = false;
             DisableMousefix.Visible = false;
             if (Environment.OSVersion.Version.Major + Environment.OSVersion.Version.Minor >= 6.0)
@@ -49,12 +70,27 @@ namespace Backend
                 EnableMousefix.Visible = true;
                 DisableMousefix.Visible = true;
             }
-            RegistryKey rkSubKey1 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB", false);
-            if (rkSubKey1 == null)
-            {
 
-                UninstallPMB.Visible = false;
+
+            if (IntPtr.Size == 4)
+            {
+                RegistryKey rkSubKey1 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Pando Networks\\PMB", false);
+                if (rkSubKey1 == null)
+                {
+
+                    UninstallPMB.Visible = false;
+                }
             }
+            else if (IntPtr.Size == 8)
+            {
+                RegistryKey rkSubKey1 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB", false);
+                if (rkSubKey1 == null)
+                {
+
+                    UninstallPMB.Visible = false;
+                }
+            }
+  
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
@@ -151,8 +187,12 @@ namespace Backend
             var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
             string root = System.IO.Path.GetPathRoot(Environment.SystemDirectory);
             RegistryKey keycg = Registry.LocalMachine;
-            RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
-            var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
+
+
+       
+
+
+  
             if (Cleantemp.Checked)
             {
                 var cm = new ProcessStartInfo();
@@ -256,6 +296,110 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
             }
             else if (Patcher.Checked)
             {
+
+                if (IntPtr.Size == 4)
+                {
+                    RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
+                    var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
+                    if (Directory.Exists("Rads"))
+                    {
+                        DirectoryInfo airinfo = new DirectoryInfo(airr);
+                        DirectoryInfo air = airinfo.GetDirectories()
+                        .OrderByDescending(d => d.CreationTime)
+                        .FirstOrDefault();
+                        DirectoryInfo slninfo = new DirectoryInfo(slnr);
+                        DirectoryInfo sln = slninfo.GetDirectories()
+                        .OrderByDescending(d => d.CreationTime)
+                        .FirstOrDefault();
+                        DirectoryInfo launchinfo = new DirectoryInfo(launchr);
+                        DirectoryInfo launch = launchinfo.GetDirectories()
+                        .OrderByDescending(d => d.CreationTime)
+                        .FirstOrDefault();
+                        DirectoryInfo gameinfo = new DirectoryInfo(gamer);
+                        DirectoryInfo game = gameinfo.GetDirectories()
+                        .OrderByDescending(d => d.CreationTime)
+                        .FirstOrDefault();
+                        string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
+                        string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
+                        string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
+                        string launchz = @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy";
+                        System.IO.File.WriteAllBytes(gamez + @"\tbb.dll", Backend.Properties.Resources.tbb);
+                        File.Copy(CG + @"\cg.dll", gamez + @"\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", gamez + @"\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", gamez + @"\cggl.dll", true);
+                        File.Copy(CG + @"\cg.dll", launchz + @"\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", launchz + @"\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", launchz + @"\cggl.dll", true);
+                        System.IO.File.WriteAllBytes(slnz + @"\tbb.dll", Backend.Properties.Resources.tbb);
+                        File.Copy(CG + @"\cg.dll", slnz + @"\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", slnz + @"\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", slnz + @"\cggl.dll", true);
+                        System.IO.File.WriteAllBytes(airz + @"\Resources\NPSWF32.dll", Backend.Properties.Resources.NPSWF32);
+                        System.IO.File.WriteAllBytes(airz + @"\Adobe Air.dll", Backend.Properties.Resources.Adobe_AIR);
+                    }
+                    else if (Directory.Exists("Game"))
+                    {
+                        System.IO.File.WriteAllBytes(@"game\tbb.dll", Backend.Properties.Resources.tbb);
+                        File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", @"game\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", @"game\cggl.dll", true);
+                        System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Resources\NPSWF32.dll", Backend.Properties.Resources.NPSWF32);
+                        System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Adobe Air.dll", Backend.Properties.Resources.Adobe_AIR);
+                    }
+
+
+                }
+                else if (IntPtr.Size == 8)
+                {
+                    RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
+                    var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
+
+                    if (Directory.Exists("Rads"))
+                    {
+                        DirectoryInfo airinfo = new DirectoryInfo(airr);
+                        DirectoryInfo air = airinfo.GetDirectories()
+                        .OrderByDescending(d => d.CreationTime)
+                        .FirstOrDefault();
+                        DirectoryInfo slninfo = new DirectoryInfo(slnr);
+                        DirectoryInfo sln = slninfo.GetDirectories()
+                        .OrderByDescending(d => d.CreationTime)
+                        .FirstOrDefault();
+                        DirectoryInfo launchinfo = new DirectoryInfo(launchr);
+                        DirectoryInfo launch = launchinfo.GetDirectories()
+                        .OrderByDescending(d => d.CreationTime)
+                        .FirstOrDefault();
+                        DirectoryInfo gameinfo = new DirectoryInfo(gamer);
+                        DirectoryInfo game = gameinfo.GetDirectories()
+                        .OrderByDescending(d => d.CreationTime)
+                        .FirstOrDefault();
+                        string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
+                        string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
+                        string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
+                        string launchz = @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy";
+                        System.IO.File.WriteAllBytes(gamez + @"\tbb.dll", Backend.Properties.Resources.tbb);
+                        File.Copy(CG + @"\cg.dll", gamez + @"\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", gamez + @"\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", gamez + @"\cggl.dll", true);
+                        File.Copy(CG + @"\cg.dll", launchz + @"\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", launchz + @"\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", launchz + @"\cggl.dll", true);
+                        System.IO.File.WriteAllBytes(slnz + @"\tbb.dll", Backend.Properties.Resources.tbb);
+                        File.Copy(CG + @"\cg.dll", slnz + @"\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", slnz + @"\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", slnz + @"\cggl.dll", true);
+                        System.IO.File.WriteAllBytes(airz + @"\Resources\NPSWF32.dll", Backend.Properties.Resources.NPSWF32);
+                        System.IO.File.WriteAllBytes(airz + @"\Adobe Air.dll", Backend.Properties.Resources.Adobe_AIR);
+                    }
+                    else if (Directory.Exists("Game"))
+                    {
+                        System.IO.File.WriteAllBytes(@"game\tbb.dll", Backend.Properties.Resources.tbb);
+                        File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
+                        File.Copy(CG + @"\cgd3d9.dll", @"game\cgd3d9.dll", true);
+                        File.Copy(CG + @"\cggl.dll", @"game\cggl.dll", true);
+                        System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Resources\NPSWF32.dll", Backend.Properties.Resources.NPSWF32);
+                        System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Adobe Air.dll", Backend.Properties.Resources.Adobe_AIR);
+                    }
+                }
                 int coreCount = 0;
                 foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
                 {
@@ -304,51 +448,7 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                         }
                     }
                 }
-                if (Directory.Exists("Rads"))
-                {
-                    DirectoryInfo airinfo = new DirectoryInfo(airr);
-                    DirectoryInfo air = airinfo.GetDirectories()
-                    .OrderByDescending(d => d.CreationTime)
-                    .FirstOrDefault();
-                    DirectoryInfo slninfo = new DirectoryInfo(slnr);
-                    DirectoryInfo sln = slninfo.GetDirectories()
-                    .OrderByDescending(d => d.CreationTime)
-                    .FirstOrDefault();
-                    DirectoryInfo launchinfo = new DirectoryInfo(launchr);
-                    DirectoryInfo launch = launchinfo.GetDirectories()
-                    .OrderByDescending(d => d.CreationTime)
-                    .FirstOrDefault();
-                    DirectoryInfo gameinfo = new DirectoryInfo(gamer);
-                    DirectoryInfo game = gameinfo.GetDirectories()
-                    .OrderByDescending(d => d.CreationTime)
-                    .FirstOrDefault();
-                    string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
-                    string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
-                    string slnz = @"RADS\solutions\lol_game_client_sln\releases\" + sln + @"\deploy";
-                    string launchz = @"RADS\projects\lol_launcher\releases\" + launch + @"\deploy";
-                    System.IO.File.WriteAllBytes(gamez + @"\tbb.dll", Backend.Properties.Resources.tbb);
-                    File.Copy(CG + @"\cg.dll", gamez + @"\cg.dll", true);
-                    File.Copy(CG + @"\cgd3d9.dll", gamez + @"\cgd3d9.dll", true);
-                    File.Copy(CG + @"\cggl.dll", gamez + @"\cggl.dll", true);
-                    File.Copy(CG + @"\cg.dll", launchz + @"\cg.dll", true);
-                    File.Copy(CG + @"\cgd3d9.dll", launchz + @"\cgd3d9.dll", true);
-                    File.Copy(CG + @"\cggl.dll", launchz + @"\cggl.dll", true);
-                    System.IO.File.WriteAllBytes(slnz + @"\tbb.dll", Backend.Properties.Resources.tbb);
-                    File.Copy(CG + @"\cg.dll", slnz + @"\cg.dll", true);
-                    File.Copy(CG + @"\cgd3d9.dll", slnz + @"\cgd3d9.dll", true);
-                    File.Copy(CG + @"\cggl.dll", slnz + @"\cggl.dll", true);
-                    System.IO.File.WriteAllBytes(airz + @"\Resources\NPSWF32.dll", Backend.Properties.Resources.NPSWF32);
-                    System.IO.File.WriteAllBytes(airz + @"\Adobe Air.dll", Backend.Properties.Resources.Adobe_AIR);
-                }
-                else if (Directory.Exists("Game"))
-                {
-                    System.IO.File.WriteAllBytes(@"game\tbb.dll", Backend.Properties.Resources.tbb);
-                    File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
-                    File.Copy(CG + @"\cgd3d9.dll", @"game\cgd3d9.dll", true);
-                    File.Copy(CG + @"\cggl.dll", @"game\cggl.dll", true);
-                    System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Resources\NPSWF32.dll", Backend.Properties.Resources.NPSWF32);
-                    System.IO.File.WriteAllBytes(@"Air\Adobe Air\Versions\1.0\Adobe Air.dll", Backend.Properties.Resources.Adobe_AIR);
-                }
+
                 finished();
             }
             else if (Restorebackups.Checked)
