@@ -206,21 +206,45 @@ namespace Backend
             }
             if (UninstallPMB.Checked)
             {
-                using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB"))
-                    if (Key != null)
-                    {
-                        RegistryKey key = Registry.LocalMachine;
-                        RegistryKey subKey = key.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB");
-                        var PMB = subKey.GetValue("Program Directory").ToString();
-                        var psi2 = new ProcessStartInfo();
-                        psi2.FileName = PMB + @"\uninst.exe";
-                        psi2.Verb = "runas";
-                        psi2.Arguments = @"/silent";
-                        var PMBUninstallProc = new Process();
-                        PMBUninstallProc.StartInfo = psi2;
-                        PMBUninstallProc.Start();
-                        PMBUninstallProc.WaitForExit();
-                    }
+
+                if (IntPtr.Size == 4)
+                {
+                    using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Pando Networks\\PMB"))
+                        if (Key != null)
+                        {
+                            RegistryKey key = Registry.LocalMachine;
+                            RegistryKey subKey = key.OpenSubKey("SOFTWARE\\Pando Networks\\PMB");
+                            var PMB = subKey.GetValue("Program Directory").ToString();
+                            var psi2 = new ProcessStartInfo();
+                            psi2.FileName = PMB + @"\uninst.exe";
+                            psi2.Verb = "runas";
+                            psi2.Arguments = @"/silent";
+                            var PMBUninstallProc = new Process();
+                            PMBUninstallProc.StartInfo = psi2;
+                            PMBUninstallProc.Start();
+                            PMBUninstallProc.WaitForExit();
+                        }
+                }
+
+                else if (IntPtr.Size == 8)
+                {
+                    using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB"))
+                        if (Key != null)
+                        {
+                            RegistryKey key = Registry.LocalMachine;
+                            RegistryKey subKey = key.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB");
+                            var PMB = subKey.GetValue("Program Directory").ToString();
+                            var psi2 = new ProcessStartInfo();
+                            psi2.FileName = PMB + @"\uninst.exe";
+                            psi2.Verb = "runas";
+                            psi2.Arguments = @"/silent";
+                            var PMBUninstallProc = new Process();
+                            PMBUninstallProc.StartInfo = psi2;
+                            PMBUninstallProc.Start();
+                            PMBUninstallProc.WaitForExit();
+                        }
+                }
+
             }
             var allServices = new Dictionary<string, string[]>
 {
