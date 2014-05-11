@@ -127,3 +127,11 @@ WindowsFormsApplication1/bin/x86/Release/LoLUpdaterx64.exe
 WindowsFormsApplication1/bin/x64/Release/LoLUpdaterx64.exe
 Signingtools/LoLUpdater.exe
 Backend/obj/x64/Release/build.force
+Signingtools/x64/Release/Frontend.exe.config
+Signingtools/x86/Release/LoLUpdater.exe
+Signingtools/x86/Release/LoLUpdater.exe.config
+WindowsFormsApplication1/bin/x64/Release/Frontend.exe
+WindowsFormsApplication1/obj/x64/Release/Frontend.exe
+WindowsFormsApplication1/bin/x64/Release/Frontend.exe.config
+WindowsFormsApplication1/obj/x86/Release/LoLUpdater.Menu.resources
+WindowsFormsApplication1/obj/x86/Release/LoLUpdater.Properties.Resources.resources

@@ -15,10 +15,8 @@ using System.Security.Principal;
 using System.Runtime.InteropServices;
 using System.Management;
 using WUApiLib;
-using System.Threading; 
 namespace Backend
 {
-
     public partial class Menu : Form
     {
         public Menu()
@@ -27,10 +25,6 @@ namespace Backend
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
-            
-
             RegistryKey rkSubKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1", false);
             if (rkSubKey == null)
             {
@@ -45,33 +39,24 @@ namespace Backend
                 cg.WaitForExit();
                 File.Delete("Cg-3.1 April2012 Setup.exe");
             }
-
             EnableMousefix.Visible = false;
             DisableMousefix.Visible = false;
-
             if (Environment.OSVersion.Version.Major + Environment.OSVersion.Version.Minor >= 6.0)
             {
                 SetButtonShield(ElevateButton, true);
             }
-
             if (Environment.OSVersion.Version.Major + Environment.OSVersion.Version.Minor >= 6.2)
             {
                 EnableMousefix.Visible = true;
                 DisableMousefix.Visible = true;
             }
-
             RegistryKey rkSubKey1 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB", false);
-                    if (rkSubKey1 == null)
-                    {
+            if (rkSubKey1 == null)
+            {
 
-                       UninstallPMB.Visible = false;
+                UninstallPMB.Visible = false;
             }
-
-
-
         }
-
-
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr SendMessage(HandleRef hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
 
@@ -79,8 +64,6 @@ namespace Backend
         {
             SendMessage(new HandleRef(btn, btn.Handle), 0x160C, IntPtr.Zero, showShield ? new IntPtr(1) : IntPtr.Zero);
         }
-
-
         private void ChangeEnabled(bool enabled)
         {
             foreach (Control c in this.Controls)
@@ -88,25 +71,18 @@ namespace Backend
                 c.Enabled = enabled;
             }
         }
-
         private void finished()
         {
             OKButton.Text = "OK";
             ChangeEnabled(true);
             MessageBox.Show("Finished!");
         }
-
-
-
         string airr = @"RADS\projects\lol_air_client\releases";
         string slnr = @"RADS\solutions\lol_game_client_sln\releases";
         string launchr = @"RADS\projects\lol_launcher\releases";
         string gamer = @"RADS\projects\lol_game_client\releases";
-
-
         private void button1_Click(object sender, EventArgs e)
         {
-
             if (Exit.Checked)
             {
                 Application.Exit();
@@ -114,13 +90,11 @@ namespace Backend
             }
             OKButton.Text = "Working…";
             ChangeEnabled(false);
-
             if (!Directory.Exists("Backup"))
             {
                 Directory.CreateDirectory("Backup");
                 if (Directory.Exists("Rads"))
                 {
-
                     DirectoryInfo airinfo = new DirectoryInfo(airr);
                     DirectoryInfo air = airinfo.GetDirectories()
                     .OrderByDescending(d => d.CreationTime)
@@ -137,10 +111,8 @@ namespace Backend
                     DirectoryInfo game = gameinfo.GetDirectories()
                     .OrderByDescending(d => d.CreationTime)
                     .FirstOrDefault();
-
                     string gamez = @"RADS\projects\lol_game_client\releases\" + game + @"\deploy";
                     string airz = @"RADS\projects\lol_air_client\releases\" + air + @"\deploy\Adobe AIR\Versions\1.0";
-
                     File.Copy(gamez + @"\cg.dll", @"Backup\cg.dll", true);
                     File.Copy(gamez + @"\cgd3d9.dll", @"Backup\cgd3d9.dll", true);
                     File.Copy(gamez + @"\cggl.dll", @"Backup\cggl.dll", true);
@@ -154,7 +126,6 @@ namespace Backend
                 }
                 else if (Directory.Exists("Game"))
                 {
-
                     Directory.CreateDirectory("Backup");
                     File.Copy(@"game\cg.dll", @"Backup\cg.dll", true);
                     File.Copy(@"game\cgd3d9.dll", @"Backup\cgd3d9.dll", true);
@@ -174,20 +145,14 @@ namespace Backend
                         {
                             File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", @"Backup\GamePermanent_en_SG.cfg", true);
                         }
-
-
-
                     }
                 }
             }
-
             var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
             string root = System.IO.Path.GetPathRoot(Environment.SystemDirectory);
-
             RegistryKey keycg = Registry.LocalMachine;
             RegistryKey subKeycg = keycg.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Cg Toolkit_is1");
             var CG = subKeycg.GetValue("InstallLocation") + @"bin\";
-
             if (Cleantemp.Checked)
             {
                 var cm = new ProcessStartInfo();
@@ -199,8 +164,6 @@ namespace Backend
                 process.Start();
                 process.WaitForExit();
             }
-
-
             if (UninstallPMB.Checked)
             {
                 using (RegistryKey Key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\Pando Networks\\PMB"))
@@ -221,7 +184,6 @@ namespace Backend
                     {
                         MessageBox.Show("Pando Media Booster is already Uninstalled");
                     }
-
             }
             var allServices = new Dictionary<string, string[]>
 {
@@ -236,9 +198,6 @@ namespace Backend
             {
                 services.ToList().ForEach(service => ServiceHelper.ChangeStartMode(new ServiceController(service), ServiceStartMode.Manual));
             }
-
-
-
             if (EnableMousefix.Checked)
             {
                 Microsoft.Win32.Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers");
@@ -254,10 +213,6 @@ namespace Backend
                 applymouseHz.Start();
                 applymouseHz.WaitForExit();
             }
-
-
- 
-
             else if (DisableMousefix.Checked)
             {
                 RegistryKey mousehz = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Layers", true);
@@ -272,9 +227,6 @@ namespace Backend
                 applymouseHz.Start();
                 applymouseHz.WaitForExit();
             }
-
-
-
             if (Defrag.Checked)
             {
                 System.Diagnostics.Process defrag = new System.Diagnostics.Process();
@@ -286,8 +238,6 @@ namespace Backend
                 defrag.Start();
                 defrag.WaitForExit();
             }
-
-
             if (WindowsUpdate.Checked)
             {
                 UpdateSessionClass uSession = new UpdateSessionClass();
@@ -306,13 +256,9 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 IUpdateInstaller installer = uSession.CreateUpdateInstaller();
                 installer.Updates = updatesToInstall;
                 IInstallationResult installationRes = installer.Install();
-
             }
-
-
             else if (Patcher.Checked)
             {
-
                 int coreCount = 0;
                 foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
                 {
@@ -322,61 +268,47 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 {
                     if (File.Exists(@"Config\game.cfg"))
                     {
-                    string contents = File.ReadAllText(@"Config\game.cfg");
-                    if (!contents.Contains("DefaultParticleMultithreading=1"))
-                    {
-                        
+                        string contents = File.ReadAllText(@"Config\game.cfg");
+                        if (!contents.Contains("DefaultParticleMultithreading=1"))
+                        {
                             File.AppendAllText(@"Config\game.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
                         }
                     }
-                
-
                     else if (File.Exists(@"Game\DATA\CFG\defaults\game.cfg"))
                     {
-
                         string contents1 = File.ReadAllText(@"Game\DATA\CFG\defaults\game.cfg");
-                           if (!contents1.Contains("DefaultParticleMultithreading=1"))
-                           {
-
-                               File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
-                           }
-
-                           if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent.cfg"))
-                           {
-                               string contents2 = File.ReadAllText(@"Game\DATA\CFG\defaults\GamePermanent.cfg");
-                               if (!contents2.Contains("DefaultParticleMultithreading=1"))
-                               {
-                                   File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
-                               }
-                           }
-
-
-                         if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg"))
-                         {
-                         string contents3 = File.ReadAllText(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg");
-                              if (!contents3.Contains("DefaultParticleMultithreading=1"))
-                              {
-                                   File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", Environment.NewLine + "DefaultParticleMultithreading=1"); }
-                              }
-
-                              if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg"))
-                              { 
-                              string contents4 = File.ReadAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg");
-                                  if (!contents4.Contains("DefaultParticleMultithreading=1"))
-                                  {
-                                      File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", Environment.NewLine + "DefaultParticleMultithreading=1"); }
-                                  }
-
-
-
-
+                        if (!contents1.Contains("DefaultParticleMultithreading=1"))
+                        {
+                            File.AppendAllText(@"Game\DATA\CFG\defaults\game.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                        }
+                        if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent.cfg"))
+                        {
+                            string contents2 = File.ReadAllText(@"Game\DATA\CFG\defaults\GamePermanent.cfg");
+                            if (!contents2.Contains("DefaultParticleMultithreading=1"))
+                            {
+                                File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                            }
+                        }
+                        if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg"))
+                        {
+                            string contents3 = File.ReadAllText(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg");
+                            if (!contents3.Contains("DefaultParticleMultithreading=1"))
+                            {
+                                File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_zh_MY.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                            }
+                        }
+                        if (File.Exists(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg"))
+                        {
+                            string contents4 = File.ReadAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg");
+                            if (!contents4.Contains("DefaultParticleMultithreading=1"))
+                            {
+                                File.AppendAllText(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", Environment.NewLine + "DefaultParticleMultithreading=1");
+                            }
+                        }
                     }
-
-
                 }
                 if (Directory.Exists("Rads"))
                 {
-
                     DirectoryInfo airinfo = new DirectoryInfo(airr);
                     DirectoryInfo air = airinfo.GetDirectories()
                     .OrderByDescending(d => d.CreationTime)
@@ -413,7 +345,6 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 }
                 else if (Directory.Exists("Game"))
                 {
-
                     System.IO.File.WriteAllBytes(@"game\tbb.dll", Backend.Properties.Resources.tbb);
                     File.Copy(CG + @"\cg.dll", @"game\cg.dll", true);
                     File.Copy(CG + @"\cgd3d9.dll", @"game\cgd3d9.dll", true);
@@ -485,41 +416,29 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                             {
                                 File.Copy(@"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", @"Game\DATA\CFG\defaults\GamePermanent_en_SG.cfg", true);
                             }
-
-
-
                         }
                     }
-
-
                 }
                 finished();
             }
             else if (onlycheckboxes.Checked)
             {
                 finished();
-
             }
-
-
         }
         private void button2_Click(object sender, EventArgs e)
         {
-
-
             if (!IsRunAsAdmin())
             {
                 Elevate();
                 Application.Exit();
             }
         }
-
         internal static bool IsRunAsAdmin()
         {
             var Principle = new WindowsPrincipal(WindowsIdentity.GetCurrent());
             return Principle.IsInRole(WindowsBuiltInRole.Administrator);
         }
-
         private static bool Elevate()
         {
             var SelfProc = new ProcessStartInfo
@@ -532,7 +451,6 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
             Process.Start(SelfProc);
             return true;
         }
-
         public static class ServiceHelper
         {
             [DllImport("advapi32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
@@ -598,9 +516,5 @@ Type='Software' and IsHidden=0 and BrowseOnly=1 and AutoSelectOnWebSites=1 and R
                 CloseServiceHandle(scManagerHandle);
             }
         }
-
- 
-
-
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Frontend
+﻿namespace LoLUpdater
 {
     partial class Menu
     {

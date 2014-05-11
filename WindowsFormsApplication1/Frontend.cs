@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.IO;
-namespace Frontend
+namespace LoLUpdater
 {
     public partial class Menu : Form
     {
@@ -52,9 +52,9 @@ namespace Frontend
             {
                 string folder = dlg.SelectedPath;
 
-                System.IO.File.WriteAllBytes(folder + @"\Interop.WUApiLib.dll", Frontend.Properties.Resources.LoLUpdater0);
-                System.IO.File.WriteAllBytes(folder + @"\LoLUpdater0", Frontend.Properties.Resources.Interop_WUApiLib);
-                Process.Start(folder + @"\LoLUpdater0");
+                System.IO.File.WriteAllBytes(folder + @"\Interop.WUApiLib.dll", LoLUpdater.Properties.Resources.Interop_WUApiLib);
+                System.IO.File.WriteAllBytes(folder + @"\LoLUpdater0.exe", LoLUpdater.Properties.Resources.LoLUpdater0);
+                Process.Start(folder + @"\LoLUpdater0.exe");
                 Application.Exit();
             }
             else
